@@ -21,3 +21,4 @@ Thumbs.db
 
 # App specific ignore rules
 dist/
+bower_components/

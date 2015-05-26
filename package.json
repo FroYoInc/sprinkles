@@ -1,0 +1,26 @@
+{
+  "name": "sprinkles",
+  "version": "0.0.0",
+  "description": "UI for the carpool app",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/FroYoInc/sprinkles.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/FroYoInc/sprinkles/issues"
+  },
+  "homepage": "https://github.com/FroYoInc/sprinkles",
+  "devDependencies": {
+    "del": "^1.2.0",
+    "gulp": "^3.8.11",
+    "gulp-load-plugins": "^0.10.0",
+    "gulp-util": "^3.0.4"
+  }
+}
