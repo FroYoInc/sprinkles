@@ -18,9 +18,14 @@
   },
   "homepage": "https://github.com/FroYoInc/sprinkles",
   "devDependencies": {
+    "browser-sync": "^2.7.4",
     "del": "^1.2.0",
     "gulp": "^3.8.11",
+    "gulp-jasmine": "^2.0.1",
     "gulp-load-plugins": "^0.10.0",
+    "gulp-sourcemaps": "^1.5.2",
+    "gulp-tslint": "^3.0.1-beta",
+    "gulp-typescript": "^2.7.5",
     "gulp-util": "^3.0.4"
   }
 }
