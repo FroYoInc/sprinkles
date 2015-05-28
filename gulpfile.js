@@ -4,10 +4,9 @@ var del    = require('del');
 var ac     = require('autoprefixer-core');
 var config = require('./config.js')
 
-$.ts  = $.typescript;
-$.del = del;
+var ts = $.typescript;
 
-var tsProject = $.ts.createProject(config.tsConfigFile);
+var tsProject = ts.createProject(config.tsConfigFile);
 var browserSync  = require('browser-sync').create();
 
 var failOnErrors = false;
@@ -19,18 +18,18 @@ var handleError = function(err) {
 }
 
 gulp.task('clean-ts', function(cb) {
-  $.del(config.tsOutDir, cb);
+  del(config.tsOutDir, cb);
 });
 
 gulp.task('clean-dist', function(cb) {
-  $.del(config.outDir, cb);
+  del(config.outDir, cb);
 });
 
 gulp.task('clean', ['clean-ts', 'clean-dist']);
 
 gulp.task('transpile-ts2js', function () {
   return tsProject.src()
-    .pipe($.ts(tsProject))
+    .pipe(ts(tsProject))
     .on('error', handleError)
     .js
     .pipe(gulp.dest(config.tsOutDir));
