@@ -1,24 +1,15 @@
-var gulp = require('gulp');
-var $ = require('gulp-load-plugins')();
-var spawn  = require('child_process').spawn;
-$.del = require('del');
+var gulp   = require('gulp');
+var $      = require('gulp-load-plugins')();
+var del    = require('del');
 var config = require('./config.js')
 
-var ts           = $.typescript;
-var tsProject    = ts.createProject(config.tsConfigFile);
-var failOnErrors = false;
-$.ts = $.typescript;
+$.ts  = $.typescript;
+$.del = del;
 
-// Require and Initialize browser sync with our configurtion
+var tsProject = $.ts.createProject(config.tsConfigFile);
 var browserSync  = require('browser-sync').create();
 
-browserSync.init({
-        server: {
-            baseDir: config.htmlDir,
-        },
-        port: config.bsPort
-});
-
+var failOnErrors = false;
 var handleError = function(err) {
   if (failOnErrors) {
     $.util.log(err.message);
@@ -28,10 +19,17 @@ var handleError = function(err) {
 
 gulp.task('transpile-ts2js', function () {
   return tsProject.src()
-                  .pipe($.ts(tsProject))
-                  .on('error', handleError)
-                  .js
-                  .pipe(gulp.dest(config.tsOutDir));
+    .pipe($.ts(tsProject))
+    .on('error', handleError)
+    .js
+    .pipe(gulp.dest(config.tsOutDir));
+});
+
+gulp.task('browser-sync', function() {
+  browserSync.init({
+    'server': {'baseDir': config.htmlDir},
+    'port': config.bsPort
+  });
 });
 
 gulp.task('default', function() {
