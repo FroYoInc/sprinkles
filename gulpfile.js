@@ -1,6 +1,7 @@
 var gulp   = require('gulp');
 var $      = require('gulp-load-plugins')();
 var del    = require('del');
+var ac     = require('autoprefixer-core');
 var config = require('./config.js')
 
 $.ts  = $.typescript;
@@ -37,9 +38,9 @@ gulp.task('transpile-ts2js', function () {
 
 gulp.task('styles', function() {
   return gulp.src(config.stylesDir)
-    .pipe($.sass({
-      'includePaths': ['.']
-    }))
+    .pipe($.sass())
+    .on('error', handleError)
+    .pipe($.postcss([ac({browsers: ['last 1 version']})]))
     .on('error', handleError)
     .pipe(gulp.dest(config.outDir));
 });
