@@ -11,11 +11,21 @@ var browserSync  = require('browser-sync').create();
 
 var failOnErrors = false;
 var handleError = function(err) {
+  $.util.log(err.message);
   if (failOnErrors) {
-    $.util.log(err.message);
     process.exit(1);
   }
 }
+
+gulp.task('clean-ts', function(cb) {
+  $.del(config.tsOutDir, cb);
+});
+
+gulp.task('clean-dist', function(cb) {
+  $.del(config.outDir, cb);
+});
+
+gulp.task('clean', ['clean-ts', 'clean-dist']);
 
 gulp.task('transpile-ts2js', function () {
   return tsProject.src()
@@ -23,6 +33,15 @@ gulp.task('transpile-ts2js', function () {
     .on('error', handleError)
     .js
     .pipe(gulp.dest(config.tsOutDir));
+});
+
+gulp.task('styles', function() {
+  return gulp.src(config.stylesDir)
+    .pipe($.sass({
+      'includePaths': ['.']
+    }))
+    .on('error', handleError)
+    .pipe(gulp.dest(config.outDir));
 });
 
 gulp.task('browser-sync', function() {

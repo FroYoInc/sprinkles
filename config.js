@@ -11,6 +11,8 @@ module.exports = {
   'tsOutDir': tsConfig.compilerOptions.outDir,
   'tsFilesGlob': tsConfig.filesGlob,
   'bsPort': 3000,
+  'outDir': 'dist/',
+  'stylesDir': 'app/styles/**/*.scss',
   'htmlDir': './html/',
   'cssDir' : './css/'
 }
