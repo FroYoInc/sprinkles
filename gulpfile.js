@@ -48,12 +48,14 @@ gulp.task('styles', function() {
 gulp.task('wiredep-styles', function() {
   return gulp.src(config.sassFiles)
     .pipe(wiredep({'ignorePath': /^(\.\.\/)+/}))
+    .on('error', handleError)
     .pipe(gulp.dest(config.stylesDir));
 });
 
 gulp.task('wiredep-html', function() {
   return gulp.src(config.htmlFiles)
     .pipe(wiredep({'ignorePath': /^(\.\.\/)+/}))
+    .on('error', handleError)
     .pipe(gulp.dest(config.htmlDir));
 });
 
