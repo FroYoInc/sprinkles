@@ -1,8 +1,9 @@
-var gulp   = require('gulp');
-var $      = require('gulp-load-plugins')();
-var del    = require('del');
-var ac     = require('autoprefixer-core');
-var config = require('./config.js')
+var gulp    = require('gulp');
+var $       = require('gulp-load-plugins')();
+var del     = require('del');
+var ac      = require('autoprefixer-core');
+var wiredep = require('wiredep').stream;
+var config  = require('./config.js')
 
 var ts = $.typescript;
 
@@ -36,13 +37,27 @@ gulp.task('transpile-ts2js', function () {
 });
 
 gulp.task('styles', function() {
-  return gulp.src(config.stylesDir)
+  return gulp.src(config.sassFiles)
     .pipe($.sass())
     .on('error', handleError)
     .pipe($.postcss([ac({browsers: ['last 1 version']})]))
     .on('error', handleError)
     .pipe(gulp.dest(config.outDir));
 });
+
+gulp.task('wiredep-styles', function() {
+  return gulp.src(config.sassFiles)
+    .pipe(wiredep({'ignorePath': /^(\.\.\/)+/}))
+    .pipe(gulp.dest(config.stylesDir));
+});
+
+gulp.task('wiredep-html', function() {
+  return gulp.src(config.htmlFiles)
+    .pipe(wiredep({'ignorePath': /^(\.\.\/)+/}))
+    .pipe(gulp.dest(config.htmlDir));
+});
+
+gulp.task('wiredep', ['wiredep-styles', 'wiredep-html']);
 
 gulp.task('browser-sync', function() {
   browserSync.init({

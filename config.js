@@ -12,7 +12,9 @@ module.exports = {
   'tsFilesGlob': tsConfig.filesGlob,
   'bsPort': 3000,
   'outDir': 'dist/',
-  'stylesDir': 'app/styles/**/*.scss',
-  'htmlDir': './html/',
+  'stylesDir': 'app/styles',
+  'htmlFiles': 'app/*.html',
+  'htmlDir': 'app/',
+  'sassFiles': 'app/styles/**/*.scss',
   'cssDir' : './css/'
 }
