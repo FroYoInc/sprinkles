@@ -9,6 +9,7 @@ var ts = $.typescript;
 
 var tsProject = ts.createProject(config.tsConfigFile);
 var browserSync  = require('browser-sync').create();
+var reload       = browserSync.reload;
 
 var failOnErrors = false;
 var handleError = function(err) {
@@ -44,22 +45,17 @@ gulp.task('styles', function() {
     .on('error', handleError)
     .pipe($.postcss([ac({browsers: ['last 1 version']})]))
     .on('error', handleError)
-    .pipe(gulp.dest(config.cssFilesOut));
+    .pipe(gulp.dest(config.cssFilesOut))
+    .pipe(reload({stream: true}));
 });
 
 gulp.task('html', ['styles'], function() {
-  return gulp.src(config.htmlFiles)
-    .pipe(gulp.dest(config.htmlFilesOut));
 });
 
 gulp.task('images', function() {
-  return gulp.src(config.imageFiles)
-    .pipe(gulp.dest(config.imageFilesOut));
 });
 
 gulp.task('fonts', function() {
-  return gulp.src(config.fontFiles)
-    .pipe(gulp.dest(config.fontFilesOut));
 });
 
 gulp.task('wiredep-styles', function() {
@@ -78,7 +74,7 @@ gulp.task('wiredep-html', function() {
 
 gulp.task('wiredep', ['wiredep-styles', 'wiredep-html']);
 
-gulp.task('serve', function() {
+gulp.task('serve', ['build'], function() {
   browserSync.init({
     'server': {
       'baseDir': config.baseDirs,
@@ -86,6 +82,17 @@ gulp.task('serve', function() {
       },
     'port': config.port
   });
+
+  gulp.watch([
+    config.htmlFiles,
+    config.tsFiles,
+    config.imageFiles,
+    config.fontFiles
+  ]).on('change', reload);
+
+  gulp.watch(config.sassFiles, ['styles']);
+  gulp.watch(config.fontFiles, ['fonts']);
+  gulp.watch(config.bowerFile, ['wiredep']);
 });
 
 gulp.task('_build', ['styles', 'images', 'fonts', 'scripts', 'html']);

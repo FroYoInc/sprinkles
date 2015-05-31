@@ -14,7 +14,7 @@ module.exports = {
   'port': 3000,
   'outDir': outDir,
   'stylesDir': 'app/styles',
-  'htmlFiles': 'app/*.html',
+  'htmlFiles': 'app/**/*.html',
   'htmlFilesOut': outDir,
   'imageFiles': 'app/images/**/*',
   'imageFilesOut': outDir + '/images',
@@ -24,6 +24,6 @@ module.exports = {
   'sassFiles': 'app/styles/**/*.scss',
   'cssDir' : './css/',
   'cssFilesOut': outDir + '/styles',
-  'baseDirs': ['app'],
+  'baseDirs': ['dist', 'app'],
   'routes': {'/bower_components': 'bower_components'}
 }
