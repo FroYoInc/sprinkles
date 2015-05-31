@@ -9,12 +9,14 @@ module.exports = {
   'tsd': tsd,
   'package': package,
   'tsOutDir': tsConfig.compilerOptions.outDir,
-  'tsFilesGlob': tsConfig.filesGlob,
-  'bsPort': 3000,
-  'outDir': 'dist/',
+  'tsFiles': tsConfig.filesGlob,
+  'port': 3000,
+  'outDir': tsConfig.compilerOptions.outDir,
   'stylesDir': 'app/styles',
   'htmlFiles': 'app/*.html',
   'htmlDir': 'app/',
   'sassFiles': 'app/styles/**/*.scss',
-  'cssDir' : './css/'
+  'cssDir' : './css/',
+  'baseDirs': ['app'],
+  'routes': {'/bower_components': 'bower_components'}
 }

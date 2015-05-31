@@ -9,7 +9,7 @@
         "noEmitOnError": true,
         "removeComments": true,
         "noLib": false,
-        "outDir": "./built/",
+        "outDir": "./dist/",
         "preserveConstEnums": true,
         "suppressImplicitAnyIndexErrors": true
     },

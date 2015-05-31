@@ -29,7 +29,7 @@ gulp.task('clean-dist', function(cb) {
 gulp.task('clean', ['clean-ts', 'clean-dist']);
 
 gulp.task('transpile-ts2js', function () {
-  return tsProject.src()
+  return tsProject.src(config.tsFiles)
     .pipe(ts(tsProject))
     .on('error', handleError)
     .js
@@ -61,11 +61,20 @@ gulp.task('wiredep-html', function() {
 
 gulp.task('wiredep', ['wiredep-styles', 'wiredep-html']);
 
-gulp.task('browser-sync', function() {
+gulp.task('serve', function() {
   browserSync.init({
-    'server': {'baseDir': config.htmlDir},
-    'port': config.bsPort
+    'server': {
+      'baseDir': config.baseDirs,
+      'routes': config.routes
+      },
+    'port': config.port
   });
+});
+
+gulp.task('_build', ['styles', 'images', 'fonts', 'scripts', 'html']);
+gulp.task('build', function() {
+  failOnErrors = true;
+  gulp.start('_build');
 });
 
 gulp.task('default', function() {
