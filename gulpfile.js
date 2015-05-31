@@ -36,12 +36,29 @@ gulp.task('transpile-ts2js', function () {
     .pipe(gulp.dest(config.tsOutDir));
 });
 
+gulp.task('scripts', ['transpile-ts2js']);
+
 gulp.task('styles', function() {
   return gulp.src(config.sassFiles)
     .pipe($.sass())
     .on('error', handleError)
     .pipe($.postcss([ac({browsers: ['last 1 version']})]))
     .on('error', handleError)
+    .pipe(gulp.dest(config.outDir));
+});
+
+gulp.task('html', ['styles'], function() {
+  return gulp.src(config.htmlFiles)
+    .pipe(gulp.dest(config.outDir));
+});
+
+gulp.task('images', function() {
+  return gulp.src(config.imageFiles)
+    .pipe(gulp.dest(config.outDir));
+});
+
+gulp.task('fonts', function() {
+  return gulp.src(config.fontFiles)
     .pipe(gulp.dest(config.outDir));
 });
 

@@ -14,6 +14,8 @@ module.exports = {
   'outDir': tsConfig.compilerOptions.outDir,
   'stylesDir': 'app/styles',
   'htmlFiles': 'app/*.html',
+  'imageFiles': 'app/images/**/*',
+  'fontFiles': 'app/fonts/**/*',
   'htmlDir': 'app/',
   'sassFiles': 'app/styles/**/*.scss',
   'cssDir' : './css/',
