@@ -44,22 +44,22 @@ gulp.task('styles', function() {
     .on('error', handleError)
     .pipe($.postcss([ac({browsers: ['last 1 version']})]))
     .on('error', handleError)
-    .pipe(gulp.dest(config.outDir));
+    .pipe(gulp.dest(config.cssFilesOut));
 });
 
 gulp.task('html', ['styles'], function() {
   return gulp.src(config.htmlFiles)
-    .pipe(gulp.dest(config.outDir));
+    .pipe(gulp.dest(config.htmlFilesOut));
 });
 
 gulp.task('images', function() {
   return gulp.src(config.imageFiles)
-    .pipe(gulp.dest(config.outDir));
+    .pipe(gulp.dest(config.imageFilesOut));
 });
 
 gulp.task('fonts', function() {
   return gulp.src(config.fontFiles)
-    .pipe(gulp.dest(config.outDir));
+    .pipe(gulp.dest(config.fontFilesOut));
 });
 
 gulp.task('wiredep-styles', function() {
