@@ -20,6 +20,7 @@
     "files": [
         "./app/scripts/app.ts",
         "./app/scripts/components/home/homeController.ts",
-        "./app/scripts/components/home/homeService.ts"
+        "./app/scripts/components/home/homeService.ts",
+        "./app/scripts/components/signup/signupController.ts"
     ]
 }
