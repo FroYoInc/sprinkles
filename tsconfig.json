@@ -18,9 +18,8 @@
         "!./node_modules/**/*.ts"
     ],
     "files": [
-        "./typings/angularjs/angular.d.ts",
-        "./typings/bootstrap/bootstrap.d.ts",
-        "./typings/jquery/jquery.d.ts",
-        "./typings/tsd.d.ts"
+        "./app/scripts/app.ts",
+        "./app/scripts/components/home/homeController.ts",
+        "./app/scripts/components/home/homeService.ts"
     ]
 }
