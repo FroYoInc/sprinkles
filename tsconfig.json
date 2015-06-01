@@ -16,8 +16,9 @@
         "!./node_modules/**/*.ts"
     ],
     "files": [
-        "./components/navbar/navbar.controller.ts",
-        "./index.ts",
-        "./main/main.controller.ts"
+        "./bower_components/angular-ui-router/api/angular-ui-router.d.ts",
+        "./src/app/components/navbar/navbar.controller.ts",
+        "./src/app/index.ts",
+        "./src/app/main/main.controller.ts"
     ]
 }
