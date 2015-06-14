@@ -6,8 +6,10 @@
         "module": "commonjs",
         "declaration": false,
         "noImplicitAny": false,
+        "noEmitOnError": true,
         "removeComments": true,
         "noLib": false,
+        "outDir": "./dist/",
         "preserveConstEnums": true,
         "suppressImplicitAnyIndexErrors": true
     },
@@ -16,9 +18,9 @@
         "!./node_modules/**/*.ts"
     ],
     "files": [
-        "./bower_components/angular-ui-router/api/angular-ui-router.d.ts",
-        "./src/app/components/navbar/navbar.controller.ts",
-        "./src/app/index.ts",
-        "./src/app/main/main.controller.ts"
+        "./app/scripts/app.ts",
+        "./app/scripts/components/home/homeController.ts",
+        "./app/scripts/components/home/homeService.ts",
+        "./app/scripts/components/signup/signupController.ts"
     ]
 }
