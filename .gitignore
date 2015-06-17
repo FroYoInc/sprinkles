@@ -25,3 +25,6 @@ bower_components/
 built/
 typings/
 .tmp/
+
+# IDE specific
+.idea/
