@@ -1,24 +1,12 @@
-/// <reference path='../../app.ts' />
+/// <reference path="../../app.ts"/>
 
-module sprinkles {
-	'use strict';
+class homeController {
 
-	/**
-	 * The main controller for the app.
-   */
-	export class HomeCtrl {
 
-		public static $inject = [
-			'$scope',
-			'$location',
-		];
-
-		// dependencies are injected via AngularJS $injector
-		// controller's name is registered in Application.ts and specified from ng-controller attribute in index.html
-		constructor(
-
-		) {
-		}
-	}
+    constructor($scope) {
+        $scope.vm = this;
+    }
 
 }
+
+app.controllers.controller('homeController', homeController);

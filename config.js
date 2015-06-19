@@ -25,5 +25,5 @@ module.exports = {
   'cssDir' : './css/',
   'cssFilesOut': outDir + '/styles',
   'baseDirs': ['dist', 'app'],
-  'routes': {'/bower_components': 'bower_components'}
+  'routes': {'/bower_components': 'bower_components', '/dist': 'dist'}
 }
