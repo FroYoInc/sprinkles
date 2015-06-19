@@ -16,4 +16,14 @@
  var app = angular.module('app', [])
     .controller('HomeCtrl', HomeCtrl)
     //.controller('SignupCtrl', SignupCtrl)
+   /* .config(function($routeProvider){
+      $routeProvider
+        .when('/',
+          {
+            controller: ,
+            templateUrl:
+
+          }
+        )
+   })*/
 }
