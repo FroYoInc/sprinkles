@@ -10,16 +10,19 @@ app.controllers.controller('navbarController',
   $scope.loadHome = function () {
         $location.url('/home');
         console.log("in loadhome");
+        $scope.$apply();
     };
 
       $scope.loadAbout = function () {
         $location.url('/about');
         console.log("in loadabout");
+        $scope.$apply();
     };
 
       $scope.loadContact = function () {
         $location.url('/contact');
         console.log("in loadcontact");
+        $scope.$apply();
     };
 
 }]);
