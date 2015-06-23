@@ -1,15 +1,25 @@
-module sprinkles {
-  'use strict';
+/// <reference path="../../app.ts"/>
 
-  interface INavbarScope extends ng.IScope {
-    date: Date
-  }
+app.controllers.controller('navbarController',
+['$scope', '$location', function ($scope, $location) {
+  $scope.navClass = function (page) {
+    var currentRoute = $location.path().substring(1) || 'home';
+    return page === currentRoute ? 'active' : '';
+  };
 
-  export class NavbarCtrl {
-    /* @ngInject */
-    constructor ($scope: INavbarScope) {
-      $scope.date = new Date();
-    }
-  }
+  $scope.loadHome = function () {
+        $location.url('/home');
+        console.log("in loadhome");
+    };
 
-}
+      $scope.loadAbout = function () {
+        $location.url('/about');
+        console.log("in loadabout");
+    };
+
+      $scope.loadContact = function () {
+        $location.url('/contact');
+        console.log("in loadcontact");
+    };
+
+}]);

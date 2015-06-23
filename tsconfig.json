@@ -18,6 +18,7 @@
         "!./node_modules/**/*.ts"
     ],
     "files": [
+        "./app/libs/angular/angular-route.d.ts",
         "./app/libs/angular/angular.d.ts",
         "./app/libs/jquery/jquery.d.ts",
         "./app/scripts/app.ts",
