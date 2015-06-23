@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Team FroYo - Corporate Carpool</title>
+    <title>Team FroYo2 - Corporate Carpool</title>
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/fontawesome/css/font-awesome.css" />
     <!-- endbower -->
@@ -16,53 +16,86 @@
       <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <div class="container">
-      <div class="header">
-        <nav class="navbar navbar-default">
-          <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-              <a class="navbar-brand" href="#">Team FroYo - Corporate Carpool</a>
-            </div>
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-              <form class="navbar-form navbar-right" role="search">
-                <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Username">
-                  <input type="text" class="form-control" placeholder="Password">
-                </div>
-                <button type="submit" class="btn btn-default">Sign In</button>
-                <button type="submit" class="btn btn-default">Sign Up</button>
-              </form>
-                </li>
-              </ul>
-            </div><!-- /.navbar-collapse -->
-          </div><!-- /.container-fluid -->
-        </nav>
+    <div ng-controller="navbarController">
+      <div class="navbar">
+        <ul class="nav navbar-nav">
+          <li ng-class="navClass('home')"><a href='' ng-click="loadHome()">Home</a></li>
+          <li ng-class="navClass('about')"><a href='' ng-click="loadAbout()">About Us</a></li>
+          <li ng-class="navClass('contact')"><a href='' ng-click="loadContact()">Contact Us</a></li>
+        </ul>
       </div>
+    </div>
+
+    <!--------- Alerts ------ -->
+    <div class="alert alert-success" role="alert" id="accountRegistered">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden ="true">&times;</span></button>
+        <strong>Thank you!</strong> Please check your email to activate your account.
+      </div>
+
+    <div class="alert alert-danger" role="alert" id="accountNotActivated">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span></button>
+        <strong>Sorry!</strong> Account in not yet activated.
+      </div>  
+
+    <!-- <div class="alert alert-danger" role="alert">
+        <strong>Sorry!</strong> Account not activated.
+      </div> -->
+
+    <div class="container">
       <div class="jumbotron">
         <h1>Corporate Carpooling</h1>
         <p>Corporate Carpooling is an open-source project that connects riders working at the same company.</p>
       </div>
 
+      <form class="form-horizontal">
+        <div class="form-group">
+          <!-- <label for="inputEmail3" class="col-sm-2 control-label">Email</label> -->
+          <div class="col-sm-10">
+            <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+          </div>
+        </div>
+        <div class="form-group">
+          <!-- <label for="inputFName" class="col-sm-2 control-label">Name</label> -->
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="inputFName" placeholder="First Name">
+          </div>
+        </div>
+        <div class="form-group">
+          <!-- <label for="inputLName" class="col-sm-2 control-label"></label> -->
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="inputLName" placeholder="Last Name">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-sm-offset-0 col-sm-10">
+            <button type="submit" class="btn btn-default">Sign up</button>
+          </div>
+        </div>
+      </form>
+
 
       <div class="footer">
-        <p>Team Froyo</p>
+        <center><div class="btn-group" role="group" aria-label="...">
+          <button type="button" class="btn btn-default">About</button>
+          <button type="button" class="btn btn-default">License</button>
+          <button type="button" class="btn btn-default">Contact</button>
+          <button type="button" class="btn btn-default">Source</button>
+        </div></center>
+        <br>
+        <center><p>Team Froyo</p></center>
       </div>
     </div>
     <!-- bower:js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/bootstrap-sass/assets/javascripts/bootstrap.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="dist/app/scripts/app.js"></script>
     <script src="dist/app/scripts/components/home/homeController.js"></script>
+    <script src="dist/app/scripts/components/navbar/navbarController.js"></script>
 
     </script>
     <!-- endbower -->
