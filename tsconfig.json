@@ -18,11 +18,13 @@
         "!./node_modules/**/*.ts"
     ],
     "files": [
+        "./app/libs/angular/angular-route.d.ts",
         "./app/libs/angular/angular.d.ts",
         "./app/libs/jquery/jquery.d.ts",
         "./app/scripts/app.ts",
         "./app/scripts/components/home/homeController.ts",
         "./app/scripts/components/home/homeService.ts",
+        "./app/scripts/components/navbar/navbarController.ts",
         "./app/scripts/components/signup/signupController.ts"
     ]
 }
