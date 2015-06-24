@@ -27,6 +27,23 @@
       <div ng-view>
     </div>
 
+    <!--------- Alerts ------ -->
+    <div class="alert alert-success" role="alert" id="accountRegistered">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden ="true">&times;</span></button>
+        <strong>Thank you!</strong> Please check your email to activate your account.
+      </div>
+
+    <div class="alert alert-danger" role="alert" id="accountNotActivated">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span></button>
+        <strong>Sorry!</strong> Account in not yet activated.
+      </div>
+
+    <!-- <div class="alert alert-danger" role="alert">
+        <strong>Sorry!</strong> Account not activated.
+      </div> -->
+
       <div class="footer">
         <center><div class="btn-group" role="group" aria-label="...">
           <button type="button" class="btn btn-default">About</button>
