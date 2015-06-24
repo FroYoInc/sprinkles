@@ -12,20 +12,19 @@ angular.module('app', ['app.controllers','ngRoute']).
 
     $routeProvider.when('/home',
     {
-      templateUrl:    'views\homeView.html',
+      templateUrl:    '\\views\\homeView.html',
       controller:     'homeController'
     });
-    $routeProvider.when('/about',
+    $routeProvider.when('/signup',
     {
-      templateUrl:    'views\homeView.html',
+      templateUrl:    '\\views\\signupView.html',
       controller:     'signupController'
     });
     $routeProvider.otherwise(
     {
-      redirectTo:     'views\homeView.html',
+      redirectTo:     '/home',
       controller:     'homeController',
-    }
-  )
+    });
 });
 
 module app {
