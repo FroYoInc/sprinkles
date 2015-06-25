@@ -22,8 +22,21 @@
           <li ng-class="navClass('home')"><a href='' ng-click="loadHome()">Home</a></li>
           <li ng-class="navClass('signup')"><a href='' ng-click="loadSignup()">Sign Up</a></li>
         </ul>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <form class="navbar-form navbar-right" role="search">
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Username">
+                <input type="text" class="form-control" placeholder="Password">
+              </div>
+              <button type="submit" class="btn btn-default">Sign In</button>
+              <button type="submit" class="btn btn-default">Sign Up</button>
+            </form>
+            </li>
+            </ul>
+          </div>
       </div>
     </div>
+
       <div ng-view>
     </div>
 
@@ -63,8 +76,7 @@
     <script src="dist/app/scripts/app.js"></script>
     <script src="dist/app/scripts/components/home/homeController.js"></script>
     <script src="dist/app/scripts/components/navbar/navbarController.js"></script>
-
-    </script>
+    <script src="dist/app/scripts/components/signup/signupController.js"></script>
     <!-- endbower -->
 </body>
 </html>

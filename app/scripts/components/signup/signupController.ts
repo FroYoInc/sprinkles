@@ -1,6 +1,13 @@
-/// <reference path='../../app.ts' />
+/// <reference path="../../app.ts"/>
 
-app.controllers.controller('ContactController', function($scope, $compile) {
-  console.log('inside contact controller');
+class signupController {
 
-});
+    message = "Some Message";
+    progress = 0;
+
+    constructor($scope) {
+        $scope.vm = this;
+    }
+}
+
+app.controllers.controller('signupController', homeController);
