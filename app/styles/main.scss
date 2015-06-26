@@ -10,11 +10,19 @@ body {
 .footer{
   margin-top: 5%;
 }
-.form-horizontal{
-  margin-right: 15%;
+.form-horizontal-signin{
+  margin-right: 10%;
   box-sizing: border-box;
   padding: 20px;
   padding-right: 25px;
+  padding-left: 25px;
+  border-radius: 6px;
+  background-color: #eee;
+}
+.form-horizontal-signup{
+  margin-left: 10%;
+  box-sizing: border-box;
+  padding: 20px;
   padding-left: 25px;
   border-radius: 6px;
   background-color: #eee;
