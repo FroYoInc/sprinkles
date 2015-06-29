@@ -1,81 +1,113 @@
 <!doctype html>
 <html ng-app="app" lang="">
-  <head>
-    <meta charset="utf-8">
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Team FroYo - Corporate Carpool</title>
-    <!-- bower:css -->
-    <link rel="stylesheet" href="bower_components/fontawesome/css/font-awesome.css" />
-    <!-- endbower -->
-    <link rel="stylesheet" href="styles/main.css">
-  </head>
-  <body ng-controller="homeController">
-    <!--[if lt IE 10]>
-      <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Team FroYo - Corporate Carpool</title>
+  <!-- bower:css -->
+  <link rel="stylesheet" href="bower_components/fontawesome/css/font-awesome.css" />
+  <!-- endbower -->
+  <link rel="stylesheet" href="styles/main.css">
+</head>
+<body ng-controller="homeController">
+<!--[if lt IE 10]>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
 
-    <div ng-controller="navbarController">
-      <div class="navbar navbar-default">
-        <div class="container">
-        <ul class="nav navbar-nav ">
-          <li ng-class="navClass('home')"><a href='' ng-click="loadHome()">Home</a></li>
-          <li ng-class="navClass('signup')"><a href='' ng-click="loadSignup()">Sign Up</a></li>
-        </ul>
-        <!-- <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <form class="navbar-form navbar-right" role="search">
-              <div class="form-group">
-                <input type="text" class="form-control" placeholder="Username">
-                <input type="text" class="form-control" placeholder="Password">
-              </div>
-              <button type="submit" class="btn btn-default">Sign In</button>
-              <button type="submit" class="btn btn-default">Sign Up</button>
-            </form>
+<div ng-controller="navbarController">
+
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href=""><img src="../images/glyphicons/png/glyphicons-27-road.png"/></a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="container">
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li ng-class="navClass('home')"><a href="" ng-click="loadHome()">Home <!--<span class="sr-only">(current)</span>--></a></li>
+            <li ng-class="navClass('signup')"><a href="" ng-click="loadSignup()">Sign Up</a></li>
+            <li class="dropdown">
+              <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="">Contact</a></li>
+                <li><a href="https://github.com/FroYoInc/sprinkles/blob/master/LICENSE">License</a></li>
+                <li><a href="https://github.com/FroYoInc">Source</a></li>
+              </ul>
             </li>
-            </ul>
-          </div> -->
+          </ul>
+
         </div>
-      </div>
+
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+      <!--<ul class="nav navbar-nav ">
+        <li ng-class="navClass('home')"><a href='' ng-click="loadHome()">Home</a></li>
+        <li ng-class="navClass('signup')"><a href='' ng-click="loadSignup()">Sign Up</a></li>
+      </ul>-->
+      <!-- <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <form class="navbar-form navbar-right" role="search">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Username">
+              <input type="text" class="form-control" placeholder="Password">
+            </div>
+            <button type="submit" class="btn btn-default">Sign In</button>
+            <button type="submit" class="btn btn-default">Sign Up</button>
+          </form>
+          </li>
+          </ul>
+        </div> -->
     </div>
+  </div>
+</div>
 
-      <div ng-view>
-    </div>
+<div ng-view>
+</div>
 
-    <!--------- Alerts ------ -->
-    <!--div class="alert alert-success" role="alert" id="accountRegistered">
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden ="true">&times;</span></button>
-        <strong>Thank you!</strong> Please check your email to activate your account.
-      </div>
+<!--------- Alerts ------ -->
+<!--div class="alert alert-success" role="alert" id="accountRegistered">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+  <span aria-hidden ="true">&times;</span></button>
+    <strong>Thank you!</strong> Please check your email to activate your account.
+  </div>
+<div class="alert alert-danger" role="alert" id="accountNotActivated">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+  <span aria-hidden="true">&times;</span></button>
+    <strong>Sorry!</strong> Account in not yet activated.
+  </div-->
 
-    <div class="alert alert-danger" role="alert" id="accountNotActivated">
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">&times;</span></button>
-        <strong>Sorry!</strong> Account in not yet activated.
-      </div-->
+<!-- <div class="alert alert-danger" role="alert">
+    <strong>Sorry!</strong> Account not activated.
+  </div> -->
 
-    <!-- <div class="alert alert-danger" role="alert">
-        <strong>Sorry!</strong> Account not activated.
-      </div> -->
-
-      <div class="footer">
-        <center><div class="btn-group" role="group" aria-label="...">
-          <button type="button" class="btn btn-default">About</button>
-          <button type="button" class="btn btn-default"><a href="https://github.com/FroYoInc/sprinkles/blob/master/LICENSE">License</a></button>
-          <button type="button" class="btn btn-default">Contact</button>
-          <button type="button" class="btn btn-default"><a href="https://github.com/FroYoInc">Source</a></button>
-        </div></center>
-      </div>
-    </div>
-    <!-- bower:js -->
-    <script src="bower_components/jquery/dist/jquery.js"></script>
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/bootstrap-sass/assets/javascripts/bootstrap.js"></script>
-    <script src="bower_components/angular-route/angular-route.js"></script>
-    <script src="dist/app/scripts/app.js"></script>
-    <script src="dist/app/scripts/components/home/homeController.js"></script>
-    <script src="dist/app/scripts/components/navbar/navbarController.js"></script>
-    <script src="dist/app/scripts/components/signup/signupController.js"></script>
-    <!-- endbower -->
+<div class="footer">
+  <!--<center><div class="btn-group" role="group" aria-label="...">
+    <button type="button" class="btn btn-default">About</button>
+    <button type="button" class="btn btn-default"><a href="https://github.com/FroYoInc/sprinkles/blob/master/LICENSE">License</a></button>
+    <button type="button" class="btn btn-default">Contact</button>
+    <button type="button" class="btn btn-default"><a href="https://github.com/FroYoInc">Source</a></button>
+  </div></center>-->
+</div>
+</div>
+<!-- bower:js -->
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/bootstrap-sass/assets/javascripts/bootstrap.js"></script>
+<script src="bower_components/angular-route/angular-route.js"></script>
+<script src="dist/app/scripts/app.js"></script>
+<script src="dist/app/scripts/components/home/homeController.js"></script>
+<script src="dist/app/scripts/components/navbar/navbarController.js"></script>
+<script src="dist/app/scripts/components/signup/signupController.js"></script>
+<!-- endbower -->
 </body>
 </html>
