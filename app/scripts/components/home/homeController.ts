@@ -1,23 +1,29 @@
 /// <reference path="../../app.ts"/>
 
+interface IMyMessage
+{
+  title: string;
+}
+ 
+interface IMyScope extends ng.IScope
+{
+  message: IMyMessage;
+  events: any;
+}
+
 class homeController {
 
-    message = "Some Message";
-    progress = 0;
+  constructor( $scope: IMyScope )
+  {
+    $scope.events  = this;
+    $scope.message = { title: "Hello World!!" };
+  }
+ 
+  clickMe()
+  {
+    console.log("Test");
+  }
 
-    constructor($scope) {
-        $scope.vm = this;
-    }
-
-    function getData($scope, $http) {
-    	$http.get('http://localhost:8080/users/login?email="higgs@lhc.com"&password="1234"').success(function(data) {
-    		console.log(data);
-
-    	})
-    }
-    $scope.test() {
-    	console.log(message);
-    }
 }
 
 app.controllers.controller('homeController', homeController);
