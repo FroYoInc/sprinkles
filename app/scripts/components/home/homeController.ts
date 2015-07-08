@@ -8,23 +8,20 @@ module Home {
         newUserEmail: string;
         newUserPass: string;
         signIn: Function;
-        events: any;
     }
     export class Controller {
         
         constructor ($scope: Scope) {
-            $scope.events = this;
             
             // populate the data when sign in is clicked
             $scope.signIn = function () {
                 var testUser    = new UserModel.User();
                 testUser.Email  = $scope.newUserEmail;
                 testUser.Pass   = $scope.newUserPass;
+
+                console.log(testUser.Email);
+                console.log(testUser.Pass);
             };
-        }
-        // Just spits out put to console
-        clickMe () {
-            console.log("I do something"); 
         }
 
     }
