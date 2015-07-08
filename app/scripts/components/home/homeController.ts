@@ -1,29 +1,36 @@
 /// <reference path="../../app.ts"/>
+/// <reference path='usermodel.ts' />
 
-interface IMyMessage
-{
-  title: string;
+// interface used to get a get user from their email and password during sign inmodule SignIn{
+module Home {
+
+    export interface Scope {
+        newUserEmail: string;
+        newUserPass: string;
+        signIn: Function;
+        events: any;
+    }
+    export class Controller {
+        
+        constructor ($scope: Scope) {
+            $scope.events = this;
+            
+            // populate the data when sign in is clicked
+            $scope.signIn = function () {
+                var testUser    = new UserModel.User();
+                testUser.Email  = $scope.newUserEmail;
+                testUser.Pass   = $scope.newUserPass;
+            };
+        }
+        // Just spits out put to console
+        clickMe () {
+            console.log("I do something"); 
+        }
+
+    }
 }
- 
-interface IMyScope extends ng.IScope
-{
-  message: IMyMessage;
-  events: any;
-}
+    // Link to use for first test
+    // http://localhost:8080/users/login?email="higgs@lhc.com"&password="1234"
 
-class homeController {
 
-  constructor( $scope: IMyScope )
-  {
-    $scope.events  = this;
-    $scope.message = { title: "Hello World!!" };
-  }
- 
-  clickMe()
-  {
-    console.log("Test");
-  }
-
-}
-
-app.controllers.controller('homeController', homeController);
+app.controllers.controller('Home.Controller', Home.Controller);
