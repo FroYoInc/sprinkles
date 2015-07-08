@@ -13,7 +13,7 @@ angular.module('app', ['app.controllers','ngRoute']).
     $routeProvider.when('/home',
     {
       templateUrl:    '\\views\\homeView.html',
-      controller:     'homeController'
+      controller:     'Home.Controller'
     });
     $routeProvider.when('/signup',
     {
@@ -23,7 +23,7 @@ angular.module('app', ['app.controllers','ngRoute']).
     $routeProvider.otherwise(
     {
       redirectTo:     '/home',
-      controller:     'homeController',
+      controller:     'Home.Controller',
     });
 });
 

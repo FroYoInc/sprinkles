@@ -10,4 +10,4 @@ class signupController {
     }
 }
 
-app.controllers.controller('signupController', homeController);
+app.controllers.controller('signupController', Home.Controller);
