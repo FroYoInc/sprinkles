@@ -1,5 +1,4 @@
 /// <reference path="../../app.ts"/>
-/// <reference path='usermodel.ts' />
 
 // interface used to get a get user from their email and password during sign inmodule SignIn{
 module Home {
@@ -10,9 +9,9 @@ module Home {
         signIn: Function;
     }
     export class Controller {
-        
+
         constructor ($scope: Scope) {
-            
+
             // populate the data when sign in is clicked
             $scope.signIn = function () {
                 var testUser    = new UserModel.User();
