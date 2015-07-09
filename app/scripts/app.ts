@@ -18,7 +18,7 @@ angular.module('app', ['app.controllers','ngRoute']).
     $routeProvider.when('/signup',
     {
       templateUrl:    '\\views\\signupView.html',
-      controller:     'signupController'
+      controller:     'Signup.Controller'
     });
     $routeProvider.otherwise(
     {

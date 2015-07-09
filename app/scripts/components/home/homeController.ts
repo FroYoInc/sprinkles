@@ -7,20 +7,21 @@ module Home {
         newUserEmail: string;
         newUserPass: string;
         signIn: Function;
+        signUp: Function;
     }
     export class Controller {
 
-        constructor ($scope: Scope) {
+        constructor ($scope: Scope, $location) {
 
             // populate the data when sign in is clicked
             $scope.signIn = function () {
-                var testUser    = new UserModel.User();
-                testUser.Email  = $scope.newUserEmail;
-                testUser.Pass   = $scope.newUserPass;
-
-                console.log(testUser.Email);
-                console.log(testUser.Pass);
+                console.log("Home1");
             };
+
+            $scope.signUp = function() {
+                $location.url('/signup');
+                console.log("Signup")
+            }
         }
 
     }
