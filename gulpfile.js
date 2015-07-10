@@ -76,7 +76,7 @@ gulp.task('wiredep-html', function() {
 
 gulp.task('wiredep', ['wiredep-styles', 'wiredep-html']);
 
-var proxy = proxyMiddleware('/foo', {target: 'http://localhost:8080/docs/'});
+var proxy = proxyMiddleware('/api', {target: 'http://localhost:8080/'});
 
 gulp.task('serve', ['build'], function() {
   browserSync.init({
