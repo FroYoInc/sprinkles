@@ -19,7 +19,7 @@ module Home {
 
     export interface Scope {
         newUserEmail: string;
-        newUserPass: string;
+        newUserPassword: string;
         signIn: Function;
         signInCall: Function;
     }
@@ -36,28 +36,21 @@ module Home {
             
             // populate the data when sign in is clicked
             $scope.signIn = function () {
-                var testUser    = new UserModel.User();
-                testUser.Email  = $scope.newUserEmail;
-                testUser.Pass   = $scope.newUserPass;
+                var user    = new UserModel.User();
+                user.email  = $scope.newUserEmail;
+                user.password   = $scope.newUserPassword;
 
 
-                console.log(testUser.Email);
-                
+                console.log(user.email);
+                $http.post('http://localhost:8080/users/login', user).success(function () {
+                    successCallback();
+                });
 
             };
                 
-            window["log"] = $http;
-            $scope.signInCall = function (user: UserModel.User, successCallback: Function): void {
 
-                $http.post('http://localhost:8080/users/login?email=higgs@lhc.com&password=1234').success(function () {
-                    successCallback();
-                });
-                
-            }
-
-
+        }
     }
-}
 }
     // Link to use for first test
     // http://localhost:8080/users/login?email="higgs@lhc.com"&password="1234"
