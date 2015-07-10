@@ -23,12 +23,12 @@ module Home {
         signIn: Function;
     }
     export class Controller {
-        
+
         private httpService: any;
 
         constructor ($scope: Scope, $http: any) {
             this.httpService = $http;
-            
+
             // populate the data when sign in is clicked
             $scope.signIn = function () {
                 var testUser    = new UserModel.User();
@@ -38,13 +38,13 @@ module Home {
                 console.log(testUser.Email);
 
             };
-            
-            signInCall(user: UserModel.User, successCallback: Function): void {
-                this.httpService.post("http://localhost:8080/users/login?email=", 
+
+            $scope.signInCall(user: UserModel.User, successCallback: Function): void {
+                this.httpService.post("http://localhost:8080/users/login?email=",
                     '"higgs@lhc.com"&password="1234"').success(function () {
                     successCallback();
                 });
-            
+
             }
 
 
@@ -55,3 +55,4 @@ module Home {
 
 
 app.controllers.controller('Home.Controller', Home.Controller);
+}

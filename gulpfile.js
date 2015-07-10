@@ -4,6 +4,8 @@ var del     = require('del');
 var ac      = require('autoprefixer-core');
 var wiredep = require('wiredep').stream;
 var config  = require('./config.js')
+var proxyMiddleware = require('http-proxy-middleware');
+
 
 var ts = $.typescript;
 
@@ -74,11 +76,14 @@ gulp.task('wiredep-html', function() {
 
 gulp.task('wiredep', ['wiredep-styles', 'wiredep-html']);
 
+var proxy = proxyMiddleware('/foo', {target: 'http://localhost:8080/docs/'});
+
 gulp.task('serve', ['build'], function() {
   browserSync.init({
     'server': {
       'baseDir': config.baseDirs,
-      'routes': config.routes
+      'routes': config.routes,
+      'middleware': [proxy]
       },
     'port': config.port
   });
