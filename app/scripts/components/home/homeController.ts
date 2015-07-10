@@ -1,6 +1,6 @@
 /// <reference path="../../app.ts"/>
 /// <reference path='usermodel.ts' />
-import angular = require('angular.d.ts');
+/// <reference path="../services/databaseService.ts"/>
 
 // interface used to get a get user from their email and password during sign inmodule SignIn{
 module Home {
@@ -21,13 +21,18 @@ module Home {
         newUserEmail: string;
         newUserPass: string;
         signIn: Function;
+        signInCall: Function;
     }
     export class Controller {
         
         private httpService: any;
+        private httpPromise: any;
 
         constructor ($scope: Scope, $http: any) {
+
             this.httpService = $http;
+
+            //this.httpPromise = new DBServices.HttpPromise();
             
             // populate the data when sign in is clicked
             $scope.signIn = function () {
@@ -35,20 +40,24 @@ module Home {
                 testUser.Email  = $scope.newUserEmail;
                 testUser.Pass   = $scope.newUserPass;
 
+
                 console.log(testUser.Email);
+                
 
             };
-            
-            signInCall(user: UserModel.User, successCallback: Function): void {
-                this.httpService.post("http://localhost:8080/users/login?email=", 
-                    '"higgs@lhc.com"&password="1234"').success(function () {
+                
+            window["log"] = $http;
+            $scope.signInCall = function (user: UserModel.User, successCallback: Function): void {
+
+                $http.post('http://localhost:8080/users/login?email=higgs@lhc.com&password=1234').success(function () {
                     successCallback();
                 });
-            
+                
             }
 
 
     }
+}
 }
     // Link to use for first test
     // http://localhost:8080/users/login?email="higgs@lhc.com"&password="1234"
