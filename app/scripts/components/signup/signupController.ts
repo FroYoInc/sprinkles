@@ -13,24 +13,36 @@ module Signup {
         events: any;
         signupUser: Function;
         checkPasswords: Function;
+        signup: Function;
+        navClass: Function;
+        loadSignup: Function;
     }
     export class Controller {
 
-        constructor ($scope: Scope) {
+        constructor ($scope: Scope, $location) {
             $scope.events = this;
-            // populate the data when sign in is clicked
+            // populate the data when sign in is clickeds
             $scope.signupUser = function () {
               $scope.checkPasswords();
                 console.log("hi " + $scope.firstName);
             };
+            $scope.navClass = function (page) {
+              var currentRoute = $location.path().substring(1) || 'home';
+              return page === currentRoute ? 'active' : '';
+            };
+            $scope.loadSignup = function () {
+                  $location.url('/signup');
+                  console.log("change")
+             };
 
             $scope.checkPasswords = function() {
               if($scope.userPass1.localeCompare($scope.userPass2) == 0) {
-                console.log("Passwords Match!S")
+                console.log("Passwords Match!")
               }
+
               //console.log($scope.userPass1 + "/" + $scope.userPass2)
 
-            }
+            };
         }
 
     }

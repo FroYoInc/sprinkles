@@ -15,13 +15,8 @@ module Home {
 
             // populate the data when sign in is clicked
             $scope.signIn = function () {
-                console.log("Home1");
-            };
 
-            $scope.signUp = function() {
-                $location.url('/signup');
-                console.log("Signup")
-            }
+            };
         }
 
     }
