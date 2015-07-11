@@ -22,14 +22,14 @@
     <div class="form-group">
       <label for="inputFName" class="col-sm-3 control-label">Password</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" id="inputFName" placeholder="Password"
+        <input type="password" class="form-control" id="inputFName" placeholder="Password"
               ng-model="newUserPass">
       </div>
     </div>
     <div class="form-group">
       <div class="col-sm-offset-1.5 col-sm-10">
         <br>
-        <button type="submit" ng-click="events.clickMe()" class="btn btn-primary">Sign In</button>
+        <button type="submit" ng-click="signInCall()" class="btn btn-primary">Sign In</button>
         <br><br>
         <!--<button type="submit" class="btn btn-default">--> <a href="">Forgot Password?</a>
       </div>
@@ -68,3 +68,4 @@
   </form>
 </div>
 </div>
+   </div>

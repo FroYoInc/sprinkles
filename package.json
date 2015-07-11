@@ -30,6 +30,7 @@
     "gulp-tslint": "^3.0.1-beta",
     "gulp-typescript": "^2.7.5",
     "gulp-util": "^3.0.4",
+    "http-proxy-middleware": "^0.1.0",
     "wiredep": "^2.2.2"
   }
 }

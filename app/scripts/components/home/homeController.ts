@@ -1,4 +1,5 @@
 /// <reference path="../../app.ts"/>
+/// <reference path='usermodel.ts' />
 
 // interface used to get a get user from their email and password during sign inmodule SignIn{
 module Home {
@@ -8,18 +9,39 @@ module Home {
         newUserPass: string;
         signIn: Function;
         signUp: Function;
+        signInCall: Function;
     }
     export class Controller {
 
-        constructor ($scope: Scope, $location) {
+        private httpService: any;
+        private httpPromise: any;
+
+        constructor ($scope: Scope, $http: any) {
+
+            this.httpService = $http;
 
             // populate the data when sign in is clicked
             $scope.signIn = function () {
+                var testUser    = new UserModel.User();
+                testUser.Email  = $scope.newUserEmail;
+                testUser.Pass   = $scope.newUserPass;
+
+
+                console.log(testUser.Email);
+
 
             };
-        }
+            window["log"] = $http;
+            $scope.signInCall = function (user: UserModel.User, successCallback: Function): void {
+
+                $http.post('http://localhost:8080/users/login?email=higgs@lhc.com&password=1234').success(function () {
+                    successCallback();
+                });
+            }
+
 
     }
+}
 }
     // Link to use for first test
     // http://localhost:8080/users/login?email="higgs@lhc.com"&password="1234"
