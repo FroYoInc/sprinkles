@@ -42,8 +42,9 @@ module Home {
 
 
                 console.log(user.email);
-                $http.post('http://localhost:8080/users/login', user).success(function () {
-                    successCallback();
+                console.log(user.password);
+                $http.post('http://localhost:3000/api/users/login', user).success(function (data) {
+                    console.log(data);
                 });
 
             };

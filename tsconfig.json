@@ -22,9 +22,11 @@
         "./app/libs/angular/angular.d.ts",
         "./app/libs/jquery/jquery.d.ts",
         "./app/scripts/app.ts",
+        "./app/scripts/components/home/angular.d.ts",
         "./app/scripts/components/home/homeController.ts",
-        "./app/scripts/components/home/usermodel.ts",
+        "./app/scripts/components/home/homeControllerTests.ts",
         "./app/scripts/components/home/homeService.ts",
+        "./app/scripts/components/home/usermodel.ts",
         "./app/scripts/components/navbar/navbarController.ts",
         "./app/scripts/components/signup/signupController.ts"
     ]
