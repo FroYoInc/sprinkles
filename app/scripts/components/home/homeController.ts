@@ -6,7 +6,7 @@ module Home {
 
     export interface Scope {
         newUserEmail: string;
-        newUserPass: string;
+        newUserPassword: string;
         signIn: Function;
         signUp: Function;
         signInCall: Function;
@@ -18,15 +18,20 @@ module Home {
 
         constructor ($scope: Scope, $http: any) {
 
+<<<<<<< HEAD
             this.httpService = $http;
 
+=======
+            
+>>>>>>> controllerTest
             // populate the data when sign in is clicked
             $scope.signIn = function () {
-                var testUser    = new UserModel.User();
-                testUser.Email  = $scope.newUserEmail;
-                testUser.Pass   = $scope.newUserPass;
+                var user        = new UserModel.User();
+                user.email      = $scope.newUserEmail;
+                user.password   = $scope.newUserPassword;
 
 
+<<<<<<< HEAD
                 console.log(testUser.Email);
 
 
@@ -39,12 +44,24 @@ module Home {
                 });
             }
 
+=======
+                console.log(user.email);
+                console.log(user.password);
+                $http.post('http://localhost:3000/api/users/login', user).success(function (data) {
+                    console.log(data);
+                });
 
+            };
+                
+>>>>>>> controllerTest
+
+        }
     }
+<<<<<<< HEAD
 }
+=======
+>>>>>>> controllerTest
 }
-    // Link to use for first test
-    // http://localhost:8080/users/login?email="higgs@lhc.com"&password="1234"
 
 
 app.controllers.controller('Home.Controller', Home.Controller);
