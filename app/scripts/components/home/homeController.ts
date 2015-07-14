@@ -19,6 +19,7 @@ module Home {
 
             
             // populate the data when sign in is clicked
+            // Handels error alerts when not successful 
             $scope.signIn = function () {
                 var user        = new UserModel.User();
                 user.email      = $scope.newUserEmail;
@@ -29,14 +30,10 @@ module Home {
                 console.log(user.password);
                 $http.post('http://localhost:3000/api/users/login', user).
                     success(function (data) {
-                        console.log(data, status);
-                        console.log("status is" + status);
+                        console.log(data);
+                        console.log(status);
                         // successful login
-                        /*
-                        if (status == 200){
-                            $('#success').css('visibility','visible').fadeIn();
-                        }
-                        */
+                        $('#success').css('visibility','visible').fadeIn();
                 }).
                     error(function (data, status) {
                         console.log("status is" + status);
@@ -57,7 +54,6 @@ module Home {
                         else if (status == 404){ //
                             $('#notFound').css('visibility','visible').fadeIn();
                         }
-
                         // The user account is locked.
                         else if (status == 423){ //
                             $('#accountIsLocked').css('visibility','visible').fadeIn();
