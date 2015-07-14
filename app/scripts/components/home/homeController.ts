@@ -29,7 +29,14 @@ module Home {
                 console.log(user.password);
                 $http.post('http://localhost:3000/api/users/login', user).
                     success(function (data) {
-                    console.log(data);
+                        console.log(data, status);
+                        console.log("status is" + status);
+                        // successful login
+                        /*
+                        if (status == 200){
+                            $('#success').css('visibility','visible').fadeIn();
+                        }
+                        */
                 }).
                     error(function (data, status) {
                         console.log("status is" + status);
@@ -40,11 +47,17 @@ module Home {
                         // Unauthorized attempt. User and password combination not found.
                         else if (status == 401){
                             $('#notAuthorized').css('visibility','visible').fadeIn();
+                            // $scope.newUserPassword = ""; // reset pass field
                         } 
                         // The user account has not been activated.
                         else if (status == 403){ //
                             $('#accountNotActivated').css('visibility','visible').fadeIn();
                         }
+                        // Not Found)
+                        else if (status == 404){ //
+                            $('#notFound').css('visibility','visible').fadeIn();
+                        }
+
                         // The user account is locked.
                         else if (status == 423){ //
                             $('#accountIsLocked').css('visibility','visible').fadeIn();

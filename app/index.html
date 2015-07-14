@@ -18,6 +18,13 @@
 <div class="container-fluid">
 
 <!-- Sign in Alerts -->
+    <!-- 200:successful login -->
+    <div class="alert alert-success alert-dismissible fade in hidden-alerts" role="alert" 
+           id="badRequest">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span></button>
+      <strong>Welcome!</strong> 
+    </div>
     <!-- 400:Bad Request. Invalid or missing parameters. -->
     <div class="alert alert-warning alert-dismissible fade in hidden-alerts" role="alert" 
            id="badRequest">
@@ -38,6 +45,13 @@
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">&times;</span></button>
       <strong>Sorry!</strong> Account in not yet activated.
+    </div>
+    <!-- 404:Not found -->
+    <div class="alert alert-warning alert-dismissible fade in hidden-alerts" role="alert" 
+           id="notFound">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span></button>
+      <strong>Oops!</strong> Something was not found.
     </div>
     <!-- 423:The user account is locked. -->
     <div class="alert alert-danger alert-dismissible fade in hidden-alerts" role="alert" 
