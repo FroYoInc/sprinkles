@@ -17,9 +17,6 @@ module Home {
 
         constructor ($scope: Scope, $http: any) {
 
-            this.httpService = $http;
-
-            //this.httpPromise = new DBServices.HttpPromise();
             
             // populate the data when sign in is clicked
             $scope.signIn = function () {
