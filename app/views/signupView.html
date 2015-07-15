@@ -1,30 +1,33 @@
 <div ng-controller="Signup.Controller" class="container">
   <div class="jumbotron">
 
-    <form class="form-signup">
+    <form class="form-signup" data-toggle="validator" role ="form">
     <h2 class="form-signup-heading">Sign Up For Corporate Carpooling</h2>
     <div class="form-group">
-      <label for="emailAddress">Email address</label>
-	    <input type="email" ng-model="userEmail" class="form-control" id="inputEmail" placeholder="Email">
+      <label for="emailAddress">Email</label>
+	    <input type="text" ng-model="form.userEmail" class="form-control" id="userEmail" data-error="Invalid Email" required>
+      <div class="help-block with-errors"></div>
     </div>
     <div class="form-group">
       	<label for="username">Username</label>
-        <input type="text" ng-model="userName" class="form-control" id="inputUsername" placeholder="Username">
+        <input type="text" ng-model="userName" class="form-control" id="userName" required>
     </div>
     <div class="form-group">
       	<label for="password">Password</label>
- 		<input type="password" ng-model="userPass1" class="form-control" id="inputPassword" placeholder="Password">
-        <label for="password">Please re-enter password</label>
-    <input type="password" ng-model="userPass2" class="form-control" id="inputPassword" placeholder="Password">
+ 		<input type="password" ng-model="userPass1" class="form-control" id="userPass1" required>
+        <label for="password">Confirm Password</label>
+    <input type="password" ng-model="userPass2" class="form-control" id="userPass2" data-match="#userPass1" data-match-error="Passwords don't match" required>
+    <div class="help-block with-errors"></div>
     </div>
     <div class="form-group">
       	<label for="name">Name</label>
-        <input type="text" ng-model="firstName" class="form-control" id="inputFName" placeholder="First Name">
+        <input type="text" ng-model="firstName" class="form-control" id="firstName" >
     </div>
     <div class="form-group">
-        <input type="text" ng-model="lastName" class="form-control" id="inputLName" placeholder="Last Name">
+        <input type="text" ng-model="lastName" class="form-control" id="lastName" >
     </div>
     <button type="submit" class="btn btn-primary btn-lg btn-block"ng-click="signupUser()">Sign up</button>
   </div>
+</div>
 
   <!--   email, first, last, username, password -->

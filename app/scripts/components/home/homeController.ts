@@ -7,16 +7,17 @@ module Home {
     export interface Scope {
         newUserEmail: string;
         newUserPass: string;
+
         signIn: Function;
-        signUp: Function;
+        loadSignup: Function;
         signInCall: Function;
+
     }
     export class Controller {
 
         private httpService: any;
-        private httpPromise: any;
 
-        constructor ($scope: Scope, $http: any) {
+        constructor ($scope: Scope, $http: any, $location) {
 
             this.httpService = $http;
 
@@ -25,15 +26,11 @@ module Home {
                 var testUser    = new UserModel.User();
                 testUser.Email  = $scope.newUserEmail;
                 testUser.Pass   = $scope.newUserPass;
-
-
-                console.log(testUser.Email);
-
-
             };
-            window["log"] = $http;
-            $scope.signInCall = function (user: UserModel.User, successCallback: Function): void {
 
+            //window["log"] = $http;
+
+            $scope.signInCall = function (user: UserModel.User, successCallback: Function): void {
                 $http.post('http://localhost:8080/users/login?email=higgs@lhc.com&password=1234').success(function () {
                     successCallback();
                 });

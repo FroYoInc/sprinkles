@@ -3,7 +3,7 @@
 // interface used to get a get user from their email and password during sign inmodule SignIn{
 module Signup {
 
-    export interface Scope {
+    export interface Scope extends ng.IScope {
         userEmail: string;
         userPass1: string;
         userPass2: string;
@@ -16,33 +16,27 @@ module Signup {
         signup: Function;
         navClass: Function;
         loadSignup: Function;
+
+        $apply: any;
+        $watch: any;
+        $parent: any;
+        $emit: any;
     }
     export class Controller {
 
-        constructor ($scope: Scope, $location) {
+        constructor ($scope: Scope, $location, $http: any) {
             $scope.events = this;
+            console.log($scope);
+
             // populate the data when sign in is clickeds
             $scope.signupUser = function () {
-              $scope.checkPasswords();
-                console.log("hi " + $scope.firstName);
+
+                //$http.post('localhost:8080/')
             };
-            $scope.navClass = function (page) {
-              var currentRoute = $location.path().substring(1) || 'home';
-              return page === currentRoute ? 'active' : '';
-            };
-            $scope.loadSignup = function () {
+
+            $scope.loadSignup = function (userEmail, firstName, lastName) {
                   $location.url('/signup');
-                  console.log("change")
              };
-
-            $scope.checkPasswords = function() {
-              if($scope.userPass1.localeCompare($scope.userPass2) == 0) {
-                console.log("Passwords Match!")
-              }
-
-              //console.log($scope.userPass1 + "/" + $scope.userPass2)
-
-            };
         }
 
     }
