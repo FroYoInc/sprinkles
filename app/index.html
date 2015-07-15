@@ -14,11 +14,70 @@
 <!--[if lt IE 10]>
 <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 <![endif]-->
+<!--------- Alerts ------ -->
+<div class="container-fluid">
 
+<!-- Sign in Alerts -->
+    <!-- 200:successful login -->
+    <div class="alert alert-success alert-dismissible fade in hidden-alerts" role="alert" 
+           id="success">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span></button>
+      <strong>Welcome!</strong> 
+    </div>
+    <!-- 400:Bad Request. Invalid or missing parameters. -->
+    <div class="alert alert-warning alert-dismissible fade in hidden-alerts" role="alert" 
+           id="badRequest">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span></button>
+      <strong>Sorry!</strong> Invalid or missing parameters.
+    </div>
+    <!-- 401:The user account has not been activated. -->
+    <div class="alert alert-warning alert-dismissible fade in hidden-alerts" role="alert" 
+            id="notAuthorized">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span></button>
+      <strong>Sorry!</strong> Wrong Username or Password.
+    </div>
+    <!-- 403:The user account has not been activated. -->
+    <div class="alert alert-warning alert-dismissible fade in hidden-alerts" role="alert" 
+           id="accountNotActivated">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span></button>
+      <strong>Sorry!</strong> Account in not yet activated.
+    </div>
+    <!-- 404:Not found -->
+    <div class="alert alert-warning alert-dismissible fade in hidden-alerts" role="alert" 
+           id="notFound">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span></button>
+      <strong>Oops!</strong> Something was not found.
+    </div>
+    <!-- 423:The user account is locked. -->
+    <div class="alert alert-danger alert-dismissible fade in hidden-alerts" role="alert" 
+           id="accountIsLocked">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span></button>
+      <strong>Sorry!</strong> Your Account is locked
+    </div>
+    <!-- 500:Internal Server error. -->
+    <div class="alert alert-danger alert-dismissible fade in hidden-alerts" role="alert" 
+           id="internalError">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span></button>
+      <strong>Oops!</strong> Internal Server error.
+    </div>
+
+
+  <!-- <div class="alert alert-danger" role="alert">
+      <strong>Sorry!</strong> Account not activated.
+    </div> -->
+  </div>
 <div ng-controller="navbarController">
 
   <nav class="navbar navbar-default">
-    <div class="container-fluid">
+    
+  <div class="container-fluid">
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -42,6 +101,7 @@
                 <li><a href="">Contact</a></li>
                 <li><a href="https://github.com/FroYoInc/sprinkles/blob/master/LICENSE">License</a></li>
                 <li><a href="https://github.com/FroYoInc">Source</a></li>
+
               </ul>
             </li>
           </ul>
@@ -73,22 +133,6 @@
 
 <div ng-view>
 </div>
-
-<!--------- Alerts ------ -->
-<!--div class="alert alert-success" role="alert" id="accountRegistered">
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-  <span aria-hidden ="true">&times;</span></button>
-    <strong>Thank you!</strong> Please check your email to activate your account.
-  </div>
-<div class="alert alert-danger" role="alert" id="accountNotActivated">
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-  <span aria-hidden="true">&times;</span></button>
-    <strong>Sorry!</strong> Account in not yet activated.
-  </div-->
-
-<!-- <div class="alert alert-danger" role="alert">
-    <strong>Sorry!</strong> Account not activated.
-  </div> -->
 
 <div class="footer">
   <!--<center><div class="btn-group" role="group" aria-label="...">
