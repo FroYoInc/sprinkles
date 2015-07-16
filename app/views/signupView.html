@@ -1,32 +1,46 @@
 <div ng-controller="Signup.Controller" class="container">
   <div class="jumbotron">
 
-    <form class="form-signup" data-toggle="validator" role ="form">
+    <form name="signupform" class="form-signup" novalidate>
     <h2 class="form-signup-heading">Sign Up For Corporate Carpooling</h2>
+
+    <!--Email-->
     <div class="form-group">
       <label for="emailAddress">Email</label>
-	    <input type="text" ng-model="userEmail" class="form-control" id="userEmail" data-error="Invalid Email" required>
-      <div class="help-block with-errors"></div>
+	    <input type="text" ng-model="userEmail" class="form-control" id="userEmail" required>
+      <div ng-show="emailExistsError" class="help-block"> Email already exists. Please choose a different email.</div>
+      <div ng-show="emailDomainError" class="help-block"> Invalid email domain. Please enter an email address with the correct domain. </div>
+    </div>
+    <!--UserName -->
+    <div class="form-group">
+      <label>Username</label>
+      <input type="text" name="userName" class="form-control" ng-model="userName" ng-minlength="3">
+      <div ng-show="signupform.userName.$error.minlength" class="help-block">Username is too short.</div>
+      <div ng-show="usernameerror" class="help-block"> Username already exists. Please choose a different username.</div>
+    </div>
+
+    <!-- Passwords-->
+    <div class="form-group">
+      <label>Password</label>
+      <input type="password" name="userPass1" class="form-control" id="userPass1" ng-model="userPass1" required>
     </div>
     <div class="form-group">
-      	<label for="username">Username</label>
-        <input type="text" ng-model="userName" class="form-control" id="userName" required>
+      <label>Confirm password</label>
+      <input type="password" name="userPass2" class="form-control" id="userPass2" ng-model="userPass2" required>
+      <div ng-show="(userPass2 == 'undefined') ? false : userPass1.localeCompare(userPass2)" class="help-block">Passwords do not match.</div>
     </div>
+
+    <!-- User name (first,last) -->
     <div class="form-group">
-      	<label for="password">Password</label>
- 		<input type="password" ng-model="userPass1" class="form-control" id="userPass1" required>
-        <label for="password">Confirm Password</label>
-    <input type="password" ng-model="userPass2" class="form-control" id="userPass2" data-match="#userPass1" data-match-error="Passwords don't match" required>
-    <div class="help-block with-errors"></div>
-    </div>
-    <div class="form-group">
-      	<label for="name">Name</label>
+      	<label for="name">First name</label>
         <input type="text" ng-model="firstName" class="form-control" id="firstName" >
     </div>
     <div class="form-group">
+      	<label for="name">Last name</label>
         <input type="text" ng-model="lastName" class="form-control" id="lastName" >
     </div>
-    <button type="submit" class="btn btn-primary btn-lg btn-block"ng-click="signupUser()">Sign up</button>
+    <div ng-show="userpassError" clas="help-block"> Must enter a valid username and password</div>
+    <button type="submit" class="btn btn-primary btn-lg btn-block"ng-click="signupUser()" ng-disabled="signupform.$invalid">Sign up</button>
   </div>
 </div>
 
