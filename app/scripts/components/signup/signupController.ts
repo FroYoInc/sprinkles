@@ -36,7 +36,20 @@ module Signup {
             // populate the data when sign in is clickeds
             $scope.signupUser = function () {
 
-                //$http.post('localhost:8080/')
+              var postData = {
+                userName: $scope.userName,
+                firstName: $scope.firstName,
+                lastName: $scope.lastName,
+                email: $scope.userEmail,
+                password: $scope.userPass1
+              };
+              console.log(postData);
+                $http.post('http://localhost:3000/api/users', postData).success(function(data, status, headers, config) {
+                  console.log(data);
+                }).error(function(data, status, headers, config) {
+                  console.log('error');
+                  console.log(data);
+                });
             };
 
             $scope.loadSignup = function (userEmail, firstName, lastName) {
