@@ -31,6 +31,7 @@
     "gulp-typescript": "^2.7.5",
     "gulp-util": "^3.0.4",
     "http-proxy-middleware": "^0.1.0",
+    "ngstorage": "^0.3.6",
     "wiredep": "^2.2.2"
   }
 }

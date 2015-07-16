@@ -7,7 +7,7 @@
 /// <reference path='components/signup/signupController.ts' />
 
 
-angular.module('app', ['app.controllers','ngRoute']).
+angular.module('app', ['app.controllers','ngRoute','ngStorage']).
   config(function ($routeProvider, $locationProvider, $httpProvider) {
 
     $routeProvider.when('/home',

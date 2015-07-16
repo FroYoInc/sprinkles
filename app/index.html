@@ -19,49 +19,49 @@
 
 <!-- Sign in Alerts -->
     <!-- 200:successful login -->
-    <div class="alert alert-success alert-dismissible fade in hidden-alerts" role="alert" 
+    <div class="alert alert-success alert-dismissible fade in hidden-alerts" role="alert"
            id="success">
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">&times;</span></button>
-      <strong>Welcome!</strong> 
+      <strong>Welcome!</strong>
     </div>
     <!-- 400:Bad Request. Invalid or missing parameters. -->
-    <div class="alert alert-warning alert-dismissible fade in hidden-alerts" role="alert" 
+    <div class="alert alert-warning alert-dismissible fade in hidden-alerts" role="alert"
            id="badRequest">
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">&times;</span></button>
       <strong>Sorry!</strong> Invalid or missing parameters.
     </div>
     <!-- 401:The user account has not been activated. -->
-    <div class="alert alert-warning alert-dismissible fade in hidden-alerts" role="alert" 
+    <div class="alert alert-warning alert-dismissible fade in hidden-alerts" role="alert"
             id="notAuthorized">
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">&times;</span></button>
       <strong>Sorry!</strong> Wrong Username or Password.
     </div>
     <!-- 403:The user account has not been activated. -->
-    <div class="alert alert-warning alert-dismissible fade in hidden-alerts" role="alert" 
+    <div class="alert alert-warning alert-dismissible fade in hidden-alerts" role="alert"
            id="accountNotActivated">
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">&times;</span></button>
       <strong>Sorry!</strong> Account in not yet activated.
     </div>
     <!-- 404:Not found -->
-    <div class="alert alert-warning alert-dismissible fade in hidden-alerts" role="alert" 
+    <div class="alert alert-warning alert-dismissible fade in hidden-alerts" role="alert"
            id="notFound">
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">&times;</span></button>
       <strong>Oops!</strong> Something was not found.
     </div>
     <!-- 423:The user account is locked. -->
-    <div class="alert alert-danger alert-dismissible fade in hidden-alerts" role="alert" 
+    <div class="alert alert-danger alert-dismissible fade in hidden-alerts" role="alert"
            id="accountIsLocked">
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">&times;</span></button>
       <strong>Sorry!</strong> Your Account is locked
     </div>
     <!-- 500:Internal Server error. -->
-    <div class="alert alert-danger alert-dismissible fade in hidden-alerts" role="alert" 
+    <div class="alert alert-danger alert-dismissible fade in hidden-alerts" role="alert"
            id="internalError">
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">&times;</span></button>
@@ -76,7 +76,7 @@
 <div ng-controller="navbarController">
 
   <nav class="navbar navbar-default">
-    
+
   <div class="container-fluid">
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
@@ -149,6 +149,9 @@
 <script src="bower_components/bootstrap-sass/assets/javascripts/bootstrap.js"></script>
 <script src="bower_components/angular-route/angular-route.js"></script>
 <script src="bower_components/angular-ui-validate/dist/validate.js"></script>
+<script src="bower_components/ngstorage/ngStorage.min.js"></script>
+
+</script>
 <script src="dist/app/scripts/app.js"></script>
 <script src="dist/app/scripts/components/home/homeController.js"></script>
 <script src="dist/app/scripts/components/home/usermodel.js"></script>

@@ -24,9 +24,14 @@ module Signup {
     }
     export class Controller {
 
-        constructor ($scope: Scope, $location, $http: any) {
+        constructor ($scope: Scope, $location, $http: any, $localStorage) {
             $scope.events = this;
-            console.log($scope);
+            $scope.userEmail = $localStorage.email;
+            $scope.firstName = $localStorage.fname;
+            $scope.lastName = $localStorage.lname;
+            /*$scope.userEmail = localStorage.getItem('userEmail');
+            $scope.firstName = localStorage.getItem('firstName');
+            $scope.lastName = localStorage.getItem('lastName');*/
 
             // populate the data when sign in is clickeds
             $scope.signupUser = function () {
@@ -35,6 +40,16 @@ module Signup {
             };
 
             $scope.loadSignup = function (userEmail, firstName, lastName) {
+                try{
+                  $localStorage.email = userEmail;
+                  $localStorage.fname = firstName;
+                  $localStorage.lname = lastName;
+                /*localStorage.setItem('userEmail', userEmail);
+                localStorage.setItem('firstName', firstName);
+                localStorage.setItem('lastName', lastName);*/
+              } catch(err){
+                console.log(err);
+              }
                   $location.url('/signup');
              };
         }
