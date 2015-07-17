@@ -9,6 +9,7 @@ module Home {
         newUserPassword: string;
         signIn: Function;
         signInCall: Function;
+        visible: Function;
     }
     export class Controller {
         
@@ -65,11 +66,14 @@ module Home {
 
 
                 });
-
+    
             };
                 
-
+            $scope.visible = function(result:string) {
+             document.getElementById(result).style.display = 'none';
+           }
         }
+
     }
 }
 
