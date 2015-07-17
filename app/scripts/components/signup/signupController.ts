@@ -64,7 +64,6 @@ module Signup {
 
                 }).error(function(data, status, headers, config) {
                   //Email exists
-                  console.log(data.message);
                   if(status == 409 && ((data.message).localeCompare("EmailExistException: email already exist") == 0)){
                       $scope.emailExistsError = true;
                       $('#emailExists').css('visibility','visible').fadeIn();
