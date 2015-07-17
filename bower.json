@@ -10,7 +10,6 @@
   },
   "devDependencies": {
     "angular-route": "~1.4.1",
-    "angular-ui-validate": "~1.1.0",
     "ngstorage": "~0.3.7"
   }
 }

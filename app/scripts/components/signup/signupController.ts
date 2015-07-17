@@ -1,9 +1,9 @@
 /// <reference path="../../app.ts"/>
 
-// interface used to get a get user from their email and password during sign inmodule SignIn{
+// interface used to sign up a user 
 module Signup {
 
-    export interface Scope extends ng.IScope {
+    export interface Scope {
         userEmail: string;
         userPass1: string;
         userPass2: string;
@@ -19,7 +19,6 @@ module Signup {
         signupUser: Function;
         checkPasswords: Function;
         signup: Function;
-        navClass: Function;
         loadSignup: Function;
     }
     export class Controller {
@@ -60,13 +59,11 @@ module Signup {
 
                   //re-route and have popup show
                   $location.url('/home');
-                  $('#accountmade').css('visibility','visible').fadeIn();
 
                 }).error(function(data, status, headers, config) {
                   //Email exists
                   if(status == 409 && ((data.message).localeCompare("EmailExistException: email already exist") == 0)){
                       $scope.emailExistsError = true;
-                      $('#emailExists').css('visibility','visible').fadeIn();
                   }
                   //Bad email domain
                   if(status == 400 && ((data.message).localeCompare("EmailValidationException: The email address's domain is not allowed") == 0)){
@@ -75,7 +72,6 @@ module Signup {
                   //username exists
                   else if( status == 409 && ((data.message).localeCompare("UserExistException: user already exist") == 0)){
                       $scope.usernameerror = true;
-                      $('#usernameExists').css('visibility','visible').fadeIn();
                   }
                   //no password or username entered
                   else if( status == 500 && data.message.includes("BcryptHashError")){

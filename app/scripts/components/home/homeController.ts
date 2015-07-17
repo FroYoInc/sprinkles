@@ -1,7 +1,7 @@
 /// <reference path="../../app.ts"/>
 /// <reference path='usermodel.ts' />
 
-// interface used to get a get user from their email and password during sign inmodule SignIn{
+// interface used to get a get user from their email and password during sign 
 module Home {
 
     export interface Scope {
@@ -13,9 +13,6 @@ module Home {
     }
     export class Controller {
         
-        private httpService: any;
-        private httpPromise: any;
-
         constructor ($scope: Scope, $http: any) {
 
             
@@ -26,18 +23,12 @@ module Home {
                 user.email      = $scope.newUserEmail;
                 user.password   = $scope.newUserPassword;
 
-
-                console.log(user.email);
-                console.log(user.password);
                 $http.post('http://localhost:3000/api/users/login', user).
                     success(function (data) {
-                        console.log(data);
-                        console.log(status);
                         // successful login
                         $('#success').css('visibility','visible').fadeIn();
                 }).
                     error(function (data, status) {
-                        console.log("status is" + status);
                         // Bad Request. Invalid or missing parameters.
                         if (status == 400){ //
                             $('#badRequest').css('visibility','visible').fadeIn();
@@ -45,7 +36,7 @@ module Home {
                         // Unauthorized attempt. User and password combination not found.
                         else if (status == 401){
                             $('#notAuthorized').css('visibility','visible').fadeIn();
-                            // $scope.newUserPassword = ""; // reset pass field
+                            $scope.newUserPassword = ""; // reset pass field
                         } 
                         // The user account has not been activated.
                         else if (status == 403){ //

@@ -24,6 +24,7 @@ dist/
 bower_components/
 built/
 typings/
+rethinkdb_data/
 .tmp/
 
 # IDE specific
