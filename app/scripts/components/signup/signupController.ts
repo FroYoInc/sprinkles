@@ -64,7 +64,8 @@ module Signup {
 
                 }).error(function(data, status, headers, config) {
                   //Email exists
-                  if(status == 409 && ((data.message).includes("EmailValidationException:"))){
+                  console.log(data.message);
+                  if(status == 409 && ((data.message).localeCompare("EmailExistException: email already exist") == 0)){
                       $scope.emailExistsError = true;
                       $('#emailExists').css('visibility','visible').fadeIn();
                   }
@@ -97,8 +98,5 @@ module Signup {
 
     }
 }
-    // Link to use for first test
-    // http://localhost:8080/users/login?email="higgs@lhc.com"&password="1234"
-
 
 app.controllers.controller('Signup.Controller', Signup.Controller);
