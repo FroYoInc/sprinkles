@@ -15,5 +15,9 @@ app.controllers.controller('navbarController',
   $scope.loadSignup = function () {
         $location.url('/signup');
    };
+  $scope.loadDashboard = function () {
+        $location.url('/dashboard');
+   };
+
 
 }]);
