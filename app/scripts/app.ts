@@ -5,6 +5,7 @@
 /// <reference path='components/home/homeController.ts' />
 /// <reference path='components/navbar/navbarController.ts' />
 /// <reference path='components/signup/signupController.ts' />
+/// <reference path='components/dashboard/dashboardController.ts' />
 
 
 angular.module('app', ['app.controllers','ngRoute','ngStorage']).
@@ -20,6 +21,11 @@ angular.module('app', ['app.controllers','ngRoute','ngStorage']).
       templateUrl:    '\\views\\signupView.html',
       controller:     'Signup.Controller'
     });
+    $routeProvider.when('/dashboard', 
+    {
+      templateUrl:    '\\views\\dashboardView.html',
+      controller:      'Dashboard.Controller'
+      })
     $routeProvider.otherwise(
     {
       redirectTo:     '/home',

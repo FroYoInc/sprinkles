@@ -10,11 +10,11 @@ module Home {
         signIn: Function;
         signInCall: Function;
         visible: Function;
+        loadDashboard: Function;
     }
     export class Controller {
         
-        constructor ($scope: Scope, $http: any) {
-
+        constructor ($scope: Scope, $http: any, $location: any) {
             
             // populate the data when sign in is clicked
             // Handels error alerts when not successful 
@@ -27,6 +27,8 @@ module Home {
                     success(function (data) {
                         // successful login
                         $('#success').css('visibility','visible').fadeIn();
+                        $location.path('/dashboard');
+
                 }).
                     error(function (data, status) {
                         // Bad Request. Invalid or missing parameters.
@@ -63,6 +65,7 @@ module Home {
             $scope.visible = function(result:string) {
              document.getElementById(result).style.display = 'none';
            }
+
         }
 
     }

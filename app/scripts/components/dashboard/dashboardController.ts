@@ -10,4 +10,5 @@ module Dashboard {
     		
     	}
     }
+}
 app.controllers.controller('Dashboard.Controller', Dashboard.Controller);
