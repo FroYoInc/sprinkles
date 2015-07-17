@@ -66,6 +66,7 @@ module Signup {
                   //Email exists
                   if(status == 409 && ((data.message).includes("EmailValidationException:"))){
                       $scope.emailExistsError = true;
+                      $('#emailExists').css('visibility','visible').fadeIn();
                   }
                   //Bad email domain
                   if(status == 400 && ((data.message).localeCompare("EmailValidationException: The email address's domain is not allowed") == 0)){
@@ -74,6 +75,7 @@ module Signup {
                   //username exists
                   else if( status == 409 && ((data.message).localeCompare("UserExistException: user already exist") == 0)){
                       $scope.usernameerror = true;
+                      $('#usernameExists').css('visibility','visible').fadeIn();
                   }
                   //no password or username entered
                   else if( status == 500 && data.message.includes("BcryptHashError")){

@@ -21,56 +21,74 @@
     <!-- 200:successful login -->
     <div class="alert alert-success alert-dismissible fade in hidden-alerts" role="alert"
            id="success">
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <button type="button" class="close" ng-click="visible('success')" aria-label="Close">
     <span aria-hidden="true">&times;</span></button>
       <strong>Welcome!</strong>
     </div>
     <!-- 400:Bad Request. Invalid or missing parameters. -->
     <div class="alert alert-warning alert-dismissible fade in hidden-alerts" role="alert"
            id="badRequest">
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <button type="button" class="close" ng-click="visible('badRequest')" aria-label="Close">
     <span aria-hidden="true">&times;</span></button>
       <strong>Sorry!</strong> Invalid or missing parameters.
     </div>
     <!-- 401:The user account has not been activated. -->
     <div class="alert alert-warning alert-dismissible fade in hidden-alerts" role="alert"
             id="notAuthorized">
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <button type="button" class="close" ng-click="visible('notAuthorized')" aria-label="Close">
     <span aria-hidden="true">&times;</span></button>
       <strong>Sorry!</strong> Wrong Username or Password.
     </div>
     <!-- 403:The user account has not been activated. -->
     <div class="alert alert-warning alert-dismissible fade in hidden-alerts" role="alert"
            id="accountNotActivated">
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <button type="button" class="close" ng-click="visible('accountNotActivated')" 
+            aria-label="Close">
     <span aria-hidden="true">&times;</span></button>
       <strong>Sorry!</strong> Account in not yet activated.
     </div>
     <!-- 404:Not found -->
     <div class="alert alert-warning alert-dismissible fade in hidden-alerts" role="alert"
            id="notFound">
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <button type="button" class="close" ng-click="visible('notFound')" aria-label="Close">
     <span aria-hidden="true">&times;</span></button>
       <strong>Oops!</strong> Something was not found.
     </div>
     <!-- 423:The user account is locked. -->
     <div class="alert alert-danger alert-dismissible fade in hidden-alerts" role="alert"
            id="accountIsLocked">
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <button type="button" class="close" ng-click="visible('accountIsLocked')" aria-label="Close">
     <span aria-hidden="true">&times;</span></button>
       <strong>Sorry!</strong> Your Account is locked
     </div>
     <!-- 500:Internal Server error. -->
     <div class="alert alert-danger alert-dismissible fade in hidden-alerts" role="alert"
            id="internalError">
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <button type="button" class="close" ng-click="visible('internalError')" aria-label="Close">
     <span aria-hidden="true">&times;</span></button>
       <strong>Oops!</strong> Internal Server error.
     </div>
+
+    <!-- 409:Conflict error. Username already exists. -->
+    <div class="alert alert-danger alert-dismissible fade in hidden-alerts" role="alert"
+           id="usernameExists">
+    <button type="button" class="close" ng-click="visible('usernameExists')" aria-label="Close">
+    <span aria-hidden="true">&times;</span></button>
+      <strong>Oops!</strong> Username already exists. Please choose a different username.
+    </div>
+    <!-- 409:Conflict error. Email already exists. -->
+    <div class="alert alert-danger alert-dismissible fade in hidden-alerts" role="alert"
+           id="emailExists">
+    <button type="button" class="close" ng-click="visible('emailExists')" aria-label="Close">
+    <span aria-hidden="true">&times;</span></button>
+      <strong>Oops!</strong> Email already exists. Please choose a different username.
+    </div>
+
+
     <!-- Account was made, ask them to check email -->
     <div class="alert alert-warning alert-dismissible fade in hidden-alerts" role="alert"
            id="accountmade">
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <button type="button" class="close" ng-click="visible('accountmade')" aria-label="Close">
     <span aria-hidden="true">&times;</span></button>
       Account has been made. Please check your email for activation instructions.
     </div>
