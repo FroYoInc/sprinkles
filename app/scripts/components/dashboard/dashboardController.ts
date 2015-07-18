@@ -3,11 +3,13 @@
 module Dashboard {
 
     export interface Scope {
-        
+        loadDashboard: Function;
     }
     export class Controller {
-    	constructor () {
-    		
+    	constructor ($scope: Scope, $http: any, $location: any) {
+    		$scope.loadDashboard = function() {
+          $location.path('/dashboard');
+        }
     	}
     }
 }
