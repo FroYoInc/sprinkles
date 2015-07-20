@@ -14,7 +14,7 @@ module Home {
     }
     export class Controller {
 
-        constructor ($scope: Scope, $http: any, $location: any) {
+        constructor ($scope: Scope, $http: any, $location: any, Auth: Auth) {
 
             // populate the data when sign in is clicked
             // Handels error alerts when not successful
@@ -27,6 +27,7 @@ module Home {
                     success(function (data) {
                         // successful login
                         $('#success').css('visibility','visible').fadeIn();
+                        Auth.setUser(user); //Update the state of the user in the app
                         //$location.path('/dashboard');
 
                 }).
