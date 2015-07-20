@@ -1,6 +1,23 @@
 // to inject for angulars $q - "A service that helps you run functions asynchronously, and use 
  // their return values (or exceptions) when they are done processing."
 
+
+
+/* Usefull links
+
+registering a service in angularjs (with typescript)
+http://stackoverflow.com/questions/19251498/registering-a-service-in-angularjs-with-typescript
+
+angular.service vs angular.factory
+http://stackoverflow.com/questions/14324451/angular-service-vs-angular-factory
+
+AngularJS- Login and Authentication in each route and controller
+http://stackoverflow.com/questions/20969835/angularjs-login-and-authentication-in-each-route-and-controller
+
+How can I define an AngularJS factory using TypeScript class that has constructor parameters
+http://stackoverflow.com/questions/24056458/how-can-i-define-an-angularjs-factory-using-typescript-class-that-has-constructo
+*/
+
 module AuthenticationService {
 	
 	export class Access {
