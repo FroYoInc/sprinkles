@@ -11,18 +11,23 @@ angular.module('app', ['app.controllers','ngRoute','ngStorage']).
 
     $routeProvider.when('/home',
     {
-      templateUrl:    '\\views\\homeView.html',
+      templateUrl:    '/views/homeView.html',
       controller:     'Home.Controller'
     });
     $routeProvider.when('/signup',
     {
-      templateUrl:    '\\views\\signupView.html',
+      templateUrl:    '/views/signupView.html',
       controller:     'Signup.Controller'
     });
     $routeProvider.when('/dashboard',
     {
-      templateUrl:    '\\views\\dashboardView.html',
+      templateUrl:    '/views/dashboardView.html',
       controller:      'Dashboard.Controller'
+      });
+    $routeProvider.when('/carpool/create',
+    {
+      templateUrl:    '/views/carpoolCreateView.html',
+      controller:      'Carpool.Create.Controller'
       });
     $routeProvider.otherwise(
     {
