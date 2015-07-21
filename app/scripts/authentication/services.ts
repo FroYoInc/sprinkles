@@ -6,7 +6,7 @@ module AuthenticationService {
         cookies: any;
 
         static $inject = ["$http", "$rootScope", "$ngCookies"];
-        constructor(Base64: Base64, $http: ng.IHttpService, $cookies: ngCookies, $rootScope: rootScope){
+        constructor(Base64: Base64, $http: ng.IHttpService, $cookies: ng.Cookies, $rootScope: rootScope){
             this.cookies = $cookies;
         }
         Login = function (user, callback) {
