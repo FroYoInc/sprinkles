@@ -30,17 +30,15 @@ angular.module('app', ['app.controllers','ngRoute','ngStorage', 'ngResource'])
         templateUrl:    '\\views\\signupView.html',
         controller:     'Signup.Controller',
         resolve: {
-          /*access: ["Access", function(Access) { return Access.isAnonymous(); }],*/
+          access: ["Access", function(Access) { return Access.isAnonymous(); }],
         }
       })
       .when('/dashboard', {
         templateUrl:    '\\views\\dashboardView.html',
         controller:      'Dashboard.Controller',
         resolve: {
-          access: ["Access", (Access) => {
-            return Access.isAuthenticated();
-          }]
-          //["Access", function(Access) { return Access.isAuthenticated(); }],
+          access: ["Access", function(Access) { return Access.isAuthenticated(); }]
+          // ["Access", (Access) => { return Access.isAuthenticated();}]
         }
       })
       .otherwise( {
@@ -83,7 +81,7 @@ angular.module('app', ['app.controllers','ngRoute','ngStorage', 'ngResource'])
 
           });
         });
-
+        console.log("returning from userProfile");
         return deferred.promise;
 }])
 .factory("Access", ["$q", "UserProfile", function($q, UserProfile) {
@@ -94,9 +92,11 @@ angular.module('app', ['app.controllers','ngRoute','ngStorage', 'ngResource'])
         UNAUTHORIZED: 401,
         FORBIDDEN: 403,
 
+        console.log("Passed in promise is" + $q);
         isAnonymous: function() {
           var deferred = $q.defer();
           console.log("Starting promise from isAnonymous");
+          console.log("deferred is " + deferred);
           UserProfile.then(function(userProfile) {
             if (userProfile.isAnonymous()) {
               deferred.resolve(Access.OK);
@@ -109,9 +109,14 @@ angular.module('app', ['app.controllers','ngRoute','ngStorage', 'ngResource'])
           return deferred.promise;
         },
 
+        //so far what it prints out when a use trys to log in and it is succesful is 
+        //Starting promise from isAuthenticated
+        //deferred is [object Object]
+        //meaning that the promise isn't getting passed in correctly 
         isAuthenticated: function() {
           var deferred = $q.defer();
           console.log("Starting promise from isAuthenticated");
+          console.log("deferred is " + deferred);
           UserProfile.then(function(userProfile) {
             if (userProfile.isAuthenticated()) {
               deferred.resolve(Access.OK);
