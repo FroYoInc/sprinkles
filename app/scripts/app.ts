@@ -1,5 +1,3 @@
-/// <reference path='..\libs\angular\angular.d.ts' />
-/// <reference path='..\libs\jquery\jquery.d.ts' />
 /// <reference path='..\libs\angular\angular-route.d.ts'/>
 
 /// <reference path='components/home/homeController.ts' />
@@ -8,7 +6,7 @@
 /// <reference path='components/dashboard/dashboardController.ts' />
 
 
-angular.module('app', ['app.controllers','ngRoute','ngStorage']).
+angular.module('app', ['app.controllers','ngRoute','ngStorage','ui.bootstrap']).
   config(function ($routeProvider, $locationProvider, $httpProvider) {
 
     $routeProvider.when('/home',
