@@ -1,5 +1,6 @@
 /// <reference path="../../app.ts"/>
 
+// interface used to display a list of carpools, edit user profile and create a carpool
 module Dashboard {
 
     export interface Scope {
