@@ -7,6 +7,11 @@
       <small>You are not currently in a carpool</small>
     </h1>
   </div>
+  <div ng-hide="showCarpools" src="'views/displayCarpoolsView.html'">
+  <div>
+    Hello World!
+  </div>
+</div>
 
 
   <!-- User Profile Widget -->
@@ -31,7 +36,7 @@
         <div class="caption">
           <center> <h3>Carpool</h3>
             <p>View and Join Carpools Here</p>
-            <p><a href="#" class="btn btn-primary" role="button">View</a></p>
+              <button type="submit" class="btn btn-primary btn-lg btn-block"ng-click="displayCarpools()">View</button>
         </div><center>
       </div>
     </div>
