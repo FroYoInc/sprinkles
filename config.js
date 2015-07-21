@@ -10,7 +10,7 @@ module.exports = {
   'tsd': tsd,
   'package': package,
   'tsOutDir': outDir,
-  'tsFiles': outDir,
+  'tsFiles': './app/**/*.ts',
   'port': 3000,
   'outDir': outDir,
   'stylesDir': 'app/styles',
