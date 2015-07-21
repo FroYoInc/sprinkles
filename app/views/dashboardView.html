@@ -2,14 +2,28 @@
 
 <div class="container">
 
-  <div class="page-header">
+  <div ng-hide="!showCarpools" class="page-header">
     <h1>Current Carpool Status <br>
       <small>You are not currently in a carpool</small>
     </h1>
   </div>
   <div ng-hide="showCarpools" src="'views/displayCarpoolsView.html'">
   <div>
-    Hello World!
+    <div class="page-header">
+    <h1> Carpool Viewer - Found <strong> {{carpoolList.length}} Carpools</strong> <br>
+      <small> Click an entry to view details of a carpool. Click the entry again to hide the details. </small>
+    </h1>
+  </div>
+    <accordion close-others="oneAtATime">
+      <accordion-group heading="{{carpool.name}}" ng-repeat="carpool in carpoolList">
+        <strong>Description:</strong> {{carpool.description}} <br>
+        <strong>Owner:</strong> {{carpool.owner.lastName}},{{carpool.owner.firstName}} <br>
+        <strong>Contact:</strong> {{carpool.owner.email}} <br>
+        <strong>Current Participants:</strong> {{carpool.participants.length}} <br>
+        <strong>Carpool Ref:</strong> {{carpool.href}} <br>
+        <strong>Campus Locatition:</strong> {{carpool.campus.name}} <br>
+      </accordion-group>
+    </accordion>
   </div>
 </div>
 
@@ -36,7 +50,7 @@
         <div class="caption">
           <center> <h3>Carpool</h3>
             <p>View and Join Carpools Here</p>
-              <button type="submit" class="btn btn-primary btn-lg btn-block"ng-click="displayCarpools()">View</button>
+              <button type="submit" class="btn btn-primary btn-lg btn-block" ng-click="displayCarpools()">{{viewText}}</button>
         </div><center>
       </div>
     </div>

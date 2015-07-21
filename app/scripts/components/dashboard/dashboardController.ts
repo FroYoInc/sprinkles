@@ -4,7 +4,7 @@ module Dashboard {
 
     export interface Scope {
         showCarpools: boolean;
-        internalError: boolean;
+        viewText: string;
         carpoolList: any;
         loadDashboard: Function;
         displayCarpools: Function;
@@ -12,13 +12,16 @@ module Dashboard {
     export class Controller {
 
     	constructor ($scope: Scope, $http: any, $location: any) {
-        $scope.showCarpools = false;
+        //Default Values
+        $scope.showCarpools = true;
+        $scope.viewText = "View";
 
+        //Populates the Carpool list
         $scope.displayCarpools = function() {
            $scope.showCarpools = !$scope.showCarpools;
-           console.log(">>>",$scope.showCarpools);
-           $http.post('http://localhost:3000/api/carpools').success(function(data, status, headers, config) {
-              console.log("data=", data);
+           $scope.viewText = $scope.showCarpools ? "View" : "Hide";
+
+           $http.get('http://localhost:3000/api/carpools').success(function(data, status, headers, config) {
               $scope.carpoolList = data;
              }).error(function(data, status, headers, config) {
                //500 server error
@@ -26,14 +29,14 @@ module Dashboard {
                  window.scrollTo(0,0);
                    $('#internalError').css('visibility','visible').fadeIn();
                }
-               if(status == 400) {
+               if(status == 404) {
                  window.scrollTo(0,0);
                    $('#notFound').css('visibility','visible').fadeIn();
                }
-
              });
         }
 
+        //Loads the dashboard path
     		$scope.loadDashboard = function() {
           $location.path('/dashboard');
         }
