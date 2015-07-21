@@ -17,7 +17,7 @@
     <accordion close-others="oneAtATime">
       <accordion-group heading="{{carpool.name}}" ng-repeat="carpool in carpoolList">
         <strong>Description:</strong> {{carpool.description}} <br>
-        <strong>Owner:</strong> {{carpool.owner.lastName}},{{carpool.owner.firstName}} <br>
+        <strong>Owner:</strong> {{carpool.owner.lastName}}, {{carpool.owner.firstName}} <br>
         <strong>Contact:</strong> {{carpool.owner.email}} <br>
         <strong>Current Participants:</strong> {{carpool.participants.length}} <br>
         <strong>Carpool Ref:</strong> {{carpool.href}} <br>
