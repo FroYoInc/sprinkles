@@ -24,8 +24,6 @@ module Home {
                 user.email      = $scope.newUserEmail;
                 user.password   = $scope.newUserPassword;
 
-
-                console.log(user.password);
                 $http.post('http://localhost:3000/api/users/login', user).
                     success(function (data) {
                         // successful login

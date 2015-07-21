@@ -21,9 +21,6 @@ angular.module('app', ['app.controllers','ngRoute','ngStorage', 'ngResource'])
         controller:     'Home.Controller',
         // Error: [$injector:unpr] Unknown provider: AccessProvider <- Access <- access
         resolve: {
-          foo: ["Foo", (foo) => {
-            foo.bar();
-          }],
           access: ["Access", (Access) => {
             console.log(Access);
           }]
@@ -40,7 +37,10 @@ angular.module('app', ['app.controllers','ngRoute','ngStorage', 'ngResource'])
         templateUrl:    '\\views\\dashboardView.html',
         controller:      'Dashboard.Controller',
         resolve: {
-          /*access: ["Access", function(Access) { return Access.isAuthenticated(); }],*/
+          access: ["Access", (Access) => {
+            return Access.isAuthenticated();
+          }]
+          //["Access", function(Access) { return Access.isAuthenticated(); }],
         }
       })
       .otherwise( {
@@ -49,24 +49,6 @@ angular.module('app', ['app.controllers','ngRoute','ngStorage', 'ngResource'])
       });
 })
 
-/*
-Try and create authenticationService to do all the work,
-I think that Service needs to be added to this file. If I can
-off load the work into one serve class that would be best
-AuthTemp is all functions. It may be easier to use authTemp and jsut have that
-class take a promise and return a promise called Access in order to pass into app.ts
-
-Access in the .run is called from this factory("Access") ... So in order to do what is abouve
-I need to make sure I can call authenticationService and pass it into run
-That should do the trick :)
-*/
-
-.factory("Foo", ["$q", ($q) => {
-  var Foo =  {
-    bar: () => {console.log("bar")}
-  }
-  return Foo;
-}])
 // User is a standard AngularJS resource with a profile method (needs angular-resource):
 .factory("User", ["$resource", function($resource) {
   // return AuthenticationService.User.Factory($resource);
@@ -85,14 +67,17 @@ That should do the trick :)
     // return AuthenticationService.UserProfile.Factory($q, User);
     var deferred = $q.defer();
 
+      console.log("in UserProfile");
         User.profile(function(userProfile) {
+          console.log("Starting resolve from UserProfile");
           deferred.resolve({
-
             isAnonymous: function() {
+              console.log("anonymous from userProfile");
               return userProfile.anonymous;
             },
 
             isAuthenticated: function() {
+              console.log("Authenticated from userProfile");
               return !userProfile.anonymous;
             }
 
@@ -111,11 +96,14 @@ That should do the trick :)
 
         isAnonymous: function() {
           var deferred = $q.defer();
+          console.log("Starting promise from isAnonymous");
           UserProfile.then(function(userProfile) {
             if (userProfile.isAnonymous()) {
               deferred.resolve(Access.OK);
+              console.log("Access OK from isAnonymous");
             } else {
               deferred.reject(Access.FORBIDDEN);
+              console.log("Access FORBIDDEN from isAnonymous");
             }
           });
           return deferred.promise;
@@ -123,104 +111,40 @@ That should do the trick :)
 
         isAuthenticated: function() {
           var deferred = $q.defer();
+          console.log("Starting promise from isAuthenticated");
           UserProfile.then(function(userProfile) {
             if (userProfile.isAuthenticated()) {
               deferred.resolve(Access.OK);
+              console.log("Access OK from isAuthenticated");
             } else {
               deferred.reject(Access.UNAUTHORIZED);
+              console.log("Access UNAUTHORIZED from isAuthenticated");
             }
           });
           return deferred.promise;
         }
 
       };
-      return Access;
-}])
-/*.factory("Access", ["$q", "UserProfile", function($q, UserProfile) {
-  // return AuthenticationService.Access.Factory($q, UserProfile);
-  var Access = {
-
-        OK: 200,
-        UNAUTHORIZED: 401,
-        FORBIDDEN: 403,
-
-        isAnonymous: function() {
-          var deferred = $q.defer();
-          UserProfile.then(function(userProfile) {
-            if (userProfile.isAnonymous()) {
-              deferred.resolve(Access.OK);
-            } else {
-              deferred.reject(Access.FORBIDDEN);
-            }
-          });
-          return deferred.promise;
-        },
-
-        isAuthenticated: function() {
-          var deferred = $q.defer();
-          UserProfile.then(function(userProfile) {
-            if (userProfile.isAuthenticated()) {
-              deferred.resolve(Access.OK);
-            } else {
-              deferred.reject(Access.UNAUTHORIZED);
-            }
-          });
-          return deferred.promise;
-        }
-
-      };
+      console.log("returning access");
       return Access;
 }])
 
-// UserProfile encapsulates the current user to implement the
-// isAnonymous and isAuthenticated methods logic:
-.factory("UserProfile", ["$q", "User", function($q, User) {
-    // return AuthenticationService.UserProfile.Factory($q, User);
-    var deferred = $q.defer();
-
-        User.profile(function(userProfile) {
-          deferred.resolve({
-
-            isAnonymous: function() {
-              return userProfile.anonymous;
-            },
-
-            isAuthenticated: function() {
-              return !userProfile.anonymous;
-            }
-
-          });
-        });
-
-        return deferred.promise;
-}])
-// User is a standard AngularJS resource with a profile method (needs angular-resource):
-.factory("User", ["$resource", function($resource) {
-  // return AuthenticationService.User.Factory($resource);
-  this.user = $resource("rest/users/:id/:attr", { id: "@id" }, {
-
-          profile: {
-            method: "GET",
-            params: { attr: "profile" }
-          }
-        });
-      return this.user;
-}])
 // when Access rejects a promise, the $routeChangeError event will be fired:
 .run(["$rootScope", "Access", "$location",
 function($rootScope, Access, $location) {
 
-  "use strict";
-
   $rootScope.$on("$routeChangeError", function(event, current, previous, rejection) {
+    console.log("routeChangeError is triggered");
     if (rejection == Access.UNAUTHORIZED) {
-      $location.path("/dashboard");
+      console.log("rejection == Access.UNAUTHORIZED");
+      $location.path("/home");
     } else if (rejection == Access.FORBIDDEN) {
+      console.log("rejection == Access.FORBIDDEN");
       $location.path("/home");
     }
   });
 
-}]);*/
+}]);
 
 module app {
     export var controllers = angular.module('app.controllers',[]);
