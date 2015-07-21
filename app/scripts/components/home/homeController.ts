@@ -1,5 +1,7 @@
 /// <reference path="../../app.ts"/>
 /// <reference path='usermodel.ts' />
+/// <reference path="../../authentication/services.ts"/>
+
 
 // interface used to get a get user from their email and password during sign
 module Home {
@@ -12,10 +14,13 @@ module Home {
         visible: Function;
         loadDashboard: Function;
     }
+
     export class Controller {
 
-        constructor ($scope: Scope, $http: any, $location: any, Auth: Auth) {
 
+        constructor ($scope: Scope, $http: any, $location: any, AuthenticationService: Auth) {
+
+             Auth.ClearCredentials();
             // populate the data when sign in is clicked
             // Handels error alerts when not successful
             $scope.signIn = function () {
@@ -23,13 +28,25 @@ module Home {
                 user.email      = $scope.newUserEmail;
                 user.password   = $scope.newUserPassword;
 
+
+                $scope.dataLoading = true;
+                Auth.Login(user, function(response) {
+                    if(response.success) {
+                        AuthenticationService.SetCredentials(user.email, user.password);
+                        $location.path('/dashboard');
+                    } else {
+                        $scope.error = response.message;
+                        $scope.dataLoading = false;
+                    }
+                });
+                /*
                 $http.post('http://localhost:3000/api/users/login', user).
                     success(function (data) {
                         // successful login
                         $('#success').css('visibility','visible').fadeIn();
-                        Auth.setUser(user); //Update the state of the user in the app
+                        // Auth.setUser(user); //Update the state of the user in the app
                         //$location.path('/dashboard');
-
+                
                 }).
                     error(function (data, status) {
                         // Bad Request. Invalid or missing parameters.
@@ -66,7 +83,7 @@ module Home {
 
 
                 });
-
+                */
             };
 
             $scope.visible = function(result:string) {

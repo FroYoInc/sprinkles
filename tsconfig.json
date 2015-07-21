@@ -22,6 +22,7 @@
         "./app/libs/angular/angular.d.ts",
         "./app/libs/jquery/jquery.d.ts",
         "./app/scripts/app.ts",
+        "./app/scripts/authentication/services.ts",
         "./app/scripts/components/home/homeController.ts",
         "./app/scripts/components/dashboard/dashboardController.ts",
         "./app/scripts/components/home/homeService.ts",

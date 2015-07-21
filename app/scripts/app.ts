@@ -9,11 +9,18 @@
 
 
  // http://stackoverflow.com/questions/14324451/angular-service-vs-angular-factory
-angular.module('app', ['app.controllers','ngRoute','ngStorage'])
+angular.module('Authentication', []);
 
-.config(function ($routeProvider, $locationProvider, $httpProvider) {
+(function () {
+  'use strict';
 
-    "use strict"; // do I need this?
+  angular
+      .module('app', ['app.controllers','ngRoute','ngStorage','ngCookies', 'Authentication'])
+      .config(config)
+      .run(run);
+
+  config.$inject = ['$routeProvider', '$locationProvider', '$httpProvider'];
+  function config($routeProvider, $locationProvider, $httpProvider) {
 
     $routeProvider
       .when('/home', {
@@ -32,7 +39,7 @@ angular.module('app', ['app.controllers','ngRoute','ngStorage'])
         redirectTo:     '/home',
         controller:     'Home.Controller',
       });
-})
+}
 
 
 // Ignore this for now 
@@ -50,37 +57,29 @@ That should do the trick :)
 
 // THis needs to be called in homeController but I haven't figured out how to export it so that 
 // home controller can look at it. That is what authSerivce is trying to do
-module Auth {
-  export var authService = angular.module('AuthModule',[]);
-  appTest.factory('Auth', function(){
-  var user;
 
-  return{
-      setUser : function(aUser){
-          user = aUser;
-      },
-      isLoggedIn : function(){
-          return(user)? user : false;
-      }
+
+run.$inject = ['$rootScope', '$location', '$cookieStore', '$http'];
+    function run($rootScope, $location, $cookieStore, $http) {
+        // keep user logged in after page refresh
+        $rootScope.globals = $cookieStore.get('globals') || {};
+        console.log("Current user is " + $rootScope.globals.currentUser);
+        if ($rootScope.globals.currentUser) {
+            $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.globals.currentUser.authdata; // jshint ignore:line
+            console.log(" i made a cookie");
+        }
+
+        $rootScope.$on('$locationChangeStart', function (event, next, current) {
+            // redirect to login page if not logged in and trying to access a restricted page
+            var restrictedPage = $.inArray($location.path(), ['/home', '/signup']) === -1;
+            var loggedIn = $rootScope.globals.currentUser;
+            if (restrictedPage && !loggedIn) {
+                $location.path('/home');
+            }
+        });
     }
-  })
-}
 
-
-.run(['$rootScope', '$location', 'Auth', function ($rootScope, $location, Auth) {
-    $rootScope.$on('$routeChangeStart', function (event) {
-
-        if (!Auth.isLoggedIn()) {
-            console.log('DENY');
-            event.preventDefault();
-            $location.path('/home');
-        }
-        else {
-            console.log('ALLOW');
-            $location.path('/dashboard');
-        }
-    });
-}]);
+})();
 
 module app {
     export var controllers = angular.module('app.controllers',[]);

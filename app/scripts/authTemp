@@ -1,0 +1,82 @@
+
+// to inject for angulars $q - "A service that helps you run functions asynchronously, and use 
+ // their return values (or exceptions) when they are done processing."
+
+module AuthenticationService {
+	
+	
+	export class Factory {
+		private q: ng.IQService;
+		constructor ($q: ng.IQService){
+			this.q = $q;
+		}
+		Access($q:ng.IQService, UserProfile: any) {
+
+			var Access = {
+
+		    OK: 200,
+		    UNAUTHORIZED: 401,
+		    FORBIDDEN: 403,
+
+		    isAnonymous: function() {
+		      var deferred = $q.defer();
+		      UserProfile.then(function(userProfile) {
+		        if (userProfile.isAnonymous()) {
+		          deferred.resolve(Access.OK);
+		        } else {
+		          deferred.reject(Access.FORBIDDEN);
+		        }
+		      });
+		      return deferred.promise;
+		    },
+
+		    isAuthenticated: function() {
+		      var deferred = $q.defer();
+		      UserProfile.then(function(userProfile) {
+		        if (userProfile.isAuthenticated()) {
+		          deferred.resolve(Access.OK);
+		        } else {
+		          deferred.reject(Access.UNAUTHORIZED);
+		        }
+		      });
+		      return deferred.promise;
+		    }
+
+		  };
+		  this.access = Access;
+		  return Access;
+		}
+		UserProfile($q:ng.IQService, User: User) {
+			var deferred = $q.defer();
+
+			  User.profile(function(userProfile) {
+			    deferred.resolve({
+
+			      isAnonymous: function() {
+			        return userProfile.anonymous;
+			      },
+
+			      isAuthenticated: function() {
+			        return !userProfile.anonymous;
+			      }
+
+			    });
+			  });
+
+			  return deferred.promise;
+		}
+		User($resource: ng.resource.IResource) {
+			return $resource("rest/users/:id/:attr", { id: "@id" }, {
+
+    			profile: {
+      			method: "GET",
+      			params: { attr: "profile" }
+    			}
+  			});
+
+		}
+	}
+
+
+	// Maybe create stuff here? 
+}
