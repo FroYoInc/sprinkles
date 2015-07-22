@@ -7,25 +7,10 @@
       <small>You are not currently in a carpool</small>
     </h1>
   </div>
-  <div ng-hide="showCarpools" src="'views/displayCarpoolsView.html'">
-  <div>
-    <div class="page-header">
-    <h1> Carpool Viewer - Found <strong> {{carpoolList.length}} Carpools</strong> <br>
-      <small> Click an entry to view details of a carpool. Click the entry again to hide the details. </small>
-    </h1>
+  <div ng-hide="showCarpools" ng-include="'views/displayCarpoolsView.html'">
   </div>
-    <accordion close-others="oneAtATime">
-      <accordion-group heading="{{carpool.name}}" ng-repeat="carpool in carpoolList">
-        <strong>Description:</strong> {{carpool.description}} <br>
-        <strong>Owner:</strong> {{carpool.owner.lastName}}, {{carpool.owner.firstName}} <br>
-        <strong>Contact:</strong> {{carpool.owner.email}} <br>
-        <strong>Current Participants:</strong> {{carpool.participants.length}} <br>
-        <strong>Carpool Ref:</strong> {{carpool.href}} <br>
-        <strong>Campus Locatition:</strong> {{carpool.campus.name}} <br>
-      </accordion-group>
-    </accordion>
+  <div ng-hide="createCarpools" ng-include="'views/createCarpoolView.html'">
   </div>
-</div>
 
 
   <!-- User Profile Widget -->

@@ -4,6 +4,7 @@
 /// <reference path='components/navbar/navbarController.ts' />
 /// <reference path='components/signup/signupController.ts' />
 /// <reference path='components/dashboard/dashboardController.ts' />
+/// <reference path='components/carpools/createCarpoolController.ts'/>
 
 
 angular.module('app', ['app.controllers','ngRoute','ngStorage','ui.bootstrap']).
@@ -24,10 +25,10 @@ angular.module('app', ['app.controllers','ngRoute','ngStorage','ui.bootstrap']).
       templateUrl:    '/views/dashboardView.html',
       controller:      'Dashboard.Controller'
       });
-    $routeProvider.when('/carpool/create',
+    $routeProvider.when('/dashboard/create',
     {
-      templateUrl:    '/views/carpoolCreateView.html',
-      controller:      'Carpool.Create.Controller'
+      templateUrl:    '/views/dashboardView.html',
+      controller:      'Dashboard.Controller'
       });
     $routeProvider.otherwise(
     {

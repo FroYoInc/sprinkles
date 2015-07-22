@@ -4,6 +4,7 @@
 module CarpoolCreate {
 
     export interface Scope {
+        showCreateCarpools: boolean;
         userEmail: string;
         userPass1: string;
         userPass2: string;
@@ -25,6 +26,7 @@ module CarpoolCreate {
 
         constructor ($scope: Scope, $location, $http: any, $localStorage) {
             $scope.events = this;
+            $scope.showCreateCarpools = true;
 
             //Adds the information into a temp local storage.
             //This gets cleared after the user signs up.
