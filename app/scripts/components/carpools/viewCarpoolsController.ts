@@ -1,7 +1,7 @@
 /// <reference path="../../app.ts"/>
 
 // interface used to display a list of carpools, edit user profile and create a carpool
-module Dashboard_Carpools_Create {
+module Dashboard_Carpools_View {
 
     export interface Scope {
         showCarpools: boolean;
@@ -44,4 +44,4 @@ module Dashboard_Carpools_Create {
     	}
     }
 }
-app.controllers.controller('Dashboard_Carpools_Create.Controller', Dashboard.Controller);
+app.controllers.controller('Dashboard_Carpools_View.Controller', Dashboard.Controller);
