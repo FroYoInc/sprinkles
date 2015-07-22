@@ -92,8 +92,8 @@ angular.module('app', ['app.controllers','ngRoute','ngStorage', 'ngResource'])
         UNAUTHORIZED: 401,
         FORBIDDEN: 403,
 
-        console.log("Passed in promise is" + $q);
         isAnonymous: function() {
+        console.log("Passed in promise is" + $q);
           var deferred = $q.defer();
           console.log("Starting promise from isAnonymous");
           console.log("deferred is " + deferred);
@@ -109,10 +109,10 @@ angular.module('app', ['app.controllers','ngRoute','ngStorage', 'ngResource'])
           return deferred.promise;
         },
 
-        //so far what it prints out when a use trys to log in and it is succesful is 
+        //so far what it prints out when a use trys to log in and it is succesful is
         //Starting promise from isAuthenticated
         //deferred is [object Object]
-        //meaning that the promise isn't getting passed in correctly 
+        //meaning that the promise isn't getting passed in correctly
         isAuthenticated: function() {
           var deferred = $q.defer();
           console.log("Starting promise from isAuthenticated");
