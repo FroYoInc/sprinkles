@@ -1,7 +1,7 @@
 /// <reference path="../../app.ts"/>
 
 // interface used to sign up a user
-module Signup {
+module CarpoolCreate {
 
     export interface Scope {
         userEmail: string;
@@ -94,4 +94,4 @@ module Signup {
     }
 }
 
-app.controllers.controller('Signup.Controller', Signup.Controller);
+app.controllers.controller('Carpool.Create.Controller', CarpoolCreate.Controller);
