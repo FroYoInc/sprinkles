@@ -1,6 +1,6 @@
 /// <reference path="../../app.ts"/>
 
-// interface used to sign up a user 
+// interface used to sign up a user
 module Signup {
 
     export interface Scope {

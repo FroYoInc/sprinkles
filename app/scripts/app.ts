@@ -6,7 +6,7 @@
 /// <reference path='components/dashboard/dashboardController.ts' />
 
 
-angular.module('app', ['app.controllers','ngRoute','ngStorage']).
+angular.module('app', ['app.controllers','ngRoute','ngStorage','ui.bootstrap']).
   config(function ($routeProvider, $locationProvider, $httpProvider) {
 
     $routeProvider.when('/home',

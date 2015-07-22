@@ -2,11 +2,30 @@
 
 <div class="container">
 
-  <div class="page-header">
+  <div ng-hide="!showCarpools" class="page-header">
     <h1>Current Carpool Status <br>
       <small>You are not currently in a carpool</small>
     </h1>
   </div>
+  <div ng-hide="showCarpools" src="'views/displayCarpoolsView.html'">
+  <div>
+    <div class="page-header">
+    <h1> Carpool Viewer - Found <strong> {{carpoolList.length}} Carpools</strong> <br>
+      <small> Click an entry to view details of a carpool. Click the entry again to hide the details. </small>
+    </h1>
+  </div>
+    <accordion close-others="oneAtATime">
+      <accordion-group heading="{{carpool.name}}" ng-repeat="carpool in carpoolList">
+        <strong>Description:</strong> {{carpool.description}} <br>
+        <strong>Owner:</strong> {{carpool.owner.lastName}}, {{carpool.owner.firstName}} <br>
+        <strong>Contact:</strong> {{carpool.owner.email}} <br>
+        <strong>Current Participants:</strong> {{carpool.participants.length}} <br>
+        <strong>Carpool Ref:</strong> {{carpool.href}} <br>
+        <strong>Campus Locatition:</strong> {{carpool.campus.name}} <br>
+      </accordion-group>
+    </accordion>
+  </div>
+</div>
 
 
   <!-- User Profile Widget -->
@@ -17,7 +36,7 @@
         <div class="caption">
           <center> <h3>User Profile</h3>
           <p>View or Edit Your User Profile</p>
-          <p><a href="#" class="btn btn-primary" role="button">View</a> <a href="#" class="btn btn-primary" role="button">Edit</a></p>
+          <button type="submit" class="btn btn-primary btn-lg btn-block" ng-click="displayCarpools()">Edit Profile</button>
         </div><center>
       </div>
     </div>
@@ -31,7 +50,7 @@
         <div class="caption">
           <center> <h3>Carpool</h3>
             <p>View and Join Carpools Here</p>
-            <p><a href="#" class="btn btn-primary" role="button">View</a></p>
+              <button type="submit" class="btn btn-primary btn-lg btn-block" ng-click="displayCarpools()">{{viewText}} Carpools</button>
         </div><center>
       </div>
     </div>
@@ -45,7 +64,7 @@
         <div class="caption">
           <center> <h3>Create New Carpool</h3>
             <p>Create Carpool Here</p>
-            <p><a href="#/carpool/create" class="btn btn-primary" role="button">Create</a></p>
+            <button type="submit" class="btn btn-primary btn-lg btn-block" ng-click="">Create Carpool</button>
         </div><center>
       </div>
     </div>
@@ -58,5 +77,5 @@
 <br><br><br>
 
 <div class="footer">
-  <center>Version .01</center>
+  <center>Version .02</center>
 </div>
