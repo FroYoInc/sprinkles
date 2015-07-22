@@ -5,41 +5,37 @@ module Dashboard {
 
     export interface Scope {
         showCarpools: boolean;
-        viewText: string;
+        status: any;
         carpoolList: any;
         loadDashboard: Function;
         displayCarpools: Function;
     }
     export class Controller {
 
-    	constructor ($scope: Scope, $http: any, $location: any) {
+    	constructor ($scope: Scope, $http: any, $location: any, $localStorage) {
         //Default Values
         $scope.showCarpools = true;
-        $scope.viewText = "View";
 
-        //Populates the Carpool list
+        $http.get('http://localhost:3000/api/carpools').success(function(data, status, headers, config) {
+            $scope.carpoolList = data;
+            $scope.status = status;
+        }).error(function(data, status, headers, config) {
+              $scope.status = status;
+              //500 server error
+              if(status == 500){
+                window.scrollTo(0,0);
+                  $('#internalError').css('visibility','visible').fadeIn();
+              }
+              if(status == 404) {
+                window.scrollTo(0,0);
+                  $('#notFound').css('visibility','visible').fadeIn();
+              }
+            });
+
         $scope.displayCarpools = function() {
-           $scope.showCarpools = !$scope.showCarpools;
-           $scope.viewText = $scope.showCarpools ? "View" : "Hide";
-
-           $http.get('http://localhost:3000/api/carpools').success(function(data, status, headers, config) {
-              $scope.carpoolList = data;
-             }).error(function(data, status, headers, config) {
-               //500 server error
-               if(status == 500){
-                 window.scrollTo(0,0);
-                   $('#internalError').css('visibility','visible').fadeIn();
-               }
-               if(status == 404) {
-                 window.scrollTo(0,0);
-                   $('#notFound').css('visibility','visible').fadeIn();
-               }
-             });
-        }
-
-        //Loads the dashboard path
-    		$scope.loadDashboard = function() {
-          $location.path('/dashboard');
+          if($scope.status == 200){
+            $location.path('/dashboard/carpools/view');
+          }
         }
     	}
     }
