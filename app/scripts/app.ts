@@ -34,7 +34,7 @@ angular.module('app', ['app.controllers','ngRoute','ngStorage','ui.bootstrap']).
     });
     $routeProvider.when('/dashboard/carpools/create',
     {
-        templateUrl: '/views/createCarpoolsView.html',
+        templateUrl: '/views/createCarpoolView.html',
         controller: 'Dashboard_Carpools_Create.Controller'
     });
     $routeProvider.when('/dashboard/create',

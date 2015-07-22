@@ -9,6 +9,7 @@ module Dashboard {
         carpoolList: any;
         loadDashboard: Function;
         displayCarpools: Function;
+        createCarpool: Function;
     }
     export class Controller {
 
@@ -32,10 +33,16 @@ module Dashboard {
               }
             });
 
-        $scope.displayCarpools = function() {
+        $scope.displayCarpools = () => {
           if($scope.status == 200){
             $location.path('/dashboard/carpools/view');
           }
+        }
+
+        $scope.createCarpool = () => {
+            if($scope.status == 200) {
+              $location.path('dashboard/carpools/create');
+            }
         }
     	}
     }

@@ -7,9 +7,6 @@
       <small>You are not currently in a carpool</small>
     </h1>
   </div>
-  <div ng-hide="showCreateCarpools" ng-include="'views/createCarpoolView.html'">
-  </div>
-
 
   <!-- User Profile Widget -->
   <div class="row-1">
@@ -49,7 +46,7 @@
         <div class="caption">
           <center> <h3>Create New Carpool</h3>
             <p>Create Carpool Here</p>
-            <button type="submit" class="btn btn-primary btn-lg btn-block" ng-click="">Create Carpool</button>
+            <button type="submit" class="btn btn-primary btn-lg btn-block" ng-click="createCarpool()">Create Carpool</button>
         </div><center>
       </div>
     </div>
