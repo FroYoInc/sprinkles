@@ -10,11 +10,12 @@ module Home {
         signIn: Function;
         signInCall: Function;
         visible: Function;
-        loadDashboard: Function;
+        isAnonymous: Function;
     }
-    export class Controller {
 
-        constructor ($scope: Scope, $http: any, $location: any) {
+    export class Controller {
+        
+        constructor ($scope: Scope, $http: any, $location: any, $cookies: any) {
 
             // populate the data when sign in is clicked
             // Handels error alerts when not successful
@@ -22,13 +23,16 @@ module Home {
                 var user        = new UserModel.User();
                 user.email      = $scope.newUserEmail;
                 user.password   = $scope.newUserPassword;
+                user.isAuth     = true;
 
                 $http.post('http://localhost:3000/api/users/login', user).
                     success(function (data) {
                         // successful login
                         $('#success').css('visibility','visible').fadeIn();
-                        //$location.path('/dashboard');
-
+                        // Auth.setUser(user); //Update the state of the user in the app
+                        $cookies.isAuth = true;
+                        $cookies.putObject('isAuth', true);
+                        $location.path('/dashboard');
                 }).
                     error(function (data, status) {
                         // Bad Request. Invalid or missing parameters.
@@ -72,6 +76,9 @@ module Home {
              document.getElementById(result).style.display = 'none';
            }
 
+           $scope.isAnonymous = function(){
+            return this.user.isAuth;
+           }
         }
 
     }

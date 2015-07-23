@@ -80,6 +80,7 @@ var proxy = proxyMiddleware('/api', {target: 'http://localhost:8080/'});
 
 gulp.task('serve', ['build'], function() {
   browserSync.init({
+    browser: 'google chrome',
     'server': {
       'baseDir': config.baseDirs,
       'routes': config.routes,
@@ -90,11 +91,12 @@ gulp.task('serve', ['build'], function() {
 
   gulp.watch([
     config.htmlFiles,
-    config.tsFiles,
+    config.outDir,
     config.imageFiles,
     config.fontFiles
   ]).on('change', reload);
 
+  gulp.watch(config.tsFiles, ['transpile-ts2js']);
   gulp.watch(config.sassFiles, ['styles']);
   gulp.watch(config.fontFiles, ['fonts']);
   gulp.watch(config.bowerFile, ['wiredep']);
