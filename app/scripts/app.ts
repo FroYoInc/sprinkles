@@ -55,7 +55,6 @@ angular.module('app', ['app.controllers', 'ngRoute','ngStorage', 'ngResource', '
     isAuthenticated: () => {
       var p = $q.defer();
       var cookie = $cookies.getObject('isAuth');
-      console.log(cookie);
       if (cookie == true){
           p.resolve(Access.OK);
       } else {
