@@ -7,11 +7,13 @@
 /// <reference path='components/signup/signupController.ts' />
 /// <reference path='components/dashboard/dashboardController.ts' />
 
+/// <reference path='components/home/usermodel.ts' />
+
 
  // http://stackoverflow.com/questions/14324451/angular-service-vs-angular-factory
-angular.module('app', ['app.controllers', 'ngRoute','ngStorage', 'ngResource'])
+angular.module('app', ['app.controllers', 'ngRoute','ngStorage', 'ngResource', 'ngCookies'])
 
-.config(function ($routeProvider, $httpProvider) {
+.config(function ($routeProvider, $httpProvider, $cookiesProvider) {
 
     "use strict"; // do I need this?
 
@@ -19,14 +21,10 @@ angular.module('app', ['app.controllers', 'ngRoute','ngStorage', 'ngResource'])
       .when('/home', {
         templateUrl:    '/views/homeView.html',
         controller:     'Home.Controller',
-        // Error: [$injector:unpr] Unknown provider: AccessProvider <- Access <- access
       })
       .when('/signup', {
         templateUrl:    '/views/signupView.html',
         controller:     'Signup.Controller',
-        resolve: {
-          /*access: ["Access", function(Access) { return Access.isAnonymous(); }],*/
-        }
       })
       .when('/dashboard', {
         templateUrl:    '/views/dashboardView.html',
@@ -36,7 +34,6 @@ angular.module('app', ['app.controllers', 'ngRoute','ngStorage', 'ngResource'])
              var a =  Access.isAuthenticated();
              return a;
           }]
-
         },
       })
       .otherwise( {
@@ -45,34 +42,41 @@ angular.module('app', ['app.controllers', 'ngRoute','ngStorage', 'ngResource'])
       });
 })
 
-/*
-Try and create authenticationService to do all the work,
-I think that Service needs to be added to this file. If I can
-off load the work into one serve class that would be best
-AuthTemp is all functions. It may be easier to use authTemp and jsut have that
-class take a promise and return a promise called Access in order to pass into app.ts
-
-Access in the .run is called from this factory("Access") ... So in order to do what is abouve
-I need to make sure I can call authenticationService and pass it into run
-That should do the trick :)
-*/
-
 // User is a standard AngularJS resource with a profile method (needs angular-resource):
-.factory("Access", ["$q", "$resource", '$location', function($q, $resource, $location) {
+.factory("Access", ["$q", "$resource", '$location', '$cookies',
+          function($q, $resource, $location, $cookies) {
   // return AuthenticationService.Access.Factory($q, UserProfile);
+
+
   var Access = {
+      OK: 200,
+      UNAUTHORIZED: 401,
+
     isAuthenticated: () => {
       var p = $q.defer();
-      $location.path('/home');
-      // If authenticated
-      /*p.resolve();*/
-      /*p.reject("reason");*/
+      var cookie = $cookies.getObject('isAuth');
+      console.log(cookie);
+      if (cookie == true){
+          p.resolve(Access.OK);
+      } else {
+        p.reject(Access.UNAUTHORIZED);
+      }
       return p.promise;
     }
   };
   return Access;
-}]);
+}])
+// when Access rejects a promise, the $routeChangeError event will be fired:
+.run(["$rootScope", "Access", "$location",
+function($rootScope, Access, $location) {
 
+  $rootScope.$on("$routeChangeError", function(event, current, previous, rejection) {
+    if (rejection == Access.UNAUTHORIZED) {
+      $location.path("/home");
+    } 
+  });
+
+}]);
 module app {
     export var controllers = angular.module('app.controllers',[]);
 }
