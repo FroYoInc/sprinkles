@@ -1,7 +1,7 @@
 /// <reference path="../../app.ts"/>
 
 app.controllers.controller('navbarController',
-['$scope', '$location', function ($scope, $location) {
+['$scope', '$location', '$cookies', function ($scope, $location, $cookies) {
   
   $scope.navClass = function (page) {
     var currentRoute = $location.path().substring(1) || 'home';
@@ -19,5 +19,12 @@ app.controllers.controller('navbarController',
         $location.url('/dashboard');
    };
 
+   $scope.logout = function () {
+      var cookie = $cookies.getObject('isAuth');
+      if (cookie){
+        $cookies.remove('isAuth');
+      }
+      $location.url('/home');
+   }
 
 }]);
