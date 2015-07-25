@@ -1,6 +1,5 @@
 /// <reference path="../../app.ts"/>
 /// <reference path="../carpools/editCarpoolController.ts"/>
-/// <reference path="../carpools/carpoolService.ts"/>
 
 // interface used to display a list of carpools, edit user profile and create a carpool
 module Dashboard {
