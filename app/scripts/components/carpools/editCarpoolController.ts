@@ -4,18 +4,22 @@
 module Dashboard_Carpools_Edit {
 
     export interface Scope {
+        events: any;
         carpoolId: string;
         carpoolName: string;
         carpoolDescription: string;
         editCarpool: Function;
+        loadCarpoolId: Function;
     }
     export class Controller {
 
-    	constructor ($scope: Scope, $http: any, $location: any,  $localStorage) {
+    	constructor ($scope: Scope, $http: any, $location, $localStorage) {
+
+        $scope.events = this;
 
         $scope.carpoolId = $localStorage.carpoolId;
         //Default Values
-
+        console.log($scope.carpoolId);
         //Populates the Carpool list
         $scope.editCarpool = function() {
 
@@ -34,7 +38,13 @@ module Dashboard_Carpools_Edit {
              });
         }
 
+        $scope.loadCarpoolId = function(carpoolId) {
+          $localStorage.carpoolId = carpoolId;
+          console.log("Carpool id from dashboard " + carpoolId);
+          $location.path('/dashboard/carpools/edit');
+        }
     	}
     }
 }
 app.controllers.controller('Dashboard_Carpools_Edit.Controller', Dashboard.Controller);
+

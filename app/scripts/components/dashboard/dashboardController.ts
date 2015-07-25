@@ -1,4 +1,5 @@
 /// <reference path="../../app.ts"/>
+/// <reference path="../carpools/editCarpoolController.ts"/>
 
 // interface used to display a list of carpools, edit user profile and create a carpool
 module Dashboard {
@@ -9,7 +10,6 @@ module Dashboard {
         carpoolList: any;
         loadDashboard: Function;
         displayCarpools: Function;
-        editCarpool: Function;
     }
     export class Controller {
 
@@ -41,9 +41,6 @@ module Dashboard {
         //Loads the dashboard path
     		$scope.loadDashboard = function() {
           $location.path('/dashboard');
-        }
-        $scope.editCarpool = function() {
-          $location.path('/dashboard/carpools/edit');
         }
 
     	}
