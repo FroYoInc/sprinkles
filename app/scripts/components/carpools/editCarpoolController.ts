@@ -43,8 +43,9 @@ module Dashboard_Carpools_Edit {
            console.log(editedCarpool);
            $http.put('http://localhost:3000/api/carpools/' + $scope.carpoolId, 
                       editedCarpool).success(function(data, status, headers, config) {
-              console.log("yay");
               $location.path('/dashboard');
+              window.scrollTo(0,0);
+              $('#carpoolUpdated').css('visibility','visible').fadeIn();
              }).error(function(data, status, headers, config) {
                //500 server error
                if(status == 500){
