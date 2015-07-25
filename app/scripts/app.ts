@@ -22,17 +22,35 @@ angular.module('app', ['app.controllers','ngRoute','ngStorage','ui.bootstrap', '
     $routeProvider.when('/dashboard',
     {
       templateUrl:    '/views/dashboardView.html',
-      controller:      'Dashboard.Controller'
+      controller:      'Dashboard.Controller',
+      resolve: {
+          access: ["Access", (Access) => {
+             var a =  Access.isAuthenticated();
+             return a;
+          }]
+        }
       });
       $routeProvider.when('/dashboard/carpools/view',
       {
           templateUrl: '/views/displayCarpoolsView.html',
-          controller: 'Dashboard_Carpools_View.Controller'
+          controller: 'Dashboard_Carpools_View.Controller',
+          resolve: {
+              access: ["Access", (Access) => {
+                 var a =  Access.isAuthenticated();
+                 return a;
+              }]
+            }
       });
       $routeProvider.when('/dashboard/carpools/create',
       {
           templateUrl: '/views/createCarpoolView.html',
-          controller: 'Dashboard_Carpools_Create.Controller'
+          controller: 'Dashboard_Carpools_Create.Controller',
+          resolve: {
+              access: ["Access", (Access) => {
+                 var a =  Access.isAuthenticated();
+                 return a;
+              }]
+            }
       });
     $routeProvider.otherwise(
     {

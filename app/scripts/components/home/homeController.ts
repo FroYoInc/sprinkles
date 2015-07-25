@@ -11,13 +11,12 @@ module Home {
         signInCall: Function;
         visible: Function;
         isAnonymous: Function;
-        loadDashboard: Function;
-        createCarpool: Function;
     }
 
     export class Controller {
 
         constructor ($scope: Scope, $http: any, $location: any, $cookies: any) {
+
             // populate the data when sign in is clicked
             // Handels error alerts when not successful
             $scope.signIn = function () {
@@ -72,6 +71,7 @@ module Home {
                 });
 
             };
+
             $scope.visible = function(result:string) {
              document.getElementById(result).style.display = 'none';
            }
