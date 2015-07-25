@@ -80,6 +80,7 @@ var proxy = proxyMiddleware('/api', {target: 'http://localhost:8080/'});
 
 gulp.task('serve', ['build'], function() {
   browserSync.init({
+    browser: 'google chrome',
     'server': {
       'baseDir': config.baseDirs,
       'routes': config.routes,

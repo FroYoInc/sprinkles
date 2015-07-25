@@ -7,9 +7,8 @@
 /// <reference path='components/carpools/createCarpoolController.ts'/>
 /// <reference path='components/carpools/viewCarpoolsController.ts'/>
 
-
-angular.module('app', ['app.controllers','ngRoute','ngStorage','ui.bootstrap']).
-  config(function ($routeProvider, $locationProvider, $httpProvider) {
+angular.module('app', ['app.controllers','ngRoute','ngStorage','ui.bootstrap', 'ngResource', 'ngCookies']).
+  config(function ($routeProvider, $locationProvider, $httpProvider, $cookiesProvider) {
     $routeProvider.when('/home',
     {
       templateUrl:    '/views/homeView.html',
@@ -40,8 +39,42 @@ angular.module('app', ['app.controllers','ngRoute','ngStorage','ui.bootstrap']).
       redirectTo:     '/home',
       controller:     'Home.Controller',
     });
-});
+})
 
+// User is a standard AngularJS resource with a profile method (needs angular-resource):
+.factory("Access", ["$q", "$resource", '$location', '$cookies',
+          function($q, $resource, $location, $cookies) {
+  // return AuthenticationService.Access.Factory($q, UserProfile);
+
+
+  var Access = {
+      OK: 200,
+      UNAUTHORIZED: 401,
+
+    isAuthenticated: () => {
+      var p = $q.defer();
+      var cookie = $cookies.getObject('isAuth');
+      if (cookie == true){
+          p.resolve(Access.OK);
+      } else {
+        p.reject(Access.UNAUTHORIZED);
+      }
+      return p.promise;
+    }
+  };
+  return Access;
+}])
+// when Access rejects a promise, the $routeChangeError event will be fired:
+.run(["$rootScope", "Access", "$location",
+function($rootScope, Access, $location) {
+
+  $rootScope.$on("$routeChangeError", function(event, current, previous, rejection) {
+    if (rejection == Access.UNAUTHORIZED) {
+      $location.path("/home");
+    }
+  });
+
+}]);
 module app {
     export var controllers = angular.module('app.controllers',[]);
 }
