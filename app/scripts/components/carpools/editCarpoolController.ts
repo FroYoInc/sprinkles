@@ -1,13 +1,7 @@
 /// <reference path="../../app.ts"/>
+/// <reference path="carpoolmodel.ts"/>
 
 // interface used to display a list of carpools, edit user profile and create a carpool
-module CarpoolModule {
-  export class Carpool {
-    name: string;
-    description: string;
-    campusID: string;
-  } 
-}
 module Dashboard_Carpools_Edit {
 
     export interface Scope {
@@ -35,15 +29,17 @@ module Dashboard_Carpools_Edit {
         //Populates the Carpool list
         $scope.editCarpool = function(carpoolName, carpoolDescription) {
 
-           var editedCarpool = new CarpoolModule.Carpool();
+           var editedCarpool = new CarpoolModel.Carpool();
            editedCarpool.name = carpoolName;
            editedCarpool.description = carpoolDescription;
+           // TODO: Get the list of campuses 
            editedCarpool.campusID = "/campuses/de9319fe-5afc-4ce0-89cd-690832c82edf";
 
            console.log(editedCarpool);
            $http.put('http://localhost:3000/api/carpools/' + $scope.carpoolId, 
                       editedCarpool).success(function(data, status, headers, config) {
               $location.path('/dashboard');
+              $localStorage.$reset();
               window.scrollTo(0,0);
               $('#carpoolUpdated').css('visibility','visible').fadeIn();
              }).error(function(data, status, headers, config) {
@@ -63,11 +59,12 @@ module Dashboard_Carpools_Edit {
           $localStorage.carpoolId = carpoolId;
 
           $http.get('http://localhost:3000/api/carpools', carpoolId).success(function(data, status, headers, config) {
-                $localStorage.carpoolName = data[0].name;
-                $localStorage.carpoolDescription = data[0].description;
-                // Carpool address
-                // Carpool Geocode
-                $location.path('/dashboard/carpools/edit');
+              //TODO Check to see if this user has access to the carpool
+              $localStorage.carpoolName = data[0].name;
+              $localStorage.carpoolDescription = data[0].description;
+              // Carpool address
+              // Carpool Geocode
+              $location.path('/dashboard/carpools/edit');
              }).error(function(data, status, headers, config) {
                //500 server error
                if(status == 500){

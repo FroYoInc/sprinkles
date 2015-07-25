@@ -19,9 +19,9 @@
     <!-- CampusId-->
     <div class="form-group">
     <select class="form-control" name="campuses[]">
-      <option>1</option>
-      <option>2</option>
-      <option>3</option>
+      <select ng-model="campus">
+         <option ng-repeat="campus in campusList" value="{{campus.name}}" required>{{campus.name}}</option>
+     </select>
     </select>
     </div>
 
