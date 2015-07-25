@@ -6,11 +6,8 @@
 /// <reference path='components/navbar/navbarController.ts' />
 /// <reference path='components/signup/signupController.ts' />
 /// <reference path='components/dashboard/dashboardController.ts' />
+/// <reference path='components/carpools/editCarpoolController.ts' />
 
-/// <reference path='components/home/usermodel.ts' />
-
-
- // http://stackoverflow.com/questions/14324451/angular-service-vs-angular-factory
 angular.module('app', ['app.controllers', 'ngRoute','ngStorage', 'ngResource', 'ngCookies'])
 
 .config(function ($routeProvider, $httpProvider, $cookiesProvider) {
@@ -36,6 +33,17 @@ angular.module('app', ['app.controllers', 'ngRoute','ngStorage', 'ngResource', '
           }]
         },
       })
+      .when('/dashboard/carpools/edit', {
+        templateUrl:    '/views/editCarpoolView.html',
+        controller:      'Dashboard_Carpools_Edit.Controller',
+        resolve: {
+          access: ["Access", (Access) => {
+             var a =  Access.isAuthenticated();
+             return a;
+          }]
+        },
+      })
+
       .otherwise( {
         redirectTo:     '/home',
         controller:     'Home.Controller',

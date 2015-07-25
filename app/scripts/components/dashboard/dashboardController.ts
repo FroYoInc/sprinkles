@@ -9,6 +9,7 @@ module Dashboard {
         carpoolList: any;
         loadDashboard: Function;
         displayCarpools: Function;
+        editCarpool: Function;
     }
     export class Controller {
 
@@ -41,6 +42,10 @@ module Dashboard {
     		$scope.loadDashboard = function() {
           $location.path('/dashboard');
         }
+        $scope.editCarpool = function() {
+          $location.path('/dashboard/carpools/edit');
+        }
+
     	}
     }
 }

@@ -30,7 +30,7 @@
 
   <!-- User Profile Widget -->
   <div class="row-1">
-    <div class="col-sm-6 col-md-4">
+    <div class="col-sm-6 col-md-3">
       <div class="thumbnail">
         <img src="../images/glyphicons-user.png">
         <div class="caption">
@@ -44,7 +44,7 @@
 
   <!-- Carpool Widget -->
   <div class="row-2">
-    <div class="col-sm-6 col-md-4">
+    <div class="col-sm-6 col-md-3">
       <div class="thumbnail">
         <img src="../images/glyphicons-car.png">
         <div class="caption">
@@ -58,7 +58,7 @@
 
   <!-- New Carpool Widget -->
   <div class="row-3">
-    <div class="col-sm-6 col-md-4">
+    <div class="col-sm-6 col-md-3">
       <div class="thumbnail">
         <img src="../images/glyphicons-cars.png">
         <div class="caption">
@@ -69,6 +69,27 @@
       </div>
     </div>
   </div>
+
+    <!-- Edit Carpool Widget -->
+  <div class="row-4">
+    <div class="col-sm-6 col-md-3">
+      <div class="thumbnail">
+        <img src="../images/glyphicons-settings.png">
+        <div class="caption">
+          <center> <h3>Edit Carpool</h3>
+            <p>Edit your carpool</p>
+            <form class="form-inline">
+              <div class="form-group">
+                <label for="carpoolId">CarpoolId</label>
+                  <input type="text" class="form-control" id="carpoolId" placeholder="fae0f88f-074b-4f63-a5a5-38a473d2bda8 ">
+                </div>
+              <button type="submit" class="btn btn-primary" ng-click="editCarpool(carpoolId)">Edit Carpool</button>
+              </form>
+        </div><center>
+      </div>
+    </div>
+  </div>
+
 
 </div>
 
