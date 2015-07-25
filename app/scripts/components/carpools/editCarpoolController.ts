@@ -46,5 +46,7 @@ module Dashboard_Carpools_Edit {
     	}
     }
 }
-app.controllers.controller('Dashboard_Carpools_Edit.Controller', Dashboard.Controller);
+app.controllers.controller('Dashboard_Carpools_Edit.Controller', Dashboard_Carpools_Edit.Controller);
+
+
 

@@ -87,3 +87,4 @@ function($rootScope, Access, $location) {
 module app {
     export var controllers = angular.module('app.controllers',[]);
 }
+
