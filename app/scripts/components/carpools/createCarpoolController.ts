@@ -16,9 +16,11 @@ module Dashboard_Carpools_Create {
     export class Controller {
 
     	constructor ($scope: Scope, $http: any, $location: any) {
+        //Populate campus list
         $http.get('http://localhost:3000/api/campuses').success(function(data, status, headers, config) {
           $scope.campusList = data;
           });
+
         $scope.createCarpool = (isInvalidForm) => {
           var postData = {
             name: $scope.name,
@@ -26,6 +28,7 @@ module Dashboard_Carpools_Create {
             campus: $scope.campus,
             owner: $scope.owner
           }
+          
           //Hide previous errors:
           $scope.userNotFound = false;
           $scope.carpoolExists = false;
@@ -34,8 +37,9 @@ module Dashboard_Carpools_Create {
           if(isInvalidForm) {
             return;
           }
+
+          //Attempt to post data
           $http.post('http://localhost:3000/api/carpools', postData).success(function(data, status, headers, config) {
-              console.log("Successfull post", postData, data)
               $location.path('/dashboard');
               window.scrollTo(0,0);
               $('#carpoolCreated').css('visibility','visible').fadeIn();
