@@ -8,40 +8,8 @@
 /// <reference path='components/carpools/viewCarpoolsController.ts'/>
 
 
-angular.module('app', ['app.controllers','ngRoute','ngStorage','ui.bootstrap'/*, 'ui.router'*/]).
-  config(function ($routeProvider, $locationProvider, $httpProvider/*,$stateProvider, $urlRouterProvider*/) {
-    /*$urlRouterProvider.otherwise("/home");
-    $stateProvider
-      .state('home', {
-      url: "/home",
-      templateUrl: "/views/homeView.html",
-      controller: "Home.Controller"
-    })
-    /*.state('home.list', {
-      url: "/list",
-      templateUrl: "/views/test.html",
-      controller: "Signup.Controller"
-    })*/
-    /*.state('signup', {
-      url: "/signup",
-      templateUrl: "/views/signupView.html",
-      controller: "Signup.Controller"
-    })
-    .state('dashboard.carpools.view', {
-      url: "/carpools/view",
-      templateUrl: "/views/displayCarpoolsView.html",
-      controller: "Dashboard_Carpools_View.Controller"
-    })
-    .state('dashboard.carpools.create', {
-      url: "/carpools/create",
-      templateUrl: "/views/createCarpoolsView.html",
-      controller: "Dashboard_Carpools_Create.Controller"
-    })
-    .state('dashboard', {
-      url: "/dashboard",
-      templateUrl: "/views/dashboardView.html",
-      controller: "Dashboard.Controller"
-    })*/
+angular.module('app', ['app.controllers','ngRoute','ngStorage','ui.bootstrap']).
+  config(function ($routeProvider, $locationProvider, $httpProvider) {
     $routeProvider.when('/home',
     {
       templateUrl:    '/views/homeView.html',

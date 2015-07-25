@@ -4,18 +4,12 @@
 module Dashboard_Carpools_View {
 
     export interface Scope {
-        showCarpools: boolean;
-        viewText: string;
         carpoolList: any;
-        loadDashboard: Function;
-        displayCarpools: Function;
     }
     export class Controller {
 
     	constructor ($scope: Scope, $http: any, $location: any, $localStorage) {
-
-        //$scope.carpoolList = $localStorage.carpools;
-          console.log("gg")
+          //Get the carpool list
           $http.get('http://localhost:3000/api/carpools').success(function(data, status, headers, config) {
              $scope.carpoolList = data;
             }).error(function(data, status, headers, config) {
@@ -29,9 +23,6 @@ module Dashboard_Carpools_View {
                   $('#notFound').css('visibility','visible').fadeIn();
               }
             });
-
-
-
     	}
     }
 }
