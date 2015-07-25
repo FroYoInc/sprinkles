@@ -18,14 +18,14 @@
     </div>
     <!-- CampusId-->
     <div class="form-group">
-    <select class="form-control">
+    <select class="form-control" name="campuses[]">
       <option>1</option>
       <option>2</option>
       <option>3</option>
     </select>
     </div>
 
-    <button type="submit" class="btn btn-primary btn-lg btn-block"ng-click="editCarpool()" >Submitt</button>
+    <button type="submit" class="btn btn-primary btn-lg btn-block"ng-click="editCarpool(carpoolName, carpoolDescription)" >Submitt</button>
     
   </div>
 </div>
