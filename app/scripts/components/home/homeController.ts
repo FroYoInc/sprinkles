@@ -11,6 +11,7 @@ module Home {
         signInCall: Function;
         visible: Function;
         loadDashboard: Function;
+        createCarpool: Function;
     }
     export class Controller {
 
@@ -67,7 +68,7 @@ module Home {
                 });
 
             };
-
+            $scope.createCarpool = function(){ console.log("in wrong controller...")}
             $scope.visible = function(result:string) {
              document.getElementById(result).style.display = 'none';
            }

@@ -14,9 +14,8 @@ module Dashboard_Carpools_View {
 
     	constructor ($scope: Scope, $http: any, $location: any, $localStorage) {
 
-        $scope.carpoolList = $localStorage.carpools;
-        $scope.displayCarpools = () => {
-          $location.path('/dashboard/carpools/view');
+        //$scope.carpoolList = $localStorage.carpools;
+          console.log("gg")
           $http.get('http://localhost:3000/api/carpools').success(function(data, status, headers, config) {
              $scope.carpoolList = data;
             }).error(function(data, status, headers, config) {
@@ -30,10 +29,10 @@ module Dashboard_Carpools_View {
                   $('#notFound').css('visibility','visible').fadeIn();
               }
             });
-        }
+
 
 
     	}
     }
 }
-app.controllers.controller('Dashboard_Carpools_View.Controller', Dashboard.Controller);
+app.controllers.controller('Dashboard_Carpools_View.Controller', Dashboard_Carpools_View.Controller);

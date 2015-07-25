@@ -15,9 +15,9 @@ module Dashboard {
 
     	constructor ($scope: Scope, $http: any, $location: any, $localStorage) {
         //Default Values
-        $scope.showCarpools = true;
+        //$scope.showCarpools = true;
 
-        $http.get('http://localhost:3000/api/carpools').success(function(data, status, headers, config) {
+        /*$http.get('http://localhost:3000/api/carpools').success(function(data, status, headers, config) {
             $scope.carpoolList = data;
             $scope.status = status;
         }).error(function(data, status, headers, config) {
@@ -31,15 +31,20 @@ module Dashboard {
                 window.scrollTo(0,0);
                   $('#notFound').css('visibility','visible').fadeIn();
               }
-            });
+            });*/
 
         $scope.displayCarpools = () => {
+                      $location.path('dashboard/carpools/view');
           if($scope.status == 200){
-            $location.path('/dashboard/carpools/view');
+            console.log("display")
+            $location.path('dashboard/carpools/view');
           }
         }
 
         $scope.createCarpool = () => {
+          console.log("woops..")
+          $location.path('dashboard/carpools/create');
+
             if($scope.status == 200) {
               $location.path('dashboard/carpools/create');
             }
