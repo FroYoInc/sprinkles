@@ -28,14 +28,17 @@ module Dashboard_Carpools_Edit {
         console.log("constructor called");
         $scope.carpoolName = $localStorage.carpoolName;
         $scope.carpoolDescription = $localStorage.carpoolDescription;
+
         console.log("From constructor " + $scope.carpool);
         
         //Default Values
         //Populates the Carpool list
         $scope.editCarpool = function() {
 
-           $http.put('http://localhost:3000/api/carpools/', $scope.carpoolId ).success(function(data, status, headers, config) {
-
+           $http.put('http://localhost:3000/api/carpools', $scope.carpoolId , 
+                      $scope.carpoolName, $scope.carpoolDescription, "de9319fe-5afc-4ce0-89cd-690832c82edf").success(function(data, status, headers, config) {
+              console.log("yay");
+              $location.path('/dashboard');
              }).error(function(data, status, headers, config) {
                //500 server error
                if(status == 500){
