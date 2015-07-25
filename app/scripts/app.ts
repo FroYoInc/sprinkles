@@ -7,10 +7,6 @@
 /// <reference path='components/signup/signupController.ts' />
 /// <reference path='components/dashboard/dashboardController.ts' />
 
-/// <reference path='components/home/usermodel.ts' />
-
-
- // http://stackoverflow.com/questions/14324451/angular-service-vs-angular-factory
 angular.module('app', ['app.controllers', 'ngRoute','ngStorage', 'ngResource', 'ngCookies'])
 
 .config(function ($routeProvider, $httpProvider, $cookiesProvider) {
