@@ -5,32 +5,35 @@
     <h2 class="form-signup-heading">Create a Carpool</h2>
 
     <!--Name of Carpool-->
-    <div class="form-group">
+    <div class="control-group" ng-class="{true: 'error'}[submitted && createform.name.$invalid]">
       <label>Name of Carpool</label>
-	    <input type="text" ng-model="name" class="form-control" id="name" required>
-      <div ng-show="emailExistsError" class="help-block"> Email already exists. Please choose a different email.</div>
-      <div ng-show="emailDomainError" class="help-block"> Invalid email domain. Please enter an email address with the correct domain. </div>
+	    <input type="text" ng-model="name" name= "name" required>
+      <span class="help-inline" ng-show="submitted && createform.name.$error.required">Required Field</span>
     </div>
     <!--Description of Carpool-->
-    <div class="form-group">
+    <div class="control-group" ng-class="{true: 'error'}[submitted && createform.description.$invalid]">
       <label>Description of Carpool</label>
-      <input type="text" ng-model="description" class="form-control" id="description" required>
-      <div ng-show="emailExistsError" class="help-block"> Email already exists. Please choose a different email.</div>
-      <div ng-show="emailDomainError" class="help-block"> Invalid email domain. Please enter an email address with the correct domain. </div>
+      <input type="text" ng-model="description" class="form-control" name="description" required>
+      <span class="help-inline" ng-show="submitted && createform.description.$error.required">Required Field</span>
     </div>
     <!--Campus Location -->
-    <div class="form-group">
+    <div class="control-group" ng-class="{true: 'error'}[submitted && createform.campus.$invalid]">
       <label>Campus (location of Office)</label>
-      <input type="text" name="campus" class="form-control" ng-model="campus" required>
-      <div ng-show="signupform.userName.$error.minlength" class="help-block">Username is too short.</div>
-      <div ng-show="usernameerror" class="help-block"> Username already exists. Please choose a different username.</div>
+      <select ng-model="campus" name="campus" required>
+          <option ng-repeat="campus in campusList" value="{{campus.name}}">{{campus.name}}</option>
+      </select>
+      <span class="help-inline" ng-show="submitted && createform.campus.$error.required">Required Field</span>
     </div>
 
     <!--Owner of Capool-->
-    <div class="form-group">
-      <label>Owner of Carpool</label>
+    <div class="control-group" ng-class="{true: 'error'}[submitted && createform.owner.$invalid]">
+      <label>Owner of Carpool(Username of owner)</label>
       <input type="text" name="owner" class="form-control" id="owner" ng-model="owner" required>
+      <span class="help-inline" ng-show="submitted && createform.owner.$error.required">Required Field</span>
+      <span class="help-inline2" ng-show="submitted && userNotFound"> Owner not found.</span>
+
     </div>
-    <button type="submit" class="btn btn-primary btn-lg btn-block" ng-click="createCarpool()">Sign up</button>
+    <div ng-show="carpoolExists" class="help-inline2"> Error: Cannot create carpool. This carpool already Exists.</div><br>
+    <button type="submit" class="btn btn-primary btn-lg btn-inline" ng-click="submitted=true; createCarpool(createform.$invalid)">Create Carpool</button>
   </div>
 </div>
