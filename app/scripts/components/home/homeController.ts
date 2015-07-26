@@ -29,9 +29,11 @@ module Home {
                     success(function (data) {
                         // successful login
                         $('#success').css('visibility','visible').fadeIn();
+                        console.log(data);
                         // Auth.setUser(user); //Update the state of the user in the app
                         $cookies.isAuth = true;
                         $cookies.putObject('isAuth', true);
+
                         $location.path('/dashboard');
                 }).
                     error(function (data, status) {
