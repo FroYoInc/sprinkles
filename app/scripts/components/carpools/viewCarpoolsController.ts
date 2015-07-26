@@ -8,7 +8,7 @@ module Dashboard_Carpools_View {
     }
     export class Controller {
 
-    	constructor ($scope: Scope, $http: any, $location: any, $localStorage) {
+    	constructor ($scope: Scope, $http: any, $location: any) {
           //Get the carpool list
           $http.get('http://localhost:3000/api/carpools').success(function(data, status, headers, config) {
              $scope.carpoolList = data;

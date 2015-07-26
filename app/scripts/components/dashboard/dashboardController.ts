@@ -10,7 +10,7 @@ module Dashboard {
     }
     export class Controller {
 
-    	constructor ($scope: Scope, $http: any, $location: any, $localStorage) {
+    	constructor ($scope: Scope, $http: any, $location: any) {
         $scope.displayCarpools = () => {
           $location.path('dashboard/carpools/view');
         }
