@@ -14,7 +14,7 @@ module Home {
     }
 
     export class Controller {
-        
+
         constructor ($scope: Scope, $http: any, $location: any, $cookies: any) {
 
             // populate the data when sign in is clicked

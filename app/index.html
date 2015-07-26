@@ -68,6 +68,13 @@
     <span aria-hidden="true">&times;</span></button>
       <strong>Oops!</strong> Internal Server error.
     </div>
+    <!-- carpool Was made. -->
+    <div class="alert alert-success alert-dismissible fade in hidden-alerts" role="alert"
+           id="carpoolCreated">
+    <button type="button" class="close" ng-click="visible('carpoolCreated')" aria-label="Close">
+    <span aria-hidden="true">&times;</span></button>
+      Carpool has been successfully created.
+    </div>
     <!-- Account was made, ask them to check email -->
     <div class="alert alert-warning alert-dismissible fade in hidden-alerts" role="alert"
            id="accountmade">
@@ -122,6 +129,7 @@
 </div>
 </div>
 <!-- bower:js -->
+<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
 <script src="bower_components/jquery/dist/jquery.js"></script>
 <script src="bower_components/angular/angular.js"></script>
 <script src="bower_components/bootstrap-sass/assets/javascripts/bootstrap.js"></script>
@@ -135,8 +143,11 @@
 <script src="dist/app/scripts/components/home/homeController.js"></script>
 <script src="dist/app/scripts/components/home/usermodel.js"></script>
 <script src="dist/app/scripts/components/navbar/navbarController.js"></script>
-<script src="dist/app/scripts/components/dashboard/dashboardController.js"></script>
 <script src="dist/app/scripts/components/signup/signupController.js"></script>
+<script src="dist/app/scripts/components/dashboard/dashboardController.js"></script>
+<script src="dist/app/scripts/components/carpools/createCarpoolController.js"></script>
+<script src="dist/app/scripts/components/carpools/viewCarpoolsController.js"></script>
+
 <!-- endbower -->
 </body>
 </html>

@@ -23,7 +23,7 @@ module Signup {
     }
     export class Controller {
 
-        constructor ($scope: Scope, $location, $http: any, $localStorage) {
+        constructor ($scope: Scope, $location: any, $http: any, $localStorage) {
             $scope.events = this;
 
             //Adds the information into a temp local storage.
@@ -58,7 +58,7 @@ module Signup {
                   $localStorage.$reset();
 
                   //re-route and have popup show
-                  $location.url('/home');
+                  $location.path('home');
 
                 }).error(function(data, status, headers, config) {
                   //Email exists
@@ -87,7 +87,7 @@ module Signup {
               $localStorage.email = userEmail;
               $localStorage.fname = firstName;
               $localStorage.lname = lastName;
-              $location.url('/signup');
+              $location.path('/signup');
              };
         }
 

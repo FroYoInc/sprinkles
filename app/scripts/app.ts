@@ -1,41 +1,62 @@
-/// <reference path='..\libs\angular\angular.d.ts' />
-/// <reference path='..\libs\jquery\jquery.d.ts' />
 /// <reference path='..\libs\angular\angular-route.d.ts'/>
 
 /// <reference path='components/home/homeController.ts' />
 /// <reference path='components/navbar/navbarController.ts' />
 /// <reference path='components/signup/signupController.ts' />
 /// <reference path='components/dashboard/dashboardController.ts' />
+/// <reference path='components/carpools/createCarpoolController.ts'/>
+/// <reference path='components/carpools/viewCarpoolsController.ts'/>
 
-angular.module('app', ['app.controllers', 'ngRoute','ngStorage', 'ngResource', 'ngCookies'])
-
-.config(function ($routeProvider, $httpProvider, $cookiesProvider) {
-
-    "use strict"; // do I need this?
-
-    $routeProvider
-      .when('/home', {
-        templateUrl:    '/views/homeView.html',
-        controller:     'Home.Controller',
-      })
-      .when('/signup', {
-        templateUrl:    '/views/signupView.html',
-        controller:     'Signup.Controller',
-      })
-      .when('/dashboard', {
-        templateUrl:    '/views/dashboardView.html',
-        controller:      'Dashboard.Controller',
-        resolve: {
+angular.module('app', ['app.controllers','ngRoute','ngStorage','ui.bootstrap', 'ngResource', 'ngCookies']).
+  config(function ($routeProvider, $locationProvider, $httpProvider, $cookiesProvider) {
+    $routeProvider.when('/home',
+    {
+      templateUrl:    '/views/homeView.html',
+      controller:     'Home.Controller'
+    });
+    $routeProvider.when('/signup',
+    {
+      templateUrl:    '/views/signupView.html',
+      controller:     'Signup.Controller'
+    });
+    $routeProvider.when('/dashboard',
+    {
+      templateUrl:    '/views/dashboardView.html',
+      controller:      'Dashboard.Controller',
+      resolve: {
           access: ["Access", (Access) => {
              var a =  Access.isAuthenticated();
              return a;
           }]
-        },
-      })
-      .otherwise( {
-        redirectTo:     '/home',
-        controller:     'Home.Controller',
+        }
       });
+      $routeProvider.when('/dashboard/carpools/view',
+      {
+          templateUrl: '/views/displayCarpoolsView.html',
+          controller: 'Dashboard_Carpools_View.Controller',
+          resolve: {
+              access: ["Access", (Access) => {
+                 var a =  Access.isAuthenticated();
+                 return a;
+              }]
+            }
+      });
+      $routeProvider.when('/dashboard/carpools/create',
+      {
+          templateUrl: '/views/createCarpoolView.html',
+          controller: 'Dashboard_Carpools_Create.Controller',
+          resolve: {
+              access: ["Access", (Access) => {
+                 var a =  Access.isAuthenticated();
+                 return a;
+              }]
+            }
+      });
+    $routeProvider.otherwise(
+    {
+      redirectTo:     '/home',
+      controller:     'Home.Controller',
+    });
 })
 
 // User is a standard AngularJS resource with a profile method (needs angular-resource):
@@ -68,7 +89,7 @@ function($rootScope, Access, $location) {
   $rootScope.$on("$routeChangeError", function(event, current, previous, rejection) {
     if (rejection == Access.UNAUTHORIZED) {
       $location.path("/home");
-    } 
+    }
   });
 
 }]);
