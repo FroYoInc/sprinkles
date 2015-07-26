@@ -6,26 +6,29 @@
     <!-- remove this later  -->
     <h6>Carpool id is {{carpoolId}}</h6>
     <!--Name-->
-    <div class="form-group">
+    <div class="control-group" ng-class="{true: 'error'}[submitted && createform.name.$invalid]">
       <label for="carpoolName">Name</label>
-	    <input type="text" ng-model="carpoolName" class="form-control" id="carpoolName" required>
+      <label>Name of Carpool</label>
+      <input type="text" ng-model="carpoolName" name= "carpoolName" required>
+      <span class="help-inline" ng-show="submitted && createform.name.$error.required">Required Field</span>
     </div>
-    <!--Description -->
-    <div class="form-group">
-      <label for="carpoolDescription">Description</label>
-      <textarea class="form-control" rows="3" type="text" ng-model="carpoolDescription" class="form-control" id="carpoolDescription" value={{carpoolDescription}}  ></textarea> 
+    <!--Description of Carpool-->
+    <div class="control-group" ng-class="{true: 'error'}[submitted && createform.description.$invalid]">
+      <label>Description of Carpool</label>
+      <input type="text" ng-model="carpoolDescription" class="form-control" name="description" required>
+      <span class="help-inline" ng-show="submitted && createform.description.$error.required">Required Field</span>
+    </div>
+    <!--Campus Location -->
+    <div class="control-group" ng-class="{true: 'error'}[submitted && createform.campus.$invalid]">
+      <label>Campus (location of Office)</label>
+      <select ng-model="carpoolCampus" name="campus" required>
+          <option ng-repeat="campus in campusList" value="{{campus.name}}">{{campus.name}}</option>
+      </select>
+      <span class="help-inline" ng-show="submitted && createform.campus.$error.required">Required Field</span>
+    </div>
 
-    </div>
-    <!-- CampusId-->
-    <div class="form-group">
-    <select class="form-control" name="campuses[]">
-      <select ng-model="campus">
-         <option ng-repeat="campus in campusList" value="{{campus.name}}" required>{{campus.name}}</option>
-     </select>
-    </select>
-    </div>
-
-    <button type="submit" class="btn btn-primary btn-lg btn-block"ng-click="editCarpool(carpoolName, carpoolDescription)" >Submitt</button>
-    
+    <div ng-show="carpoolExists" class="help-inline2"> Error: Cannot create carpool. This carpool already Exists.</div><br>
+    <button type="submit" class="btn btn-primary btn-lg btn-inline" ng-click="submitted=true; editCarpool(createform.$invalid)">Edit Carpool</button>
+  </div>    
   </div>
 </div>

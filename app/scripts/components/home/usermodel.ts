@@ -1,5 +1,4 @@
 //This file is used to keep track of a user
-/// <reference path='..\..\libs\angular\angular.d.ts' />
 
 module UserModel {
     export class User {
@@ -9,6 +8,7 @@ module UserModel {
         isAuth: boolean;
     }
 
+    /*
     export class UserCookie {
 
     	user: User;
@@ -29,4 +29,5 @@ module UserModel {
         	$cookies.getAll();
         }
     }
+    */
 }

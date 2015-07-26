@@ -9,35 +9,50 @@ module Dashboard_Carpools_Edit {
         carpoolId: string;
         carpoolName: string;
         carpoolDescription: string;
+        carpoolCampus: string;
         // Carpool address
         // Carpool Geocode
         editCarpool: Function;
         loadCarpoolId: Function;
         carpool: any;
+        campusList: any;
     }
     export class Controller {
 
     	constructor ($scope: Scope, $http: any, $location, $localStorage) {
+
+        $http.get('http://localhost:3000/api/campuses').success(function(data, status, headers, config) {
+          $scope.campusList = data;
+          });
 
         $scope.events = this;
 
         $scope.carpoolId = $localStorage.carpoolId;
         $scope.carpoolName = $localStorage.carpoolName;
         $scope.carpoolDescription = $localStorage.carpoolDescription;
-        
+
         //Default Values
         //Populates the Carpool list
-        $scope.editCarpool = function(carpoolName, carpoolDescription) {
+        $scope.editCarpool = function(isInvalidForm) {
 
            var editedCarpool = new CarpoolModel.Carpool();
-           editedCarpool.name = carpoolName;
-           editedCarpool.description = carpoolDescription;
-           // TODO: Get the list of campuses 
-           editedCarpool.campusID = "/campuses/de9319fe-5afc-4ce0-89cd-690832c82edf";
+           editedCarpool.name = $scope.carpoolName;
+           editedCarpool.description = $scope.carpoolDescription;
+           console.log($scope.carpoolCampus);
+           for (var i = 0; i < $scope.campusList.length; i++){
+            console.log($scope.campusList[i].name + "vs" + $scope.carpoolCampus);
+            if ($scope.campusList[i].name == $scope.carpoolCampus)
+              editedCarpool.campusID = $scope.campusList[i].href;
+           }
 
+          //If the form is invalid, don't make the request
+          if(isInvalidForm) {
+            return;
+          }
            console.log(editedCarpool);
            $http.put('http://localhost:3000/api/carpools/' + $scope.carpoolId, 
                       editedCarpool).success(function(data, status, headers, config) {
+                        console.log(data);
               $location.path('/dashboard');
               $localStorage.$reset();
               window.scrollTo(0,0);
@@ -58,10 +73,10 @@ module Dashboard_Carpools_Edit {
         $scope.loadCarpoolId = function(carpoolId) {
           $localStorage.carpoolId = carpoolId;
 
-          $http.get('http://localhost:3000/api/carpools', carpoolId).success(function(data, status, headers, config) {
+          $http.get('http://localhost:3000/api/carpools/' + carpoolId).success(function(data, status, headers, config) {
               //TODO Check to see if this user has access to the carpool
-              $localStorage.carpoolName = data[0].name;
-              $localStorage.carpoolDescription = data[0].description;
+              $localStorage.carpoolName = data.name;
+              $localStorage.carpoolDescription = data.description;
               // Carpool address
               // Carpool Geocode
               $location.path('/dashboard/carpools/edit');
