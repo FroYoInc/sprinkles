@@ -84,7 +84,7 @@
     </div>
 
   </div>
-<div ng-controller="navbarController">
+<div ng-controller="Navbar.Controller">
 
   <nav class="navbar navbar-default">
 
@@ -101,25 +101,33 @@
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="container">
+      <div class="container" ng-show="!isAuth">
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
             <li ng-class="navClass('home')"><a href="" ng-click="loadHome()">Home</a></li>
             <li ng-class="navClass('signup')"><a href="" ng-click="loadSignup()">Sign Up</a></li>
-            <li><a href="" ng-click="logout()">logout</a></li>
             <li class="dropdown">
               <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li><a href="">Contact</a></li>
                 <li><a href="https://github.com/FroYoInc/sprinkles/blob/master/LICENSE">License</a></li>
                 <li><a href="https://github.com/FroYoInc">Source</a></li>
-
               </ul>
             </li>
           </ul>
-
         </div>
-
+      </div>
+      <div class="container" ng-show="isAuth">
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li ng-class="navClass('dashboard')"><a href="" ng-click="loadDashboard()">Home</a></li>
+            <li ng-class="navClass('dashboard/carpools/view')"><a href="" ng-click="loadCarpoolsView()">View Carpools</a></li>
+            <li ng-class="navClass('dashboard/carpools/create')"><a href="" ng-click="loadCarpoolsCreate()">Create Carpool</a></li>
+          </ul>
+          <ul class="nav navbar-nav pull-right">
+            <li><a class="pull-right" href="" ng-click="logout()">Logout</a></li>
+          </ul>
+        </div>
       </div>
     </div>
   </nav>
