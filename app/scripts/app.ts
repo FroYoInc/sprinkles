@@ -26,6 +26,10 @@ angular.module('app', ['app.controllers', 'ngRoute','ngStorage', 'ngResource', '
         templateUrl:    '/views/signupView.html',
         controller:     'Signup.Controller',
       })
+      .when('/ApproveDeny', {
+        templateUrl:    '/views/ApproveDenyView.html',
+        controller:     'Dashboard.Controller',
+      })
       .when('/dashboard', {
         templateUrl:    '/views/dashboardView.html',
         controller:      'Dashboard.Controller',
@@ -72,7 +76,7 @@ function($rootScope, Access, $location) {
   $rootScope.$on("$routeChangeError", function(event, current, previous, rejection) {
     if (rejection == Access.UNAUTHORIZED) {
       $location.path("/home");
-    } 
+    }
   });
 
 }]);
