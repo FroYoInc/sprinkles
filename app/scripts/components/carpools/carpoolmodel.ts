@@ -2,7 +2,7 @@ module CarpoolModel {
   export class Carpool {
     name: string;
     description: string;
-    campusID: string;
+    campus: string;
     // Carpool address
     // Carpool Geocode
   } 

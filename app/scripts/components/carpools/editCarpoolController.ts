@@ -42,7 +42,7 @@ module Dashboard_Carpools_Edit {
            for (var i = 0; i < $scope.campusList.length; i++){
             console.log($scope.campusList[i].name + "vs" + $scope.carpoolCampus);
             if ($scope.campusList[i].name == $scope.carpoolCampus)
-              editedCarpool.campusID = $scope.campusList[i].href;
+              editedCarpool.campus = $scope.campusList[i].href;
            }
 
           //If the form is invalid, don't make the request
