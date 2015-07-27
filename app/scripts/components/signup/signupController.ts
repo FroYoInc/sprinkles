@@ -15,6 +15,7 @@ module Signup {
         emailExistsError: boolean;
         emailDomainError: boolean;
         userpassError: boolean;
+        invalidEmailError: boolean;
 
         signupUser: Function;
         checkPasswords: Function;
@@ -33,16 +34,21 @@ module Signup {
             $scope.lastName = $localStorage.lname;
 
             //Helper function that hides error messages
-            var resetErrors = function() {
+            var resetErrors = () => {
               $scope.usernameerror = false;
               $scope.emailExistsError = false;
               $scope.emailDomainError = false;
               $scope.userpassError = false;
+              $scope.invalidEmailError = false;
             }
             resetErrors();
 
             // Posts the user data
-            $scope.signupUser = function () {
+            $scope.signupUser = (res) => {
+              //If theres an error in the form return OR if the passwords dont match
+              if(res || $scope.userPass1.localeCompare($scope.userPass2) != 0){
+                return;
+              }
               //Set the post data before we make the call
               var postData = {
                 userName: $scope.userName,
@@ -56,7 +62,7 @@ module Signup {
               $http.post('http://localhost:3000/api/users', postData).success(function(data, status, headers, config) {
                   //clear the localstorage
                   $localStorage.$reset();
-
+                  $('#accountmade').css('visibility','visible').fadeIn();
                   //re-route and have popup show
                   $location.path('home');
 
@@ -68,6 +74,10 @@ module Signup {
                   //Bad email domain
                   if(status == 400 && ((data.message).localeCompare("EmailValidationException: The email address's domain is not allowed") == 0)){
                       $scope.emailDomainError = true;
+                  }
+                  //invalid email address
+                  if(status == 400 && ((data.message).localeCompare("EmailValidationException: The email address is invalid.") == 0)){
+                      $scope.invalidEmailError = true;
                   }
                   //username exists
                   else if( status == 409 && ((data.message).localeCompare("UserExistException: user already exist") == 0)){
@@ -82,7 +92,7 @@ module Signup {
             };
 
             // Loads the signup page
-            $scope.loadSignup = function (userEmail, firstName, lastName) {
+            $scope.loadSignup = (userEmail, firstName, lastName) => {
               //Sets the local storage from the re-routed source
               $localStorage.email = userEmail;
               $localStorage.fname = firstName;
