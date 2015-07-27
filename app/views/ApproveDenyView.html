@@ -15,24 +15,22 @@
       <tr>
         <th>Firstname</th>
         <th>Lastname</th>
-        <th>Username</th>
+        <!--<th>Username</th> -->
         <th>Approve/Deny</th>
       </tr>
       <tr>
-      <tr ng-repeat="person in emptyUsers">
-        <td>{{person.name}}
+      <tr ng-repeat="requests in carpoolRequests">
+        <td>{{requests.firstName}}
         </td>
-        <td>{{person.name2}}
-        </td>
-        <td>{{person.name3}}
+        <td>{{requests.lastName}}
         </td>
         <td><button class="btn btn-success">Approve</button> <button class="btn btn-danger">Deny</button>
         </td>
       </tr>
     </table>
   </div>
-  <form role="form" class="form-horizontal-signin col-sm-4" ng-submit="addUser()">
-    <!--Sign in - existing user-->
+  <button class="btn btn-primary" ng-click="viewRequests()">view</button>
+  <!--
     <p><i> Join:  </i></p>
     <div class="form-group">
       <label class="col-sm-3 control-label">First Name</label>
@@ -59,7 +57,7 @@
         <br><br>
       </div>
     </div>
-  </form>
+  </form> -->
 </div>
 </body>
 </html>
