@@ -71,8 +71,8 @@ angular.module('app', ['app.controllers','ngRoute','ngStorage','ui.bootstrap', '
 
     isAuthenticated: () => {
       var p = $q.defer();
-      var cookie = $cookies.getObject('isAuth');
-      if (cookie == true){
+      var cookie = $cookies.getObject('user');
+      if (cookie.isAuth == true){
           p.resolve(Access.OK);
       } else {
         p.reject(Access.UNAUTHORIZED);
@@ -85,11 +85,14 @@ angular.module('app', ['app.controllers','ngRoute','ngStorage','ui.bootstrap', '
 // when Access rejects a promise, the $routeChangeError event will be fired:
 .run(["$rootScope", "Access", "$location", '$cookies',
 function($rootScope, Access, $location, $cookies) {
-
-  if ($cookies.getObject('isAuth')) {
+  var cookie = $cookies.getObject('user');
+  console.log(cookie);
+  if (typeof(cookie) != "undefined") {
+    if (cookie.isAuth == true) {
       $location.path("/dashboard");
-
+    }
   }
+  
   $rootScope.$on("$routeChangeError", function(event, current, previous, rejection) {
     if (rejection == Access.UNAUTHORIZED) {
       $location.path("/home");

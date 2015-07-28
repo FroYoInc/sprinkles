@@ -17,15 +17,23 @@ module Navbar {
   export class Controller {
 
     constructor ($scope: Scope, $location: any, $cookies: any) {
-      $scope.isAuth = $cookies.getObject('isAuth');
-      
-
+      var cookie = $cookies.getObject('user');
+      if (typeof(cookie) != "undefined"){
+        $scope.isAuth = cookie.isAuth;
+      }
 
       //Watches to  see if cookies change. If the isAuth cookie is changed, update
       //its value.
-      $scope.$watch(function() { return $cookies.isAuth; }, function(newValue) {
-          console.log($scope.isAuth);
-          $scope.isAuth = $cookies.getObject('isAuth');
+      $scope.$watch(function() {
+              var cookie = $cookies.getObject('user');
+              if (typeof(cookie) != "undefined"){
+                return cookie.isAuth;
+              }
+          }, function(newValue) {
+          var cookie = $cookies.getObject('user');
+          if (typeof(cookie) != "undefined"){
+            $scope.isAuth = cookie.isAuth;
+          }
       });
 
       //Controls the active page
@@ -57,9 +65,9 @@ module Navbar {
       // Removes the cookie and re-routes to the home page
       $scope.logout = () => {
          $scope.isAuth = false;
-          var cookie = $cookies.getObject('isAuth');
-          if (cookie){
-            $cookies.remove('isAuth');
+          var cookie = $cookies.getObject('user');
+          if (cookie.isAuth){
+            $cookies.remove('user');
           }
           $location.url('/home');
        }
