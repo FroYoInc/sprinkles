@@ -9,6 +9,9 @@ module Dashboard_Carpools_Create {
         description: string;
         owner: string;
         campusList: any;
+        address: string;
+        lat: number;
+        long: number;
         userNotFound: Boolean;
         carpoolExists: Boolean;
         createCarpool: Function;
@@ -26,9 +29,16 @@ module Dashboard_Carpools_Create {
             name: $scope.name,
             description: $scope.description,
             campus: $scope.campus,
+            pickupLocation: {
+              address: $scope.address,
+              geoCode: {
+                lat: $scope.lat,
+                long: $scope.long
+              }
+            },
             owner: $scope.owner
           }
-          
+
           //Hide previous errors:
           $scope.userNotFound = false;
           $scope.carpoolExists = false;
