@@ -30,8 +30,8 @@ module Home {
                         // successful login
                         $('#success').css('visibility','visible').fadeIn();
                         // Auth.setUser(user); //Update the state of the user in the app
-                        $cookies.isAuth = true;
                         $cookies.putObject('isAuth', true);
+                        $cookies.putObject('user', data);
                         $location.path('/dashboard');
                 }).
                     error(function (data, status) {
