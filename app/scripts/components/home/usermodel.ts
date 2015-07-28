@@ -7,27 +7,21 @@ module UserModel {
         userID: string;
         isAuth: boolean;
     }
-
-    /*
     export class UserCookie {
+        email: string;
+        firstName: string
+        lastName: string;
+        userID: string;
+        userName: string;
+        isAuth: boolean;
 
-    	user: User;
-    	$cookies: ngCookies;
-    	static $inject = ["$cookies"];
-    	constructor (email, password, userID, $cookies: any){
-        	this.user.email = email;
-        	this.user.password = password;
-        	this.user.userID = userID;
-        	this.user.isAuth = false;
-        }
-
-        setUserCookie = function(newUser: User){
-        	$cookies.putObject('userID', newUser.userID);
-        	$cookies.putObject('isAuth', true);
-        }
-        displayUserCookie = function(){
-        	$cookies.getAll();
+        constructor(email, firstName, lastName, userID, userName){
+        	this.email = email;
+        	this.firstName = firstName;
+        	this.lastName = lastName;
+        	this.userID = userID;
+        	this.userName = userName;
+        	this.isAuth = true;
         }
     }
-    */
 }

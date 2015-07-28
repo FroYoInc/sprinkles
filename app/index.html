@@ -10,7 +10,6 @@
   <!-- endbower -->
   <link rel="stylesheet" href="styles/main.css">
 </head>
-<body ng-controller="Home.Controller">
 <!--[if lt IE 10]>
 <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 <![endif]-->
@@ -68,6 +67,13 @@
     <span aria-hidden="true">&times;</span></button>
       <strong>Oops!</strong> Internal Server error.
     </div>
+    <!-- carpool Was made. -->
+    <div class="alert alert-success alert-dismissible fade in hidden-alerts" role="alert"
+           id="carpoolCreated">
+    <button type="button" class="close" ng-click="visible('carpoolCreated')" aria-label="Close">
+    <span aria-hidden="true">&times;</span></button>
+      Carpool has been successfully created.
+    </div>
     <!-- Account was made, ask them to check email -->
     <div class="alert alert-warning alert-dismissible fade in hidden-alerts" role="alert"
            id="accountmade">
@@ -84,7 +90,7 @@
     </div>
 
   </div>
-<div ng-controller="navbarController">
+<div ng-controller="Navbar.Controller">
 
   <nav class="navbar navbar-default">
 
@@ -101,25 +107,33 @@
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="container">
+      <div class="container" ng-show="!isAuth">
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
             <li ng-class="navClass('home')"><a href="" ng-click="loadHome()">Home</a></li>
             <li ng-class="navClass('signup')"><a href="" ng-click="loadSignup()">Sign Up</a></li>
-            <li><a href="" ng-click="logout()">logout</a></li>
             <li class="dropdown">
               <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li><a href="">Contact</a></li>
                 <li><a href="https://github.com/FroYoInc/sprinkles/blob/master/LICENSE">License</a></li>
                 <li><a href="https://github.com/FroYoInc">Source</a></li>
-
               </ul>
             </li>
           </ul>
-
         </div>
-
+      </div>
+      <div class="container" ng-show="isAuth">
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li ng-class="navClass('dashboard')"><a href="" ng-click="loadDashboard()">Home</a></li>
+            <li ng-class="navClass('dashboard/carpools/view')"><a href="" ng-click="loadCarpoolsView()">View Carpools</a></li>
+            <li ng-class="navClass('dashboard/carpools/create')"><a href="" ng-click="loadCarpoolsCreate()">Create Carpool</a></li>
+          </ul>
+          <ul class="nav navbar-nav pull-right">
+            <li><a class="pull-right" href="" ng-click="logout()">Logout</a></li>
+          </ul>
+        </div>
       </div>
     </div>
   </nav>
@@ -129,6 +143,7 @@
 </div>
 </div>
 <!-- bower:js -->
+<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
 <script src="bower_components/jquery/dist/jquery.js"></script>
 <script src="bower_components/angular/angular.js"></script>
 <script src="bower_components/bootstrap-sass/assets/javascripts/bootstrap.js"></script>
@@ -146,6 +161,10 @@
 <script src="dist/app/scripts/components/carpools/editCarpoolController.js"></script>
 <script src="dist/app/scripts/components/carpools/carpoolmodel.js"></script>
 <script src="dist/app/scripts/components/signup/signupController.js"></script>
+<script src="dist/app/scripts/components/dashboard/dashboardController.js"></script>
+<script src="dist/app/scripts/components/carpools/createCarpoolController.js"></script>
+<script src="dist/app/scripts/components/carpools/viewCarpoolsController.js"></script>
+
 <!-- endbower -->
 </body>
 </html>

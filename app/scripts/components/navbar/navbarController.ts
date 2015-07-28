@@ -1,30 +1,77 @@
 /// <reference path="../../app.ts"/>
 
-app.controllers.controller('navbarController',
-['$scope', '$location', '$cookies', function ($scope, $location, $cookies) {
-  
-  $scope.navClass = function (page) {
-    var currentRoute = $location.path().substring(1) || 'home';
-    return page === currentRoute ? 'active' : '';
-  };
+module Navbar {
+  export interface Scope {
+    navClass: Function;
+    loadHome: Function;
+    loadSignup: Function;
+    loadDashboard: Function;
+    logout: Function;
+    loadCarpoolsView: Function;
+    loadCarpoolsCreate: Function;
+    $watch: any;
 
-  $scope.loadHome = function () {
-        $location.url('/home');
-    };
+    isAuth: Boolean;
+  }
 
-  $scope.loadSignup = function () {
-        $location.url('/signup');
-   };
-  $scope.loadDashboard = function () {
-        $location.url('/dashboard');
-   };
+  export class Controller {
 
-   $scope.logout = function () {
-      var cookie = $cookies.getObject('isAuth');
-      if (cookie){
-        $cookies.remove('isAuth');
+    constructor ($scope: Scope, $location: any, $cookies: any) {
+      var cookie = $cookies.getObject('user');
+      if (typeof(cookie) != "undefined"){
+        $scope.isAuth = cookie.isAuth;
       }
-      $location.url('/home');
-   }
 
-}]);
+      //Watches to  see if cookies change. If the isAuth cookie is changed, update
+      //its value.
+      $scope.$watch(function() {
+              var cookie = $cookies.getObject('user');
+              if (typeof(cookie) != "undefined"){
+                return cookie.isAuth;
+              }
+          }, function(newValue) {
+          var cookie = $cookies.getObject('user');
+          if (typeof(cookie) != "undefined"){
+            $scope.isAuth = cookie.isAuth;
+          }
+      });
+
+      //Controls the active page
+      $scope.navClass = (page) => {
+        var currentRoute = $location.path().substring(1) || 'home';
+        return page === currentRoute ? 'active' : '';
+      };
+
+      $scope.loadHome = () => {
+            $location.url('/home');
+        };
+
+      $scope.loadSignup = () => {
+            $location.url('/signup');
+       };
+
+      $scope.loadDashboard = () => {
+            $location.url('/dashboard');
+       };
+
+       $scope.loadCarpoolsView = () => {
+         $location.url('/dashboard/carpools/view')
+       }
+
+       $scope.loadCarpoolsCreate = () => {
+         $location.url('/dashboard/carpools/create')
+       }
+       
+      // Removes the cookie and re-routes to the home page
+      $scope.logout = () => {
+         $scope.isAuth = false;
+          var cookie = $cookies.getObject('user');
+          if (cookie.isAuth){
+            $cookies.remove('user');
+          }
+          $location.url('/home');
+       }
+    }
+  }
+}
+app.controllers.controller('Navbar.Controller', Navbar.Controller);

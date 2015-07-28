@@ -14,7 +14,7 @@ module Home {
     }
 
     export class Controller {
-        
+
         constructor ($scope: Scope, $http: any, $location: any, $cookies: any) {
 
             // populate the data when sign in is clicked
@@ -31,9 +31,9 @@ module Home {
                         $('#success').css('visibility','visible').fadeIn();
                         console.log(data);
                         // Auth.setUser(user); //Update the state of the user in the app
-                        $cookies.isAuth = true;
-                        $cookies.putObject('isAuth', true);
-
+                        var newUser = new UserModel.UserCookie(data.email, 
+                                    data.firstName, data.lastName, data.userID, data.userName);
+                        $cookies.putObject('user', newUser);
                         $location.path('/dashboard');
                 }).
                     error(function (data, status) {

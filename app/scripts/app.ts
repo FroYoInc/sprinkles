@@ -1,11 +1,10 @@
-/// <reference path='..\libs\angular\angular.d.ts' />
-/// <reference path='..\libs\jquery\jquery.d.ts' />
 /// <reference path='..\libs\angular\angular-route.d.ts'/>
 
 /// <reference path='components/home/homeController.ts' />
 /// <reference path='components/navbar/navbarController.ts' />
 /// <reference path='components/signup/signupController.ts' />
 /// <reference path='components/dashboard/dashboardController.ts' />
+<<<<<<< HEAD
 /// <reference path='components/carpools/editCarpoolController.ts' />
 
 angular.module('app', ['app.controllers', 'ngRoute','ngStorage', 'ngResource', 'ngCookies'])
@@ -27,10 +26,33 @@ angular.module('app', ['app.controllers', 'ngRoute','ngStorage', 'ngResource', '
         templateUrl:    '/views/dashboardView.html',
         controller:      'Dashboard.Controller',
         resolve: {
+=======
+/// <reference path='components/carpools/createCarpoolController.ts'/>
+/// <reference path='components/carpools/viewCarpoolsController.ts'/>
+
+angular.module('app', ['app.controllers','ngRoute','ngStorage','ui.bootstrap', 'ngResource', 'ngCookies']).
+  config(function ($routeProvider, $locationProvider, $httpProvider, $cookiesProvider) {
+    $routeProvider.when('/home',
+    {
+      templateUrl:    '/views/homeView.html',
+      controller:     'Home.Controller'
+    });
+    $routeProvider.when('/signup',
+    {
+      templateUrl:    '/views/signupView.html',
+      controller:     'Signup.Controller'
+    });
+    $routeProvider.when('/dashboard',
+    {
+      templateUrl:    '/views/dashboardView.html',
+      controller:      'Dashboard.Controller',
+      resolve: {
+>>>>>>> 4d2a148761c0cf600d90b7010b2518f2a4270285
           access: ["Access", (Access) => {
              var a =  Access.isAuthenticated();
              return a;
           }]
+<<<<<<< HEAD
         },
       })
       .when('/dashboard/carpools/edit', {
@@ -47,7 +69,37 @@ angular.module('app', ['app.controllers', 'ngRoute','ngStorage', 'ngResource', '
       .otherwise( {
         redirectTo:     '/home',
         controller:     'Home.Controller',
+=======
+        }
       });
+      $routeProvider.when('/dashboard/carpools/view',
+      {
+          templateUrl: '/views/displayCarpoolsView.html',
+          controller: 'Dashboard_Carpools_View.Controller',
+          resolve: {
+              access: ["Access", (Access) => {
+                 var a =  Access.isAuthenticated();
+                 return a;
+              }]
+            }
+>>>>>>> 4d2a148761c0cf600d90b7010b2518f2a4270285
+      });
+      $routeProvider.when('/dashboard/carpools/create',
+      {
+          templateUrl: '/views/createCarpoolView.html',
+          controller: 'Dashboard_Carpools_Create.Controller',
+          resolve: {
+              access: ["Access", (Access) => {
+                 var a =  Access.isAuthenticated();
+                 return a;
+              }]
+            }
+      });
+    $routeProvider.otherwise(
+    {
+      redirectTo:     '/home',
+      controller:     'Home.Controller',
+    });
 })
 
 // User is a standard AngularJS resource with a profile method (needs angular-resource):
@@ -62,8 +114,8 @@ angular.module('app', ['app.controllers', 'ngRoute','ngStorage', 'ngResource', '
 
     isAuthenticated: () => {
       var p = $q.defer();
-      var cookie = $cookies.getObject('isAuth');
-      if (cookie == true){
+      var cookie = $cookies.getObject('user');
+      if (cookie.isAuth == true){
           p.resolve(Access.OK);
       } else {
         p.reject(Access.UNAUTHORIZED);
@@ -74,14 +126,22 @@ angular.module('app', ['app.controllers', 'ngRoute','ngStorage', 'ngResource', '
   return Access;
 }])
 // when Access rejects a promise, the $routeChangeError event will be fired:
-.run(["$rootScope", "Access", "$location",
-function($rootScope, Access, $location) {
-
+.run(["$rootScope", "Access", "$location", '$cookies',
+function($rootScope, Access, $location, $cookies) {
+  var cookie = $cookies.getObject('user');
+  console.log(cookie);
+  if (typeof(cookie) != "undefined") {
+    if (cookie.isAuth == true) {
+      $location.path("/dashboard");
+    }
+  }
+  
   $rootScope.$on("$routeChangeError", function(event, current, previous, rejection) {
     if (rejection == Access.UNAUTHORIZED) {
       $location.path("/home");
-    } 
+    }
   });
+
 
 }]);
 module app {

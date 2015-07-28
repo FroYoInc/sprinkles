@@ -1,0 +1,50 @@
+<div ng-controller="Dashboard_Carpools_Create.Controller">
+  <div class="jumbotron">
+
+    <form name="createform" class="form-signup" novalidate>
+    <h2 class="form-signup-heading">Create a Carpool</h2>
+
+    <!--Name of Carpool-->
+    <div class="control-group" ng-class="{true: 'error'}[submitted && createform.name.$invalid]">
+      <label>Name of Carpool</label>
+	    <input type="text" ng-model="name" name= "name" required>
+      <span class="help-inline" ng-show="submitted && createform.name.$error.required">Required Field</span>
+    </div>
+    <!--Description of Carpool-->
+    <div class="control-group" ng-class="{true: 'error'}[submitted && createform.description.$invalid]">
+      <label>Description of Carpool</label>
+      <input type="text" ng-model="description" class="form-control" name="description" required>
+      <span class="help-inline" ng-show="submitted && createform.description.$error.required">Required Field</span>
+    </div>
+    <!--Campus Location -->
+    <div class="control-group" ng-class="{true: 'error'}[submitted && createform.campus.$invalid]">
+      <label>Campus (location of Office)</label>
+      <select ng-model="campus" name="campus" required>
+          <option ng-repeat="campus in campusList" value="{{campus.name}}">{{campus.name}}</option>
+      </select>
+      <span class="help-inline" ng-show="submitted && createform.campus.$error.required">Required Field</span>
+    </div>
+
+    <!--Owner of Capool-->
+    <div class="control-group" ng-class="{true: 'error'}[submitted && createform.owner.$invalid]">
+      <label>Owner of Carpool(Username of owner)</label>
+      <input type="text" name="owner" class="form-control" id="owner" ng-model="owner" required>
+      <span class="help-inline" ng-show="submitted && createform.owner.$error.required">Required Field</span>
+      <span class="help-inline2" ng-show="submitted && userNotFound"> Owner not found.</span>
+    </div>
+
+    <!--PickupLocation of Capool-->
+    <div class="control-group" ng-class="{true: 'error'}[submitted && createform.owner.$invalid]">
+      <label>Address</label>
+      <input type="text" name="address" class="form-control" id="address" ng-model="address" required>
+      <label>Latitude</lable>
+      <input type="text" name="lat" class="form-control" id="lat" ng-model="lat" required>
+      <label>Longitude</lable>
+      <input type="text" name="long" class="form-control" id="long" ng-model="long" required>
+      <span class="help-inline" ng-show="submitted && createform.owner.$error.required">Required Field</span>
+    </div>
+
+    <div ng-show="carpoolExists" class="help-inline2"> Error: Cannot create carpool. This carpool already Exists.</div><br>
+    <button type="submit" class="btn btn-primary btn-lg btn-inline" ng-click="submitted=true; createCarpool(createform.$invalid)">Create Carpool</button>
+  </div>
+</div>
