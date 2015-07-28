@@ -83,14 +83,19 @@ angular.module('app', ['app.controllers','ngRoute','ngStorage','ui.bootstrap', '
   return Access;
 }])
 // when Access rejects a promise, the $routeChangeError event will be fired:
-.run(["$rootScope", "Access", "$location",
-function($rootScope, Access, $location) {
+.run(["$rootScope", "Access", "$location", '$cookies',
+function($rootScope, Access, $location, $cookies) {
 
+  if ($cookies.getObject('isAuth')) {
+      $location.path("/dashboard");
+
+  }
   $rootScope.$on("$routeChangeError", function(event, current, previous, rejection) {
     if (rejection == Access.UNAUTHORIZED) {
       $location.path("/home");
     }
   });
+
 
 }]);
 module app {

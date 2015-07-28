@@ -18,11 +18,14 @@ module Navbar {
 
     constructor ($scope: Scope, $location: any, $cookies: any) {
       $scope.isAuth = $cookies.getObject('isAuth');
+      
+
 
       //Watches to  see if cookies change. If the isAuth cookie is changed, update
       //its value.
       $scope.$watch(function() { return $cookies.isAuth; }, function(newValue) {
-          $scope.isAuth = $cookies.isAuth;
+          console.log($scope.isAuth);
+          $scope.isAuth = $cookies.getObject('isAuth');
       });
 
       //Controls the active page
