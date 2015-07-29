@@ -1,5 +1,3 @@
-/// <reference path='..\libs\angular\angular-route.d.ts'/>
-
 /// <reference path='components/home/homeController.ts' />
 /// <reference path='components/navbar/navbarController.ts' />
 /// <reference path='components/signup/signupController.ts' />
@@ -7,7 +5,7 @@
 /// <reference path='components/carpools/createCarpoolController.ts'/>
 /// <reference path='components/carpools/viewCarpoolsController.ts'/>
 
-angular.module('app', ['app.controllers','ngRoute','ngStorage','ui.bootstrap', 'ngResource', 'ngCookies']).
+angular.module('app', ['app.controllers','app.services','ngRoute','ngStorage','ui.bootstrap', 'ngResource', 'ngCookies']).
   config(function ($routeProvider, $locationProvider, $httpProvider, $cookiesProvider) {
     $routeProvider.when('/home',
     {
@@ -95,4 +93,5 @@ function($rootScope, Access, $location) {
 }]);
 module app {
     export var controllers = angular.module('app.controllers',[]);
+    export var services = angular.module('app.services', []);
 }

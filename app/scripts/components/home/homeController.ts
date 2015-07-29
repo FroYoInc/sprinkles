@@ -15,7 +15,7 @@ module Home {
 
     export class Controller {
 
-        constructor ($scope: Scope, $http: any, $location: any, $cookies: any) {
+        constructor ($scope: Scope, $http: any, $location: any, $cookies: any, ConfigService) {
 
             // populate the data when sign in is clicked
             // Handels error alerts when not successful

@@ -10,6 +10,7 @@ module Signup {
         userName: string;
         firstName: string;
         lastName: string;
+
         events: any;
         usernameerror: boolean;
         emailExistsError: boolean;

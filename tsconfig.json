@@ -18,16 +18,20 @@
         "!./node_modules/**/*.ts"
     ],
     "files": [
-        "./app/libs/angular/angular-route.d.ts",
-        "./app/libs/angular/angular.d.ts",
-        "./app/libs/jquery/jquery.d.ts",
         "./app/scripts/app.ts",
         "./app/scripts/components/carpools/createCarpoolController.ts",
         "./app/scripts/components/carpools/viewCarpoolsController.ts",
         "./app/scripts/components/dashboard/dashboardController.ts",
+        "./app/scripts/components/factory/config.factory.ts",
         "./app/scripts/components/home/homeController.ts",
         "./app/scripts/components/home/usermodel.ts",
         "./app/scripts/components/navbar/navbarController.ts",
-        "./app/scripts/components/signup/signupController.ts"
+        "./app/scripts/components/signup/signupController.ts",
+        "./app/scripts/config.ts",
+        "./app/typings/angular/angular-route.d.ts",
+        "./app/typings/angular/angular.d.ts",
+        "./app/typings/jquery/jquery.d.ts",
+        "./app/typings/node/node.d.ts",
+        "./typings/node/node.d.ts"
     ]
 }

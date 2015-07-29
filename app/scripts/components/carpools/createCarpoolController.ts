@@ -15,7 +15,8 @@ module Dashboard_Carpools_Create {
     }
     export class Controller {
 
-    	constructor ($scope: Scope, $http: any, $location: any) {
+    	constructor ($scope: Scope, $http: any, $location: any,$inject, helloService) {
+        console.log("helloworld", helloService)
         //Populate campus list
         $http.get('http://localhost:3000/api/campuses').success(function(data, status, headers, config) {
           $scope.campusList = data;
@@ -28,7 +29,7 @@ module Dashboard_Carpools_Create {
             campus: $scope.campus,
             owner: $scope.owner
           }
-          
+
           //Hide previous errors:
           $scope.userNotFound = false;
           $scope.carpoolExists = false;
