@@ -1,3 +1,5 @@
-/**
- * Created by lou_saechao on 7/27/15.
- */
+module CarpoolModel {
+  export class CarpoolID {
+    carpoolID: string;
+  }
+}
