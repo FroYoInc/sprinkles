@@ -20,16 +20,24 @@ module Request {
           console.log('success! - sent!');
         }).error(function(data, status, headers, config){
           if(status == 400){
-            console.log('No carpool ID provided.');
+            //No carpool ID provided
+            window.scrollTo(0,0);
+            $('#noCarpoolid').css('visibility','visible').fadeIn();
           }
           else if(status == 401){
-            console.log('Unauthorized attempt, user must be logged in to make a request.');
+            //Unauthorized attempt, user must be logged in to make a request
+            window.scrollTo(0,0);
+            $('#notLogged').css('visibility','visible').fadeIn();
           }
           else if(status == 409){
-            console.log('Conflict error. User already has a request to join this carpool.');
+            //Conflict error. User already has a request to join this carpool
+            window.scrollTo(0,0);
+            $('#requested').css('visibility','visible').fadeIn();
           }
           else if(status == 500){
-            console.log('Internal Server error. Unable to make request');
+            //Internal Server error. Unable to make request
+            window.scrollTo(0,0);
+            $('#internalError').css('visibility','visible').fadeIn();
           }
         });
       };

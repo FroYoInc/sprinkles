@@ -32,12 +32,24 @@
     <span aria-hidden="true">&times;</span></button>
       <strong>Sorry!</strong> Invalid or missing parameters.
     </div>
+    <div class="alert alert-warning alert-dismissible fade in hidden-alerts" role="alert"
+         id="noCarpoolid">
+      <button type="button" class="close" ng-click="visible('noid')" aria-label="Close">
+        <span aria-hidden="true">&times;</span></button>
+      <strong>Sorry!</strong> No Carpool ID Provided.
+    </div>
     <!-- 401:The user account has not been activated. -->
     <div class="alert alert-warning alert-dismissible fade in hidden-alerts" role="alert"
             id="notAuthorized">
     <button type="button" class="close" ng-click="visible('notAuthorized')" aria-label="Close">
     <span aria-hidden="true">&times;</span></button>
       <strong>Sorry!</strong> Wrong Username or Password.
+    </div>
+    <div class="alert alert-warning alert-dismissible fade in hidden-alerts" role="alert"
+         id="notLogged">
+      <button type="button" class="close" ng-click="visible('notIn')" aria-label="Close">
+        <span aria-hidden="true">&times;</span></button>
+      <strong>Sorry!</strong> Unauthorized attempt, user must be logged in to make a request.
     </div>
     <!-- 403:The user account has not been activated. -->
     <div class="alert alert-warning alert-dismissible fade in hidden-alerts" role="alert"
@@ -53,6 +65,13 @@
     <button type="button" class="close" ng-click="visible('notFound')" aria-label="Close">
     <span aria-hidden="true">&times;</span></button>
       <strong>Oops!</strong> Something was not found.
+    </div>
+    <!-- 409: error -->
+    <div class="alert alert-warning alert-dismissible fade in hidden-alerts" role="alert"
+         id="requested">
+      <button type="button" class="close" ng-click="visible('requestSent')" aria-label="Close">
+        <span aria-hidden="true">&times;</span></button>
+      <strong>Oops!</strong> User already has a request to join this carpool
     </div>
     <!-- 423:The user account is locked. -->
     <div class="alert alert-danger alert-dismissible fade in hidden-alerts" role="alert"
@@ -149,6 +168,7 @@
 <script src="dist/app/scripts/components/carpools/viewCarpoolsController.js"></script>
 <script src="dist/app/scripts/components/Request/carpoolIDModel.js"></script>
 <script src="dist/app/scripts/components/Request/RequestController.js"></script>
+<script src="dist/app/scripts/components/Request/responseController.js"></script>
 
 <!-- endbower -->
 </body>
