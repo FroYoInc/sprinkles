@@ -6,6 +6,8 @@
 /// <reference path='components/dashboard/dashboardController.ts' />
 /// <reference path='components/carpools/createCarpoolController.ts'/>
 /// <reference path='components/carpools/viewCarpoolsController.ts'/>
+/// <reference path='components/Request/responseController.ts'/>
+
 
 angular.module('app', ['app.controllers','ngRoute','ngStorage','ui.bootstrap', 'ngResource', 'ngCookies']).
   config(function ($routeProvider, $locationProvider, $httpProvider, $cookiesProvider) {
@@ -18,6 +20,10 @@ angular.module('app', ['app.controllers','ngRoute','ngStorage','ui.bootstrap', '
     {
       templateUrl:    '/views/signupView.html',
       controller:     'Signup.Controller'
+    });
+    $routeProvider.when('/ApproveDeny', {
+      templateUrl:    '/views/ApproveDenyView.html',
+      controller:     'Response.Controller',
     });
     $routeProvider.when('/dashboard',
     {

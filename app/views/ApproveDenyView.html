@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>Approve or Deny</title>
+</head>
+<body>
+<div class="container" ng-controller="Response.Controller">
+  <div class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading">Carpool Name:</div>
+
+    <!-- Table -->
+    <table class="table">
+      <tr>
+        <th><center>Firstname</center></th>
+        <th><center>Lastname</center></th>
+        <!--<th>Username</th> -->
+        <th><center>Approve/Deny</center></th>
+      </tr>
+      <tr>
+      <tr ng-repeat="requests in carpoolRequests">
+        <td><center>{{requests.firstName}}</center>
+        </td>
+        <td><center>{{requests.lastName}}</center>
+        </td>
+        <td><center><button class="btn btn-success">Approve</button> <button class="btn btn-danger">Deny</button></center>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+
+</div>
+</body>
+</html>
