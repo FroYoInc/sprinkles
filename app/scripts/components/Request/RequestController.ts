@@ -13,6 +13,7 @@ module Request {
     constructor($scope:Scope, $location: any, $http: any) {
 
       $scope.sendRequest = function(carid: string){
+        console.log(carid);
         var carpoolID = new CarpoolModel.CarpoolID();
         carpoolID.carpoolID = carid;
 
