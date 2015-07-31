@@ -11,6 +11,7 @@ module Response {
     userIdent: any;
     carpoolID: string;
     userToAddID: string;
+    userToDenyID: string;
     viewRequests: Function;
     approveRequest: Function;
     denyRequest: Function;
@@ -45,10 +46,7 @@ module Response {
           $http.post('http://localhost:3000/api/carpools/addUser',postData).success(function(data, status, headers, config){
             console.log('approve successful');
           }).error(function(data, status, headers, config){
-            if(status == 200){
-              console.log('user added successfully');
-            }
-            else if(status == 400){
+            if(status == 400){
               console.log('One or more missing parameters');
             }
             else if(status == 401){
@@ -71,7 +69,35 @@ module Response {
 
         };
 
+        $scope.denyRequest = (carID: string, userIDent: string) => {
 
+          var postData = {
+            carpoolID: carID,
+            userToDenyID: userIDent,
+          };
+
+          $http.post('http://localhost:3000/api/carpools/denyUser',postData).success(function(data, status, headers, config){
+            console.log('Denied user');
+          }).error(function(data, status, headers, config){
+            if(status == 400){
+              console.log('One or more missing parameters');
+            }
+            else if(status == 401){
+              console.log('Unauthorized attempt, user must be logged in.');
+            }
+            else if(status == 403){
+              console.log('Forbidden. The user must be a member of a carpool to deny a member.');
+            }
+            else if(status == 404){
+              console.log('Request not found');
+            }
+            else if(status == 500){
+              console.log('Internal Server error. Unable to make request');
+            }
+
+          });
+
+        };
 
         $scope.loadRequestView = function() {
           $location.url('/ApproveDeny');

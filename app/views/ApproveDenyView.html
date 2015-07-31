@@ -24,7 +24,7 @@
         <td><center>{{requests.lastName}}</center>
         </td>
         <td><center><button type="submit" class="btn btn-success" ng-click="approveRequest(requests.carpoolID,requests.userID)">Approve</button>
-          <button class="btn btn-danger">Deny</button></center>
+          <button type="submit" class="btn btn-danger" ng-click="denyRequest(requests.carpoolID,requests.userID)">Deny</button></center>
         </td>
       </tr>
     </table>
