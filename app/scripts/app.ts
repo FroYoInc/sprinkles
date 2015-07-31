@@ -4,29 +4,7 @@
 /// <reference path='components/navbar/navbarController.ts' />
 /// <reference path='components/signup/signupController.ts' />
 /// <reference path='components/dashboard/dashboardController.ts' />
-<<<<<<< HEAD
 /// <reference path='components/carpools/editCarpoolController.ts' />
-
-angular.module('app', ['app.controllers', 'ngRoute','ngStorage', 'ngResource', 'ngCookies'])
-
-.config(function ($routeProvider, $httpProvider, $cookiesProvider) {
-
-    "use strict"; // do I need this?
-
-    $routeProvider
-      .when('/home', {
-        templateUrl:    '/views/homeView.html',
-        controller:     'Home.Controller',
-      })
-      .when('/signup', {
-        templateUrl:    '/views/signupView.html',
-        controller:     'Signup.Controller',
-      })
-      .when('/dashboard', {
-        templateUrl:    '/views/dashboardView.html',
-        controller:      'Dashboard.Controller',
-        resolve: {
-=======
 /// <reference path='components/carpools/createCarpoolController.ts'/>
 /// <reference path='components/carpools/viewCarpoolsController.ts'/>
 
@@ -47,29 +25,10 @@ angular.module('app', ['app.controllers','ngRoute','ngStorage','ui.bootstrap', '
       templateUrl:    '/views/dashboardView.html',
       controller:      'Dashboard.Controller',
       resolve: {
->>>>>>> 4d2a148761c0cf600d90b7010b2518f2a4270285
           access: ["Access", (Access) => {
              var a =  Access.isAuthenticated();
              return a;
           }]
-<<<<<<< HEAD
-        },
-      })
-      .when('/dashboard/carpools/edit', {
-        templateUrl:    '/views/editCarpoolView.html',
-        controller:      'Dashboard_Carpools_Edit.Controller',
-        resolve: {
-          access: ["Access", (Access) => {
-             var a =  Access.isAuthenticated();
-             return a;
-          }]
-        },
-      })
-
-      .otherwise( {
-        redirectTo:     '/home',
-        controller:     'Home.Controller',
-=======
         }
       });
       $routeProvider.when('/dashboard/carpools/view',
@@ -82,12 +41,22 @@ angular.module('app', ['app.controllers','ngRoute','ngStorage','ui.bootstrap', '
                  return a;
               }]
             }
->>>>>>> 4d2a148761c0cf600d90b7010b2518f2a4270285
       });
       $routeProvider.when('/dashboard/carpools/create',
       {
           templateUrl: '/views/createCarpoolView.html',
           controller: 'Dashboard_Carpools_Create.Controller',
+          resolve: {
+              access: ["Access", (Access) => {
+                 var a =  Access.isAuthenticated();
+                 return a;
+              }]
+            }
+      });
+      $routeProvider.when('/dashboard/carpools/edit',
+      {
+          templateUrl: '/views/editCarpoolView.html',
+          controller: 'Dashboard_Carpools_Edit.Controller',
           resolve: {
               access: ["Access", (Access) => {
                  var a =  Access.isAuthenticated();
@@ -129,7 +98,6 @@ angular.module('app', ['app.controllers','ngRoute','ngStorage','ui.bootstrap', '
 .run(["$rootScope", "Access", "$location", '$cookies',
 function($rootScope, Access, $location, $cookies) {
   var cookie = $cookies.getObject('user');
-  console.log(cookie);
   if (typeof(cookie) != "undefined") {
     if (cookie.isAuth == true) {
       $location.path("/dashboard");
@@ -147,4 +115,3 @@ function($rootScope, Access, $location, $cookies) {
 module app {
     export var controllers = angular.module('app.controllers',[]);
 }
-

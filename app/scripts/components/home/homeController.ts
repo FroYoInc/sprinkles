@@ -29,7 +29,6 @@ module Home {
                     success(function (data) {
                         // successful login
                         $('#success').css('visibility','visible').fadeIn();
-                        console.log(data);
                         // Auth.setUser(user); //Update the state of the user in the app
                         var newUser = new UserModel.UserCookie(data.email, 
                                     data.firstName, data.lastName, data.userID, data.userName);

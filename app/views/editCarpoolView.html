@@ -21,11 +21,23 @@
     <!--Campus Location -->
     <div class="control-group" ng-class="{true: 'error'}[submitted && createform.campus.$invalid]">
       <label>Campus (location of Office)</label>
-      <select ng-model="carpoolCampus" name="campus" required>
+      <select ng-model="carpoolCampusName" name="campus" required>
           <option ng-repeat="campus in campusList" value="{{campus.name}}">{{campus.name}}</option>
       </select>
       <span class="help-inline" ng-show="submitted && createform.campus.$error.required">Required Field</span>
     </div>
+
+    <!--Pickup Location -->
+    <div class="control-group" ng-class="{true: 'error'}[submitted && createform.pickupLocation.$invalid]">
+      <label>Pick up location</label>
+          <input type="text" ng-model="address" class="form-control" name="address" required>
+      <span class="help-inline" ng-show="submitted && createform.address.$error.required">Required Field</span>
+      <input type="text" ng-model="lat" class="form-control" name="lat" required>
+      <span class="help-inline" ng-show="submitted && createform.lat.$error.required">Required Field</span>
+      <input type="text" ng-model="longitude" class="form-control" name="longitude" required>
+      <span class="help-inline" ng-show="submitted && createform.longitude.$error.required">Required Field</span>
+    </div>
+
 
     <div ng-show="carpoolExists" class="help-inline2"> Error: Cannot create carpool. This carpool already Exists.</div><br>
     <button type="submit" class="btn btn-primary btn-lg btn-inline" ng-click="submitted=true; editCarpool(createform.$invalid)">Edit Carpool</button>

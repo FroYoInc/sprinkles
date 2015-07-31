@@ -6,55 +6,70 @@ module Dashboard_Carpools_Edit {
 
     export interface Scope {
         events: any;
-        carpoolId: string;
+        carpoolID: string;
         carpoolName: string;
         carpoolDescription: string;
-        carpoolCampus: string;
-        // Carpool address
-        // Carpool Geocode
+        carpoolCampusName: string;
+        lat: number;
+        longitude: number;
         editCarpool: Function;
-        loadCarpoolId: Function;
+        loadCarpoolID: Function;
         carpool: any;
         campusList: any;
     }
     export class Controller {
 
-    	constructor ($scope: Scope, $http: any, $location, $localStorage) {
+    	constructor ($scope: Scope, $http: any, $location, $cookies: any) {
 
         $http.get('http://localhost:3000/api/campuses').success(function(data, status, headers, config) {
           $scope.campusList = data;
           });
+        $cookies.getObject('carpool', newCarpool);
 
+        //Do a get incase this was changed somewhere other than the cookie
+        $http.get('http://localhost:3000/api/carpools/' + newCarpool.carpoolID).success(function(data, status, headers, config) {
+              $scope.carpoolID = data.carpoolID;
+              $scope.carpoolName = data.name;
+              $scope.carpoolCampusName = data.campus.name;
+              $scope.carpoolDescription = data.description;
+              $scope.address = data.pickupLocation.address;
+              $scope.lat = data.pickupLocation.lat;
+              $scope.longitude = data.pickupLocation.long;
+        }
+        
         $scope.events = this;
 
-        $scope.carpoolId = $localStorage.carpoolId;
-        $scope.carpoolName = $localStorage.carpoolName;
-        $scope.carpoolDescription = $localStorage.carpoolDescription;
 
         //Default Values
         //Populates the Carpool list
         $scope.editCarpool = function(isInvalidForm) {
 
-           var editedCarpool = new CarpoolModel.Carpool();
-           editedCarpool.name = $scope.carpoolName;
-           editedCarpool.description = $scope.carpoolDescription;
-           console.log($scope.carpoolCampus);
-           for (var i = 0; i < $scope.campusList.length; i++){
-            console.log($scope.campusList[i].name + "vs" + $scope.carpoolCampus);
-            if ($scope.campusList[i].name == $scope.carpoolCampus)
-              editedCarpool.campus = $scope.campusList[i].href;
-           }
+          var editedCarpool = new CarpoolModel.Carpool();
+          editedCarpool.carpoolID = $scope.carpoolID;
+          editedCarpool.name = $scope.carpoolName;
+          editedCarpool.description = $scope.carpoolDescription;
+          editedCarpool.pickupLocation.address = $scope.address.address;
+          editedCarpool.pickupLocation.geoCode.lat = $scope.lat;
+          editedCarpool.pickupLocation.geoCode.long = $scope.longitude;
 
+          for (var i = 0; i < $scope.campusList.length; i++){
+            if ($scope.campusList[i].name ==  $scope.carpoolCampusName)
+              editedCarpool.campusID = $scope.campusList[i].href;
+              editedCarpool.campusName = $scope.carpoolCampusName;
+           }
+          $cookies.remove('carpool');
+           var updatedCookie = new CarpoolModel.CarpoolCookie(editedCarpool);
+                    $cookies.putObject('carpool', updatedCookie);
           //If the form is invalid, don't make the request
           if(isInvalidForm) {
             return;
           }
            console.log(editedCarpool);
-           $http.put('http://localhost:3000/api/carpools/' + $scope.carpoolId, 
+           // This call may be messed up if I pass in the carpool name too
+           $http.put('http://localhost:3000/api/carpools/' + $scope.carpoolID, 
                       editedCarpool).success(function(data, status, headers, config) {
                         console.log(data);
               $location.path('/dashboard');
-              $localStorage.$reset();
               window.scrollTo(0,0);
               $('#carpoolUpdated').css('visibility','visible').fadeIn();
              }).error(function(data, status, headers, config) {
@@ -69,11 +84,12 @@ module Dashboard_Carpools_Edit {
                }
              });
         }
-
+        /*
         $scope.loadCarpoolId = function(carpoolId) {
-          $localStorage.carpoolId = carpoolId;
+          //$localStorage.carpoolId = carpoolId;
+          $cookies.getObject('carpool', newCarpool);
 
-          $http.get('http://localhost:3000/api/carpools/' + carpoolId).success(function(data, status, headers, config) {
+          $http.get('http://localhost:3000/api/carpools/' + newCarpool.carpoolID).success(function(data, status, headers, config) {
               //TODO Check to see if this user has access to the carpool
               $localStorage.carpoolName = data.name;
               $localStorage.carpoolDescription = data.description;
@@ -92,6 +108,7 @@ module Dashboard_Carpools_Edit {
                }
              });
           }
+          */
     	}
     }
 }

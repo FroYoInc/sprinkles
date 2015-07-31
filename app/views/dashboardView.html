@@ -9,7 +9,7 @@
 
   <!-- User Profile Widget -->
   <div class="row-1">
-    <div class="col-sm-6 col-md-3">
+    <div class="col-sm-6 col-md-4">
       <div class="thumbnail">
         <img src="../images/glyphicons-user.png">
         <div class="caption">
@@ -21,6 +21,7 @@
         </div><center>
       </div>
     </div>
+  </div>
 
   <!-- Carpool Widget -->
   <div class="row-2">
@@ -33,9 +34,11 @@
               <button type="submit" class="btn btn-primary btn-lg btn-block" ng-click="displayCarpools()">View Carpools</button>
         </div><center>
       </div>
+    </div>
+  </div>
 
   <!-- New Carpool Widget -->
-  <div class="row-3">
+  <div class="row-3" ng-show="carpoolStatus">
     <div class="col-sm-6 col-md-4">
       <div class="thumbnail">
         <img src="../images/glyphicons-cars.png">
@@ -48,33 +51,23 @@
     </div>
   </div>
 
-</div>
 <!-- Edit Carpool Widget -->
-      <div ng-controller="Dashboard_Carpools_Edit.Controller">
-        <div class="row-4">
-          <div class="col-sm-6 col-md-3">
-            <div class="thumbnail">
-              <img src="../images/glyphicons-settings.png">
-              <div class="caption">
-                <center> <h3>Edit Carpool</h3>
-                  <p>Edit your carpool</p>
-                  <form class="form-inline">
-                    <div class="form-group">
-                      <input type="text" class="form-control" ng-model="carpoolId" id="carpoolIdField" placeholder="carpoolid">
-                    </div>
-                    <button type="submit" class="btn btn-primary" ng-click="loadCarpoolId(carpoolId)">Edit Carpool</button>
-                  </form>
-                </div>
-              </center>
-              </div>
-            </div>
-          </div>
-        </div>
-</div>
-
+  <div ng-controller="Dashboard_Carpools_Edit.Controller">
+  <div class="row-3" ng-show="!carpoolStatus">
+    <div class="col-sm-6 col-md-4">
+      <div class="thumbnail">
+        <img src="../images/glyphicons-settings.png">
+        <div class="caption">
+          <center> <h3>Edit Carpool</h3>
+            <p>Edit your carpool</p>
+              <button type="submit" class="btn btn-primary btn-lg btn-block" ng-click="loadCarpoolId(carpoolId)">Edit Carpool</button>
+        </div><center>
+      </div>
+    </div>
+  </div>
 
 <br><br><br>
 
-      <div class="footer">
-        <center>Version .02</center>
-      </div>
+<div class="footer">
+  <center>Version .02</center>
+</div>
