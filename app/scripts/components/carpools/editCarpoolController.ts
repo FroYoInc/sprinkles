@@ -47,6 +47,7 @@ module Dashboard_Carpools_Edit {
         //Populates the Carpool list
         $scope.editCarpool = function(isInvalidForm) {
 
+          // create an edited carpool to upload to the db and to the cookie
           var editedCarpool = new CarpoolModel.Carpool();
           editedCarpool.carpoolID = $scope.carpoolID;
           editedCarpool.name = $scope.carpoolName;
@@ -73,7 +74,7 @@ module Dashboard_Carpools_Edit {
            // This call may be messed up if I pass in the carpool name too
            $http.put('http://localhost:3000/api/carpools/' + $scope.carpoolID, 
                       editedCarpool).success(function(data, status, headers, config) {
-                        console.log(data);
+                      console.log(data);
               $location.path('/dashboard');
               window.scrollTo(0,0);
               $('#carpoolUpdated').css('visibility','visible').fadeIn();

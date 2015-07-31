@@ -9,14 +9,15 @@ module Dashboard {
         displayCarpools: Function;
         loadCarpoolId: Function;
         createCarpool: Function;
+        editCarpool: Function;
         carpoolStatus: Boolean;
+        carpoolStatusString: string;
     }
     export class Controller {
 
     	constructor ($scope: Scope, $http: any, $location: any,  $cookies: any) {
-
-            //$scope.carpoolStatus = true; // Remove this line
             
+            //ADD THE USERS CARPOOL STATUS IN THE VIEW
             $http.get('http://localhost:3000/api/user/carpools').success(function(data, status, headers, config) {
                 // The user is not in a carpool -> Show create carpool
                 if (typeof(data) != "undefined") {
@@ -26,6 +27,7 @@ module Dashboard {
                 else {
                     var newCarpool = new CarpoolModel.CarpoolCookie(data.name, data.description, data.href, data.campus.name, 
                                 data.campus.href, data.pickupLocation.address, data.pickupLocation.geoCode.lat, data.pickupLocation.geoCode.long);
+                    console.log(data);
                     $cookies.putObject('carpool', newCarpool); 
                     $scope.carpoolStatus = true;          
                 }
@@ -38,6 +40,9 @@ module Dashboard {
 
             $scope.createCarpool = () => {
               $location.path('dashboard/carpools/create');
+            }
+            $scope.editCarpool = () => {
+              $location.path('dashboard/carpools/edit');
             }
 
     	}
