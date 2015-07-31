@@ -15,8 +15,8 @@ module Dashboard {
 
     	constructor ($scope: Scope, $http: any, $location: any,  $cookies: any) {
 
-            $scope.carpoolStatus = true; // Remove this line
-            /*
+            //$scope.carpoolStatus = true; // Remove this line
+            
             $http.get('http://localhost:3000/api/user/carpools').success(function(data, status, headers, config) {
                 // The user is not in a carpool -> Show create carpool
                 if (typeof(data) != "undefined") {
@@ -30,7 +30,7 @@ module Dashboard {
                     $scope.carpoolStatus = true;          
                 }
             });
-            */
+            
 
             $scope.displayCarpools = () => {
               $location.path('dashboard/carpools/view');
