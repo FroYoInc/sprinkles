@@ -1,18 +1,19 @@
 /// <reference path="../../app.ts"/>
+/// <reference path='carpoolIDModel.ts'/>
 
 // send join request
 module Request {
 
   export interface Scope {
     sendRequest: Function;
-    carpoolID: string;
+    carpoolID: any;
 
   }
   export class Controller {
 
     constructor($scope:Scope, $location: any, $http: any) {
 
-      $scope.sendRequest = function(carid: string){
+      $scope.sendRequest = (carid: string) => {
         var carpoolID = new CarpoolModel.CarpoolID();
         carpoolID.carpoolID = carid;
 

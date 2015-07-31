@@ -30,7 +30,8 @@
         "./app/scripts/components/navbar/navbarController.ts",
         "./app/scripts/components/signup/signupController.ts",
         "./app/scripts/components/Request/carpoolIDModel.ts",
-        "./app/scripts/components/Request/RequestController.ts"
+        "./app/scripts/components/Request/RequestController.ts",
+        "./app/scripts/components/Request/responseController.ts"
 
     ]
 }

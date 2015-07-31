@@ -1,12 +1,19 @@
 /// <reference path="../../app.ts"/>
 
-// interface used to sign up a user
+
+// respond to requests
 module Response {
 
   export interface Scope {
     loadRequestView: Function;
     carpoolRequests: any;
+    carIdent: any;
+    userIdent: any;
+    carpoolID: string;
+    userToAddID: string;
     viewRequests: Function;
+    approveRequest: Function;
+    denyRequest: Function;
   }
   export class Controller {
 
@@ -14,7 +21,8 @@ module Response {
 
         $http.get('http://localhost:3000/api/carpools/requests').success(function(data, status, headers, config) {
           $scope.carpoolRequests = data;
-          console.log('success');
+
+
         }).error(function(data, status, headers, config){
           if(status == 401){
             console.log('Unauthorized attempt, user must be logged in.');
@@ -27,10 +35,49 @@ module Response {
           }
         });
 
+        $scope.approveRequest = (carID: string, userIDent: string) => {
 
-      $scope.loadRequestView = function() {
-        $location.url('/ApproveDeny');
-      };
+          var postData = {
+            carpoolID: carID,
+            userToAddID: userIDent,
+          };
+
+          $http.post('http://localhost:3000/api/carpools/addUser',postData).success(function(data, status, headers, config){
+            console.log('approve successful');
+          }).error(function(data, status, headers, config){
+            if(status == 200){
+              console.log('user added successfully');
+            }
+            else if(status == 400){
+              console.log('One or more missing parameters');
+            }
+            else if(status == 401){
+              console.log('Unauthorized attempt, user must be logged in.');
+            }
+            else if(status == 403){
+              console.log('Forbidden. The user must be a member of a carpool to add members.');
+            }
+            else if(status == 404){
+              console.log('Missing Resource. Unable to locate either the request, the user, or the carpool.');
+            }
+            else if(status == 409){
+              console.log('Conflict error. User is already a member of the carpool.');
+            }
+            else if(status == 500){
+              console.log('Internal Server error. Unable to make request');
+            }
+
+          });
+
+        };
+
+
+
+        $scope.loadRequestView = function() {
+          $location.url('/ApproveDeny');
+        };
+
+
     }
 
   }
