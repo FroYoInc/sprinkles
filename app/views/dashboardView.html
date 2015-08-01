@@ -38,7 +38,7 @@
   </div>
 
   <!-- New Carpool Widget -->
-  <div class="row-3" ng-show="carpoolStatus">
+  <div class="row-3" ng-show="!carpoolStatus">
     <div class="col-sm-6 col-md-4">
       <div class="thumbnail">
         <img src="../images/glyphicons-cars.png">
@@ -52,8 +52,7 @@
   </div>
 
 <!-- Edit Carpool Widget -->
-  <div ng-controller="Dashboard_Carpools_Edit.Controller">
-  <div class="row-3" ng-show="!carpoolStatus">
+  <div class="row-3" ng-show="carpoolStatus">
     <div class="col-sm-6 col-md-4">
       <div class="thumbnail">
         <img src="../images/glyphicons-settings.png">

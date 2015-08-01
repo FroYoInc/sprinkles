@@ -18,10 +18,14 @@ module Dashboard {
     	constructor ($scope: Scope, $http: any, $location: any,  $cookies: any) {
             
             //ADD THE USERS CARPOOL STATUS IN THE VIEW
+            var newCarpool = $cookies.getObject('carpool');
+            if (typeof(newCarpool) == "undefined"){
+                $scope.carpoolStatus = false;
+            }
             $http.get('http://localhost:3000/api/user/carpools').success(function(data, status, headers, config) {
                 console.log(data);
                 // The user is not in a carpool -> Show create carpool
-                if (typeof(data) == "undefined") {
+                if (typeof(data) == "undefined" && typeof(newCarpool) == "undefined") {
                     console.log("False");
                     $scope.carpoolStatus = false;
                 } 
@@ -32,7 +36,7 @@ module Dashboard {
                                 data.campus, data.pickupLocation.address, data.pickupLocation.geoCode.lat, data.pickupLocation.geoCode.long);
                     console.log("New carpool is", newCarpool);
                     $cookies.putObject('carpool', newCarpool); 
-                    $scope.carpoolStatus = true;          
+                    $scope.carpoolStatus = true;
                 }
             }).error(function(data, status, headers, config){
                 console.log(data);
