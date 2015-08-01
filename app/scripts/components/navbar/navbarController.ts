@@ -69,6 +69,10 @@ module Navbar {
           if (cookie.isAuth){
             $cookies.remove('user');
           }
+          var cookie = $cookies.getObject('carpool');
+          if (typeof(cookie) != undefined){
+            $cookies.remove('carpool');
+          }
           $location.url('/home');
        }
     }

@@ -25,19 +25,22 @@ module Dashboard_Carpools_Edit {
           $scope.campusList = data;
           });
         var newCarpool = $cookies.getObject('carpool');
+        console.log(newCarpool);
         if (typeof(newCarpool) == "undefined") {
+          console.log(newCarpool);
           return; //error here
         }
         $scope.events = this;
+        console.log("carpoolid is ", newCarpool.carpoolID);
         //Do a get incase this was changed somewhere other than the cookie
         $http.get('http://localhost:3000/api/carpools/' + newCarpool.carpoolID).success(function(data, status, headers, config) {
-              $scope.carpoolID = data.carpoolID;
+              $scope.carpoolID = data.id;
               $scope.carpoolName = data.name;
               $scope.carpoolCampusName = data.campus.name;
               $scope.carpoolDescription = data.description;
               $scope.address = data.pickupLocation.address;
-              $scope.lat = data.pickupLocation.lat;
-              $scope.longitude = data.pickupLocation.long;
+              $scope.lat = data.pickupLocation.geoCode.lat;
+              $scope.longitude = data.pickupLocation.geoCode.long;
         });
 
         

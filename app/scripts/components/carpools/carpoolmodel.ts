@@ -1,20 +1,24 @@
 module CarpoolModel {
+
+	class GeoCode {
+        lat: number;
+        long: number;
+      }
+	class PickupLocation {
+      address: string;
+      geoCode = new GeoCode();
+  	}
   export class Carpool {
     name: string;
     description: string;
     carpoolID: string;
     campusName: string;
     campusID: string;
-	pickupLocation: {
-      address: string;
-      geoCode: {
-        lat: number;
-        long: number;
-      }
-  	} 
+    pickupLocation = new PickupLocation();
+	 
   }
   	export class CarpoolCookie {
-  		carpool: Carpool;
+  		carpool = new Carpool();
 
 	  	constructor (name, description, carpoolID, campusName, campusID, address, lat, longitude) {
 	  		this.carpool.name = name;
