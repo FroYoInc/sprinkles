@@ -51,10 +51,20 @@
     </div>
   </div>
 
-  <div ng-controller="Response.Controller">
-    <a href="" ng-click="loadRequestView()">click here</a>
+  <!-- View pending requests widget -->
+  <div class="row-3">
+    <div class="col-sm-6 col-md-4">
+      <div class="thumbnail">
+        <img src="../images/glyphicons-notes.png">
+        <div class="caption">
+          <center> <h3>View Carpool Requests</h3>
+            <p>View Requests Here</p><div ng-controller="Response.Controller">
+            <button type="submit" class="btn btn-primary btn-lg btn-block" ng-click="loadRequestView()">View Requests</button>
+        </div><center>
+        </div>
+      </div>
+    </div>
   </div>
-
 </div>
 
 </div>
