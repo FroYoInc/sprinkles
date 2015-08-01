@@ -6,7 +6,6 @@ module Dashboard_Carpools_Edit {
 
     export interface Scope {
         events: any;
-        carpoolID: string;
         carpoolName: string;
         carpoolDescription: string;
         carpoolCampusName: string;
@@ -55,7 +54,7 @@ module Dashboard_Carpools_Edit {
 
           // create an edited carpool to upload to the db and to the cookie
           var editedCarpool = new CarpoolModel.Carpool();
-          editedCarpool.carpoolID = $scope.carpoolID;
+          editedCarpool.carpoolID = newCarpool.carpool.carpoolID;
           editedCarpool.name = $scope.carpoolName;
           editedCarpool.description = $scope.carpoolDescription;
           editedCarpool.campusName = $scope.carpoolCampusName;
@@ -77,7 +76,7 @@ module Dashboard_Carpools_Edit {
             return;
           }
            console.log("editCarpool is ", editedCarpool);
-           $http.put('http://localhost:3000/api/carpools/' + $scope.carpoolID, 
+           $http.put('http://localhost:3000/api/carpools/' + editedCarpool.carpoolID, 
                       editedCarpool).success(function(data, status, headers, config) {
                       console.log(data);
               $location.path('/dashboard');
