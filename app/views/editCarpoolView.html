@@ -2,12 +2,9 @@
   <div class="jumbotron">
 
     <form name="editform" class="form-signup" novalidate>
-    <h2 class="form-signup-heading">Edit Your CarPool</h2>
-    <!-- remove this later  -->
-    <h6>Carpool id is {{carpoolId}}</h6>
+    <h2 class="form-signup-heading">Edit Your Carpool</h2>
     <!--Name-->
     <div class="control-group" ng-class="{true: 'error'}[submitted && editform.name.$invalid]">
-      <label for="carpoolName">Name</label>
       <label>Name of Carpool</label>
       <input type="text" ng-model="carpoolName" name= "carpoolName" required>
       <span class="help-inline" ng-show="submitted && editform.name.$error.required">Required Field</span>
@@ -21,12 +18,12 @@
     <!--Campus Location -->
     <div class="control-group" ng-class="{true: 'error'}[submitted && editform.campus.$invalid]">
       <label>Campus (location of Office)</label>
-      <select ng-model="carpoolCampusName" name="campus" required>
+      <select ng-model="carpoolCampusName" name="carpoolCampusName" required>
+          <option> {{carpoolCampusName}}</option>
           <option ng-repeat="campus in campusList" value="{{campus.name}}">{{campus.name}}</option>
       </select>
       <span class="help-inline" ng-show="submitted && editform.campus.$error.required">Required Field</span>
     </div>
-
     <!--Pickup Location -->
     <div class="control-group" ng-class="{true: 'error'}[submitted && editform.pickupLocation.$invalid]">
       <label>Pick up location</label>

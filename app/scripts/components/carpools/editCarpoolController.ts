@@ -30,8 +30,7 @@ module Dashboard_Carpools_Edit {
         if (typeof(newCarpool) == "undefined") {
           return; 
         }
-        // Set the cookies carpoolID (This value will never change)
-        $scope.carpoolID = newCarpool.carpool.carpoolID;
+
         $scope.events = this;
 
         $http.get('http://localhost:3000/api/campuses').success(function(data, status, headers, config) {
