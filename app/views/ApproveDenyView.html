@@ -8,7 +8,7 @@
 <div class="container" ng-controller="Response.Controller">
   <div class="panel panel-default">
     <!-- Default panel contents -->
-    <div class="panel-heading">Carpool Name:</div>
+    <div class="panel-heading" ng-repeat="request in carpoolRequests">Carpool Name: {{request.carpoolName}}</div>
 
     <!-- Table -->
     <table class="table">
