@@ -14,7 +14,7 @@ module Dashboard_Carpools_Edit {
         longitude: number;
         editCarpool: Function;
         getCampusName: Function;
-        getCampusID: Function;
+        getCampus: Function;
         carpool: any;
         campusList: any;
     }
@@ -40,8 +40,6 @@ module Dashboard_Carpools_Edit {
         $http.get('http://localhost:3000/api/carpools/' + newCarpool.carpool.carpoolID).success(function(data, status, headers, config) {
               $scope.carpoolName = data.name;
               $scope.carpoolDescription = data.description;
-              console.log("id name is ", data.campus.href);
-              console.log("returned name is ", $scope.getCampusName(data.campus.href));
               $scope.carpoolCampusName = $scope.getCampusName(data.campus.href);
               $scope.address = data.pickupLocation.address;
               $scope.lat = data.pickupLocation.geoCode.lat;
@@ -58,15 +56,17 @@ module Dashboard_Carpools_Edit {
           editedCarpool.name = $scope.carpoolName;
           editedCarpool.description = $scope.carpoolDescription;
           editedCarpool.campusName = $scope.carpoolCampusName;
-          editedCarpool.campusID = $scope.getCampusID($scope.carpoolCampusName);
+          editedCarpool.campus = $scope.getCampus($scope.carpoolCampusName);
           editedCarpool.pickupLocation.address = $scope.address;
           editedCarpool.pickupLocation.geoCode.lat = $scope.lat;
           editedCarpool.pickupLocation.geoCode.long = $scope.longitude;
 
+          // remove this cookie because I will make a new one
           $cookies.remove('carpool');
+
           // Update my cookie 
           var updatedCookie = new CarpoolModel.CarpoolCookie(editedCarpool.name, editedCarpool.description, editedCarpool.carpoolID, 
-                              editedCarpool.campusName, editedCarpool.campusID, editedCarpool.pickupLocation.address, 
+                              editedCarpool.campusName, editedCarpool.campus, editedCarpool.pickupLocation.address, 
                               editedCarpool.pickupLocation.geoCode.lat, editedCarpool.pickupLocation.geoCode.long);
                     $cookies.putObject('carpool', updatedCookie);
 
@@ -95,16 +95,16 @@ module Dashboard_Carpools_Edit {
              });
         }
         // Get the campus name by the campus ID
-        $scope.getCampusName = function(campusID) {
+        $scope.getCampusName = function(campus) {
           for (var i = 0; i < $scope.campusList.length; i++){
-              if ($scope.campusList[i].href == campusID){
+              if ($scope.campusList[i].href == campus){
                 return $scope.campusList[i].name;
               }
           }
           return "undefined"
         }
         // Get the campus ID by the campus name
-        $scope.getCampusID = function(campusName) {
+        $scope.getCampus = function(campusName) {
           for (var i = 0; i < $scope.campusList.length; i++){
               if ($scope.campusList[i].name == campusName){
                 return $scope.campusList[i].href;
