@@ -128,7 +128,8 @@
           <ul class="nav navbar-nav">
             <li ng-class="navClass('dashboard')"><a href="" ng-click="loadDashboard()">Home</a></li>
             <li ng-class="navClass('dashboard/carpools/view')"><a href="" ng-click="loadCarpoolsView()">View Carpools</a></li>
-            <li ng-class="navClass('dashboard/carpools/create')"><a href="" ng-click="loadCarpoolsCreate()">Create Carpool</a></li>
+            <li ng-class="navClass('dashboard/carpools/create')"><a href="" ng-show="!isInCarpool"ng-click="loadCarpoolsCreate()">Create Carpool</a></li>
+            <li ng-class="navClass('dashboard/carpools/edit')"><a href="" ng-show="isInCarpool"ng-click="loadCarpoolsEdit()">Edit Carpool</a></li>
           </ul>
           <ul class="nav navbar-nav pull-right">
             <li><a class="pull-right" href="" ng-click="logout()">Logout</a></li>
