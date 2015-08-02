@@ -1,3 +1,5 @@
+// This is a carpoolModel used to create a cookie and a carpool 
+// which is used in other carpool controllers
 module CarpoolModel {
 
 	class GeoCode {
