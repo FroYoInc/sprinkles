@@ -32,6 +32,7 @@ module Dashboard {
                     var newCarpool = new CarpoolModel.CarpoolCookie(data.name, data.description, data.id, data.campus.name, 
                                 data.campus, data.pickupLocation.address, data.pickupLocation.geoCode.lat, data.pickupLocation.geoCode.long);
                     $cookies.putObject('carpool', newCarpool); 
+                    $scope.carpoolStatusString = data.name;
                     $scope.carpoolStatus = true;
                 }
             }).error(function(data, status, headers, config){

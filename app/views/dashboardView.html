@@ -3,7 +3,8 @@
 <div class="container">
   <div class="page-header">
     <h1>Current Carpool Status <br>
-      <small>You are not currently in a carpool</small>
+      <small ng-show="!carpoolStatus">You are not currently in a carpool</small>
+      <small ng-show="carpoolStatus">You are currently in {{carpoolStatusString}}</small>
     </h1>
   </div>
 
