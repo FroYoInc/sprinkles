@@ -4,16 +4,16 @@
     <form name="editform" class="form-signup" novalidate>
     <h2 class="form-signup-heading">Edit Your Carpool</h2>
     <!--Name-->
-    <div class="control-group" ng-class="{true: 'error'}[submitted && editform.name.$invalid]">
+    <div class="control-group" ng-class="{true: 'error'}[submitted && editform.carpoolName.$invalid]">
       <label>Name of Carpool</label>
       <input type="text" ng-model="carpoolName" name= "carpoolName" required>
-      <span class="help-inline" ng-show="submitted && editform.name.$error.required">Required Field</span>
+      <span class="help-inline" ng-show="submitted && editform.carpoolName.$error.required">Required Field</span>
     </div>
     <!--Description of Carpool-->
-    <div class="control-group" ng-class="{true: 'error'}[submitted && editform.description.$invalid]">
+    <div class="control-group" ng-class="{true: 'error'}[submitted && editform.carpoolDescription.$invalid]">
       <label>Description of Carpool</label>
-      <input type="text" ng-model="carpoolDescription" class="form-control" name="description" required>
-      <span class="help-inline" ng-show="submitted && editform.description.$error.required">Required Field</span>
+      <input type="text" ng-model="carpoolDescription" class="form-control" name="carpoolDescription" required>
+      <span class="help-inline" ng-show="submitted && editform.carpoolDescription.$error.required">Required Field</span>
     </div>
     <!--Campus Location -->
     <div class="control-group" ng-class="{true: 'error'}[submitted && editform.campus.$invalid]">
