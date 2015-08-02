@@ -9,9 +9,11 @@ module Navbar {
     logout: Function;
     loadCarpoolsView: Function;
     loadCarpoolsCreate: Function;
+    loadCarpoolsEdit: Function;
     $watch: any;
 
     isAuth: Boolean;
+    isInCarpool: Boolean;
   }
 
   export class Controller {
@@ -21,11 +23,22 @@ module Navbar {
       if (typeof(cookie) != "undefined"){
         $scope.isAuth = cookie.isAuth;
       }
-
+      var carpoolCookie = $cookies.getObject('carpool');
+      if (typeof(carpoolCookie) != "undefined"){
+        $scope.isInCarpool = true;
+      } else {
+        $scope.isInCarpool = false;
+      }
       //Watches to  see if cookies change. If the isAuth cookie is changed, update
       //its value.
       $scope.$watch(function() {
               var cookie = $cookies.getObject('user');
+              var carpoolCookie = $cookies.getObject('carpool');
+              if (typeof(carpoolCookie) != "undefined"){
+                $scope.isInCarpool = true;
+              } else {
+                $scope.isInCarpool = false;
+              }
               if (typeof(cookie) != "undefined"){
                 return cookie.isAuth;
               }
@@ -33,6 +46,12 @@ module Navbar {
           var cookie = $cookies.getObject('user');
           if (typeof(cookie) != "undefined"){
             $scope.isAuth = cookie.isAuth;
+          }
+          var carpoolCookie = $cookies.getObject('carpool');
+          if (typeof(carpoolCookie) != "undefined"){
+            $scope.isInCarpool = true;
+          } else {
+            $scope.isInCarpool = false;
           }
       });
 
@@ -57,7 +76,9 @@ module Navbar {
        $scope.loadCarpoolsView = () => {
          $location.url('/dashboard/carpools/view')
        }
-
+       $scope.loadCarpoolsEdit = () => {
+         $location.url('/dashboard/carpools/edit')
+       }
        $scope.loadCarpoolsCreate = () => {
          $location.url('/dashboard/carpools/create')
        }
@@ -68,6 +89,10 @@ module Navbar {
           var cookie = $cookies.getObject('user');
           if (cookie.isAuth){
             $cookies.remove('user');
+          }
+          var cookie = $cookies.getObject('carpool');
+          if (typeof(cookie) != undefined){
+            $cookies.remove('carpool');
           }
           $location.url('/home');
        }

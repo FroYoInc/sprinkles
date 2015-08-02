@@ -81,6 +81,13 @@
     <span aria-hidden="true">&times;</span></button>
       Account has been made. Please check your email for activation instructions.
     </div>
+    <!-- Carpool was Updated -->
+    <div class="alert alert-success alert-dismissible fade in hidden-alerts" role="alert"
+           id="carpoolUpdated">
+    <button type="button" class="close" ng-click="visible('carpoolUpdated')" aria-label="Close">
+    <span aria-hidden="true">&times;</span></button>
+      Carpool has been succesfully updated
+    </div>
 
   </div>
 <div ng-controller="Navbar.Controller">
@@ -121,7 +128,8 @@
           <ul class="nav navbar-nav">
             <li ng-class="navClass('dashboard')"><a href="" ng-click="loadDashboard()">Home</a></li>
             <li ng-class="navClass('dashboard/carpools/view')"><a href="" ng-click="loadCarpoolsView()">View Carpools</a></li>
-            <li ng-class="navClass('dashboard/carpools/create')"><a href="" ng-click="loadCarpoolsCreate()">Create Carpool</a></li>
+            <li ng-class="navClass('dashboard/carpools/create')"><a href="" ng-show="!isInCarpool"ng-click="loadCarpoolsCreate()">Create Carpool</a></li>
+            <li ng-class="navClass('dashboard/carpools/edit')"><a href="" ng-show="isInCarpool"ng-click="loadCarpoolsEdit()">Edit Carpool</a></li>
           </ul>
           <ul class="nav navbar-nav pull-right">
             <li><a class="pull-right" href="" ng-click="logout()">Logout</a></li>
@@ -150,6 +158,9 @@
 <script src="dist/app/scripts/components/home/homeController.js"></script>
 <script src="dist/app/scripts/components/home/usermodel.js"></script>
 <script src="dist/app/scripts/components/navbar/navbarController.js"></script>
+<script src="dist/app/scripts/components/dashboard/dashboardController.js"></script>
+<script src="dist/app/scripts/components/carpools/editCarpoolController.js"></script>
+<script src="dist/app/scripts/components/carpools/carpoolmodel.js"></script>
 <script src="dist/app/scripts/components/signup/signupController.js"></script>
 <script src="dist/app/scripts/components/dashboard/dashboardController.js"></script>
 <script src="dist/app/scripts/components/carpools/createCarpoolController.js"></script>

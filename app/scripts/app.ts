@@ -4,6 +4,7 @@
 /// <reference path='components/navbar/navbarController.ts' />
 /// <reference path='components/signup/signupController.ts' />
 /// <reference path='components/dashboard/dashboardController.ts' />
+/// <reference path='components/carpools/editCarpoolController.ts' />
 /// <reference path='components/carpools/createCarpoolController.ts'/>
 /// <reference path='components/carpools/viewCarpoolsController.ts'/>
 
@@ -52,6 +53,17 @@ angular.module('app', ['app.controllers','ngRoute','ngStorage','ui.bootstrap', '
               }]
             }
       });
+      $routeProvider.when('/dashboard/carpools/edit',
+      {
+          templateUrl: '/views/editCarpoolView.html',
+          controller: 'Dashboard_Carpools_Edit.Controller',
+          resolve: {
+              access: ["Access", (Access) => {
+                 var a =  Access.isAuthenticated();
+                 return a;
+              }]
+            }
+      });
     $routeProvider.otherwise(
     {
       redirectTo:     '/home',
@@ -86,7 +98,6 @@ angular.module('app', ['app.controllers','ngRoute','ngStorage','ui.bootstrap', '
 .run(["$rootScope", "Access", "$location", '$cookies',
 function($rootScope, Access, $location, $cookies) {
   var cookie = $cookies.getObject('user');
-  console.log(cookie);
   if (typeof(cookie) != "undefined") {
     if (cookie.isAuth == true) {
       $location.path("/dashboard");
