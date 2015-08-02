@@ -68,17 +68,15 @@ module Dashboard_Carpools_Edit {
           var updatedCookie = new CarpoolModel.CarpoolCookie(editedCarpool.name, editedCarpool.description, editedCarpool.carpoolID, 
                               editedCarpool.campusName, editedCarpool.campus, editedCarpool.pickupLocation.address, 
                               editedCarpool.pickupLocation.geoCode.lat, editedCarpool.pickupLocation.geoCode.long);
-                    $cookies.putObject('carpool', updatedCookie);
+          $cookies.putObject('carpool', updatedCookie);
 
 
           //If the form is invalid, don't make the request
           if(isInvalidForm) {
             return;
           }
-           console.log("editCarpool is ", editedCarpool);
            $http.put('http://localhost:3000/api/carpools/' + editedCarpool.carpoolID, 
                       editedCarpool).success(function(data, status, headers, config) {
-                      console.log(data);
               $location.path('/dashboard');
               window.scrollTo(0,0);
               $('#carpoolUpdated').css('visibility','visible').fadeIn();
