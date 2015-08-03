@@ -20,7 +20,7 @@ module Dashboard_Carpools_Create {
 
     	constructor ($scope: Scope, $http: any, $location: any, $cookies: any, config: any) {
         //Populate campus list
-        $http.get(config.host + config.port + '/api/campuses').success(function(data, status, headers, config) {
+        $http.get('http://localhost:3000/api/campuses').success(function(data, status, headers, config) {
           $scope.campusList = data;
           });
 

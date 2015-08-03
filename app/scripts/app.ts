@@ -53,17 +53,6 @@ angular.module('app', ['app.controllers','ngRoute','ngStorage','ui.bootstrap', '
               }]
             }
       });
-      $routeProvider.when('/dashboard/carpools/edit',
-      {
-          templateUrl: '/views/editCarpoolView.html',
-          controller: 'Dashboard_Carpools_Edit.Controller',
-          resolve: {
-              access: ["Access", (Access) => {
-                 var a =  Access.isAuthenticated();
-                 return a;
-              }]
-            }
-      });
     $routeProvider.otherwise(
     {
       redirectTo:     '/home',
@@ -111,14 +100,15 @@ function($rootScope, Access, $location, $cookies) {
   });
 
 
+
 }])
 // Gloabl variables
-.factory('UserService', function() {
+.factory('config', function() {
   return {
     host: "http://localhost:",
     port: "3000"
   };
-});;
+});
 module app {
     export var controllers = angular.module('app.controllers',[]);
 }

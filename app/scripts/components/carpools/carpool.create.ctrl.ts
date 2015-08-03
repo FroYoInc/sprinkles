@@ -23,7 +23,7 @@ module CarpoolCreate {
     }
     export class Controller {
 
-        constructor ($scope: Scope, $location, $http: any, $localStorage: any, config: any) {
+        constructor ($scope: Scope, $location, $http: any, $localStorage, config: any) {
             $scope.events = this;
 
             //Adds the information into a temp local storage.
