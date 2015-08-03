@@ -9,16 +9,18 @@ module Dashboard_Carpools_Create {
         description: string;
         owner: string;
         campusList: any;
+        address: string;
+        lat: number;
+        long: number;
         userNotFound: Boolean;
         carpoolExists: Boolean;
         createCarpool: Function;
     }
     export class Controller {
 
-    	constructor ($scope: Scope, $http: any, $location: any,$inject, helloService) {
-        console.log("helloworld", helloService)
+    	constructor ($scope: Scope, $http: any, $location: any, $cookies: any, config: any) {
         //Populate campus list
-        $http.get('http://localhost:3000/api/campuses').success(function(data, status, headers, config) {
+        $http.get(config.host + config.port + '/api/campuses').success(function(data, status, headers, config) {
           $scope.campusList = data;
           });
 
@@ -27,6 +29,13 @@ module Dashboard_Carpools_Create {
             name: $scope.name,
             description: $scope.description,
             campus: $scope.campus,
+            pickupLocation: {
+              address: $scope.address,
+              geoCode: {
+                lat: $scope.lat,
+                long: $scope.long
+              }
+            },
             owner: $scope.owner
           }
 
@@ -40,7 +49,7 @@ module Dashboard_Carpools_Create {
           }
 
           //Attempt to post data
-          $http.post('http://localhost:3000/api/carpools', postData).success(function(data, status, headers, config) {
+          $http.post(config.host + config.port + '/api/carpools', postData).success(function(data, status, headers, config) {
               $location.path('/dashboard');
               window.scrollTo(0,0);
               $('#carpoolCreated').css('visibility','visible').fadeIn();

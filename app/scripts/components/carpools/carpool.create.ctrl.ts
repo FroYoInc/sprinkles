@@ -1,7 +1,7 @@
 /// <reference path="../../app.ts"/>
 
 // interface used to sign up a user
-module Signup {
+module CarpoolCreate {
 
     export interface Scope {
         userEmail: string;
@@ -10,13 +10,11 @@ module Signup {
         userName: string;
         firstName: string;
         lastName: string;
-
         events: any;
         usernameerror: boolean;
         emailExistsError: boolean;
         emailDomainError: boolean;
         userpassError: boolean;
-        invalidEmailError: boolean;
 
         signupUser: Function;
         checkPasswords: Function;
@@ -25,8 +23,9 @@ module Signup {
     }
     export class Controller {
 
-        constructor ($scope: Scope, $location: any, $http: any, $localStorage, config: any) {
+        constructor ($scope: Scope, $location, $http: any, $localStorage: any, config: any) {
             $scope.events = this;
+
             //Adds the information into a temp local storage.
             //This gets cleared after the user signs up.
             $scope.userEmail = $localStorage.email;
@@ -34,21 +33,16 @@ module Signup {
             $scope.lastName = $localStorage.lname;
 
             //Helper function that hides error messages
-            var resetErrors = () => {
+            var resetErrors = function() {
               $scope.usernameerror = false;
               $scope.emailExistsError = false;
               $scope.emailDomainError = false;
               $scope.userpassError = false;
-              $scope.invalidEmailError = false;
             }
             resetErrors();
 
             // Posts the user data
-            $scope.signupUser = (res) => {
-              //If theres an error in the form return OR if the passwords dont match
-              if(res || $scope.userPass1.localeCompare($scope.userPass2) != 0){
-                return;
-              }
+            $scope.signupUser = function () {
               //Set the post data before we make the call
               var postData = {
                 userName: $scope.userName,
@@ -59,12 +53,12 @@ module Signup {
               };
 
               resetErrors();
-              $http.post(config.host + config.port +'/api/users', postData).success(function(data, status, headers, config) {
+              $http.post(config.host + config.port + '/api/users', postData).success(function(data, status, headers, config) {
                   //clear the localstorage
                   $localStorage.$reset();
-                  $('#accountmade').css('visibility','visible').fadeIn();
+
                   //re-route and have popup show
-                  $location.path('home');
+                  $location.url('/home');
 
                 }).error(function(data, status, headers, config) {
                   //Email exists
@@ -74,10 +68,6 @@ module Signup {
                   //Bad email domain
                   if(status == 400 && ((data.message).localeCompare("EmailValidationException: The email address's domain is not allowed") == 0)){
                       $scope.emailDomainError = true;
-                  }
-                  //invalid email address
-                  if(status == 400 && ((data.message).localeCompare("EmailValidationException: The email address is invalid.") == 0)){
-                      $scope.invalidEmailError = true;
                   }
                   //username exists
                   else if( status == 409 && ((data.message).localeCompare("UserExistException: user already exist") == 0)){
@@ -92,16 +82,16 @@ module Signup {
             };
 
             // Loads the signup page
-            $scope.loadSignup = (userEmail, firstName, lastName) => {
+            $scope.loadSignup = function (userEmail, firstName, lastName) {
               //Sets the local storage from the re-routed source
               $localStorage.email = userEmail;
               $localStorage.fname = firstName;
               $localStorage.lname = lastName;
-              $location.path('/signup');
+              $location.url('/signup');
              };
         }
 
     }
 }
 
-app.controllers.controller('Signup.Controller', Signup.Controller);
+app.controllers.controller('Carpool.Create.Controller', CarpoolCreate.Controller);
