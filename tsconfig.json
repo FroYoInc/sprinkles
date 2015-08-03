@@ -18,13 +18,8 @@
         "!./node_modules/**/*.ts"
     ],
     "files": [
-        "./app/libs/angular/angular-route.d.ts",
-        "./app/libs/angular/angular.d.ts",
-        "./app/libs/jquery/jquery.d.ts",
         "./app/scripts/app.ts",
         "./app/scripts/components/carpools/carpool.create.ctrl.ts",
-        "./app/scripts/components/carpools/carpoolService.ts",
-        "./app/scripts/components/carpools/carpoolmodel.ts",
         "./app/scripts/components/carpools/createCarpoolController.ts",
         "./app/scripts/components/carpools/editCarpoolController.ts",
         "./app/scripts/components/carpools/viewCarpoolsController.ts",
@@ -32,6 +27,9 @@
         "./app/scripts/components/home/homeController.ts",
         "./app/scripts/components/home/usermodel.ts",
         "./app/scripts/components/navbar/navbarController.ts",
-        "./app/scripts/components/signup/signupController.ts"
+        "./app/scripts/components/signup/signupController.ts",
+        "./app/typings/angular/angular-route.d.ts",
+        "./app/typings/angular/angular.d.ts",
+        "./app/typings/jquery/jquery.d.ts"
     ]
 }

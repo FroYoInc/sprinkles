@@ -1,4 +1,4 @@
-/// <reference path='..\libs\angular\angular-route.d.ts'/>
+/// <reference path='..\typings\angular\angular-route.d.ts'/>
 
 /// <reference path='components/home/homeController.ts' />
 /// <reference path='components/navbar/navbarController.ts' />
