@@ -15,7 +15,7 @@ module Home {
 
     export class Controller {
 
-        constructor ($scope: Scope, $http: any, $location: any, $cookies: any, config: any) {
+        constructor ($scope: Scope, $http: any, $location: any, $cookies: any, ConfigService: any) {
 
             // populate the data when sign in is clicked
             // Handels error alerts when not successful
@@ -25,7 +25,7 @@ module Home {
                 user.password   = $scope.newUserPassword;
                 user.isAuth     = true;
 
-                $http.post(config.host + config.port + '/api/users/login', user).
+                $http.post(ConfigService.host + ConfigService.port + '/api/users/login', user).
                     success(function (data) {
                         // successful login
                         $('#success').css('visibility','visible').fadeIn();

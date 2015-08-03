@@ -20,7 +20,7 @@ module Dashboard_Carpools_Edit {
     }
     export class Controller {
 
-    	constructor ($scope: Scope, $http: any, $location, $cookies: any, config: any) {
+    	constructor ($scope: Scope, $http: any, $location, $cookies: any, ConfigService: any) {
 
         // Get my cookie
         var newCarpool = $cookies.getObject('carpool');
@@ -33,12 +33,12 @@ module Dashboard_Carpools_Edit {
         $scope.events = this;
 
         // Create a campus list for campus dropdown
-        $http.get(config.host + config.port + '/api/campuses').success(function(data, status, headers, config) {
+        $http.get(ConfigService.host + ConfigService.port + '/api/campuses').success(function(data, status, headers, config) {
           $scope.campusList = data;
         });
 
         //Do a get incase this was changed somewhere other than the cookie
-        $http.get(config.host + config.port + '/api/carpools/' + newCarpool.carpool.carpoolID).success(function(data, status, headers, config) {
+        $http.get(ConfigService.host + ConfigService.port + '/api/carpools/' + newCarpool.carpool.carpoolID).success(function(data, status, headers, config) {
               $scope.carpoolName = data.name;
               $scope.carpoolDescription = data.description;
               $scope.carpoolCampusName = $scope.getCampusName(data.campus.href);
@@ -76,7 +76,7 @@ module Dashboard_Carpools_Edit {
         if(isInvalidForm) {
           return;
         }
-         $http.put(config.host + config.port + '/api/carpools/' + editedCarpool.carpoolID,
+         $http.put(ConfigService.host + ConfigService.port + '/api/carpools/' + editedCarpool.carpoolID,
                     editedCarpool).success(function(data, status, headers, config) {
             $location.path('/dashboard');
             window.scrollTo(0,0);

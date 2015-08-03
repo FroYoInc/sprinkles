@@ -23,7 +23,7 @@ module CarpoolCreate {
     }
     export class Controller {
 
-        constructor ($scope: Scope, $location, $http: any, $localStorage, config: any) {
+        constructor ($scope: Scope, $location, $http: any, $localStorage, ConfigService: any) {
             $scope.events = this;
 
             //Adds the information into a temp local storage.
@@ -53,7 +53,7 @@ module CarpoolCreate {
               };
 
               resetErrors();
-              $http.post(config.host + config.port + '/api/users', postData).success(function(data, status, headers, config) {
+              $http.post(ConfigService.host + ConfigService.port + '/api/users', postData).success(function(data, status, headers, config) {
                   //clear the localstorage
                   $localStorage.$reset();
 
