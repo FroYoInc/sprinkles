@@ -20,25 +20,25 @@ module Dashboard_Carpools_Edit {
     }
     export class Controller {
 
-    	constructor ($scope: Scope, $http: any, $location, $cookies: any) {
+    	constructor ($scope: Scope, $http: any, $location, $cookies: any, ConfigService: any) {
 
         // Get my cookie
         var newCarpool = $cookies.getObject('carpool');
 
         //error here because the cookie was not found
         if (typeof(newCarpool) == "undefined") {
-          return; 
+          return;
         }
 
         $scope.events = this;
 
         // Create a campus list for campus dropdown
-        $http.get('http://localhost:3000/api/campuses').success(function(data, status, headers, config) {
+        $http.get(ConfigService.host + ConfigService.port + '/api/campuses').success(function(data, status, headers, config) {
           $scope.campusList = data;
         });
 
         //Do a get incase this was changed somewhere other than the cookie
-        $http.get('http://localhost:3000/api/carpools/' + newCarpool.carpool.carpoolID).success(function(data, status, headers, config) {
+        $http.get(ConfigService.host + ConfigService.port + '/api/carpools/' + newCarpool.carpool.carpoolID).success(function(data, status, headers, config) {
               $scope.carpoolName = data.name;
               $scope.carpoolDescription = data.description;
               $scope.carpoolCampusName = $scope.getCampusName(data.campus.href);
@@ -65,9 +65,9 @@ module Dashboard_Carpools_Edit {
         // remove this cookie because I will make a new one
         $cookies.remove('carpool');
 
-        // Update my cookie 
-        var updatedCookie = new CarpoolModel.CarpoolCookie(editedCarpool.name, editedCarpool.description, editedCarpool.carpoolID, 
-                            editedCarpool.campusName, editedCarpool.campus, editedCarpool.pickupLocation.address, 
+        // Update my cookie
+        var updatedCookie = new CarpoolModel.CarpoolCookie(editedCarpool.name, editedCarpool.description, editedCarpool.carpoolID,
+                            editedCarpool.campusName, editedCarpool.campus, editedCarpool.pickupLocation.address,
                             editedCarpool.pickupLocation.geoCode.lat, editedCarpool.pickupLocation.geoCode.long);
         $cookies.putObject('carpool', updatedCookie);
 
@@ -76,7 +76,7 @@ module Dashboard_Carpools_Edit {
         if(isInvalidForm) {
           return;
         }
-         $http.put('http://localhost:3000/api/carpools/' + editedCarpool.carpoolID, 
+         $http.put(ConfigService.host + ConfigService.port + '/api/carpools/' + editedCarpool.carpoolID,
                     editedCarpool).success(function(data, status, headers, config) {
             $location.path('/dashboard');
             window.scrollTo(0,0);
@@ -117,6 +117,3 @@ module Dashboard_Carpools_Edit {
     }
 }
 app.controllers.controller('Dashboard_Carpools_Edit.Controller', Dashboard_Carpools_Edit.Controller);
-
-
-

@@ -5,41 +5,46 @@
     <h2 class="form-signup-heading">Sign Up For Corporate Carpooling</h2>
 
     <!--Email-->
-    <div class="form-group">
+    <div class="control-group" ng-class="{true: 'error'}[submitted && signupform.userEmail.$invalid]">
       <label for="emailAddress">Email</label>
-	    <input type="text" ng-model="userEmail" class="form-control" id="userEmail" required>
-      <div ng-show="emailExistsError" class="help-block"> Email already exists. Please choose a different email.</div>
-      <div ng-show="emailDomainError" class="help-block"> Invalid email domain. Please enter an email address with the correct domain. </div>
+	    <input type="text" name="userEmail" ng-model="userEmail" class="form-control" id="userEmail" required>
+      <span class="help-inline" ng-show="submitted && signupform.userEmail.$error.required">Required Field</span>
+      <div ng-show="invalidEmailError" class="help-inline2"> Invalid Email address </div>
+      <div ng-show="emailExistsError" class="help-inline2"> Email already exists. Please choose a different email.</div>
+      <div ng-show="emailDomainError" class="help-inline2"> Invalid email domain. Please enter an email address with the correct domain. </div>
     </div>
     <!--UserName -->
-    <div class="form-group">
+    <div class="control-group" ng-class="{true: 'error'}[submitted && signupform.userName.$invalid]">
       <label>Username</label>
-      <input type="text" name="userName" class="form-control" ng-model="userName" ng-minlength="3">
+      <input type="text" name="userName" class="form-control" ng-model="userName" id="userName" ng-minlength="3" required>
+      <span class="help-inline2" ng-show="submitted && signupform.userName.$error.required">Required Field</span>
       <div ng-show="signupform.userName.$error.minlength" class="help-block">Username is too short.</div>
-      <div ng-show="usernameerror" class="help-block"> Username already exists. Please choose a different username.</div>
+      <div ng-show="usernameerror" class="help-inline2"> Username already exists. Please choose a different username.</div>
     </div>
 
     <!-- Passwords-->
-    <div class="form-group">
+    <div class="control-group" ng-class="{true: 'error'}[submitted && signupform.userPass1.$invalid]">
       <label>Password</label>
-      <input type="password" name="userPass1" class="form-control" id="userPass1" ng-model="userPass1" required>
-    </div>
-    <div class="form-group">
+      <input type="password" name="userPass1" class="form-control" id="userPass1" ng-match="userPass2" ng-model="userPass1" required>
+      <span class="help-inline2" ng-show="submitted && signupform.userPass1.$error.required">Required Field</span>
       <label>Confirm password</label>
-      <input type="password" name="userPass2" class="form-control" id="userPass2" ng-model="userPass2" required>
-      <div ng-show="(userPass2 == 'undefined') ? false : userPass1.localeCompare(userPass2)" class="help-block">Passwords do not match.</div>
+      <input type="password" name="userPass2" class="form-control" id="userPass2" ng-match="userPass1" ng-model="userPass2" required>
+      <div class="help-inline2" ng-show="(userPass2 == 'undefined') ? false : userPass1.localeCompare(userPass2)">Passwords do not match.</div>
+      <span class="help-inline2" ng-show="submitted && signupform.userPass2.$error.required">Required Field</span>
     </div>
 
     <!-- User name (first,last) -->
-    <div class="form-group">
+    <div class="control-group" ng-class="{true: 'error'}[submitted && signupform.firstName.$invalid]">
       	<label for="name">First name</label>
-        <input type="text" ng-model="firstName" class="form-control" id="firstName" >
+        <input type="text" name="firstName" ng-model="firstName" class="form-control" id="firstName" required>
+        <span class="help-inline" ng-show="submitted && signupform.firstName.$error.required">Required Field</span>
     </div>
-    <div class="form-group">
+    <div class="control-group" ng-class="{true: 'error'}[submitted && signupform.lastName.$invalid]">
       	<label for="name">Last name</label>
-        <input type="text" ng-model="lastName" class="form-control" id="lastName" >
+        <input type="text" name="lastName" ng-model="lastName" class="form-control" id="lastName" required>
+        <span class="help-inline" ng-show="submitted && signupform.lastName.$error.required">Required Field</span>
     </div>
-    <div ng-show="userpassError" clas="help-block"> Must enter a valid username and password</div>
-    <button type="submit" class="btn btn-primary btn-lg btn-block"ng-click="signupUser()" ng-disabled="signupform.$invalid">Sign up</button>
+    <div ng-show="userpassError" clas="help-inline2"> Must enter a valid username and password</div>
+    <button type="submit" class="btn btn-primary btn-lg btn-block"ng-click="submitted = true;signupUser(signupform.$invalid)">Sign up</button>
   </div>
 </div>
