@@ -53,6 +53,17 @@ angular.module('app', ['app.controllers','ngRoute','ngStorage','ui.bootstrap', '
               }]
             }
       });
+      $routeProvider.when('/dashboard/carpools/edit',
+      {
+        templateUrl: '/views/editCarpoolView.html',
+        controller: 'Dashboard_Carpools_Edit.Controller',
+        resolve: {
+          access: ["Access", (Access) => {
+            var a =  Access.isAuthenticated();
+            return a;
+            }]
+          }
+      });
     $routeProvider.otherwise(
     {
       redirectTo:     '/home',
