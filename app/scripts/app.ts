@@ -114,7 +114,7 @@ function($rootScope, Access, $location, $cookies) {
 
 }])
 // Gloabl variables
-.factory('config', function() {
+.factory('ConfigService', function() {
   return {
     host: "http://localhost:",
     port: "3000"
