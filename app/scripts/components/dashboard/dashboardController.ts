@@ -10,46 +10,50 @@ module Dashboard {
         loadCarpoolId: Function;
         createCarpool: Function;
         editCarpool: Function;
+        loadRequestView: Function;
         carpoolStatus: Boolean;
         carpoolStatusString: string;
     }
     export class Controller {
 
-    	constructor ($scope: Scope, $http: any, $location: any,  $cookies: any) {
-            
+    	constructor ($scope: Scope, $http: any, $location: any,  $cookies: any, ConfigService: any) {
+
             // Get carpool cookie if it has already been created
             var newCarpool = $cookies.getObject('carpool');
             if (typeof(newCarpool) == "undefined"){
                 $scope.carpoolStatus = false;
             }
-            $http.get('http://localhost:3000/api/user/carpools').success(function(data, status, headers, config) {
+
+            $http.get(ConfigService.host + ConfigService.port + '/api/user/carpools').success(function(data, status, headers, config) {
                 // The user is not in a carpool -> Show create carpool
                 if (data == ""  && typeof(newCarpool) == "undefined") {
                     $scope.carpoolStatus = false;
-                } 
+                }
                 // The user is in a carpool -> Show edit carpool
                 else {
-                    var newCarpool = new CarpoolModel.CarpoolCookie(data.name, data.description, data.id, data.campus.name, 
+                    var newCarpool = new CarpoolModel.CarpoolCookie(data.name, data.description, data.id, data.campus.name,
                                 data.campus, data.pickupLocation.address, data.pickupLocation.geoCode.lat, data.pickupLocation.geoCode.long);
-                    $cookies.putObject('carpool', newCarpool); 
+                    $cookies.putObject('carpool', newCarpool);
                     $scope.carpoolStatusString = data.name;
                     $scope.carpoolStatus = true;
                 }
             }).error(function(data, status, headers, config){
-                
+
             });
-            
 
             $scope.displayCarpools = () => {
               $location.path('dashboard/carpools/view');
-            }
+            };
 
             $scope.createCarpool = () => {
               $location.path('dashboard/carpools/create');
-            }
+            };
             $scope.editCarpool = () => {
               $location.path('dashboard/carpools/edit');
-            }
+            };
+            $scope.loadRequestView = () => {
+              $location.url('/ApproveDeny');
+            };
 
     	}
     }

@@ -18,10 +18,10 @@ module Response {
   }
   export class Controller {
 
-    constructor($scope:Scope, $location, $http: any) {
+    constructor($scope:Scope, $location, $http: any, ConfigService: any) {
 
         //grab all requests from carpool that user is in.
-        $http.get('http://localhost:3000/api/carpools/requests').success(function(data, status, headers, config) {
+        $http.get(ConfigService.host + ConfigService.port + '/api/carpools/requests').success(function(data, status, headers, config) {
           $scope.carpoolRequests = data;
 
 
@@ -51,7 +51,7 @@ module Response {
             userToAddID: userIDent,
           };
 
-          $http.post('http://localhost:3000/api/carpools/addUser',postData).success(function(data, status, headers, config){
+          $http.post(ConfigService.host + ConfigService.port + '/api/carpools/addUser',postData).success(function(data, status, headers, config){
             if(status == 200){
               window.scrollTo(0,0);
               $('#successRequest').css('visibility','visible').fadeIn();
@@ -99,7 +99,7 @@ module Response {
             userToDenyID: userIDent,
           };
 
-          $http.post('http://localhost:3000/api/carpools/denyUser',postData).success(function(data, status, headers, config){
+          $http.post(ConfigService.host + ConfigService.port + '/api/carpools/denyUser',postData).success(function(data, status, headers, config){
             window.scrollTo(0,0);
             $('#successDeny').css('visibility','visible').fadeIn();
           }).error(function(data, status, headers, config){
@@ -130,10 +130,6 @@ module Response {
 
           });
 
-        };
-
-        $scope.loadRequestView = function() {
-          $location.url('/ApproveDeny');
         };
 
 

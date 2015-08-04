@@ -11,13 +11,13 @@ module Request {
   }
   export class Controller {
 
-    constructor($scope:Scope, $location: any, $http: any) {
+    constructor($scope:Scope, $location: any, $http: any, ConfigService: any) {
 
       $scope.sendRequest = (carid: string) => {
         var carpoolID = new CarpoolModel.CarpoolID();
         carpoolID.carpoolID = carid;
 
-        $http.post('http://localhost:3000/api/carpools/request',carpoolID).success(function(data, status, headers, config) {
+        $http.post(ConfigService.host + ConfigService.port + '/api/carpools/request',carpoolID).success(function(data, status, headers, config) {
           window.scrollTo(0,0);
           $('#requestSent').css('visibility','visible').fadeIn();
         }).error(function(data, status, headers, config){

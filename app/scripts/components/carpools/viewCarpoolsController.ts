@@ -8,9 +8,9 @@ module Dashboard_Carpools_View {
     }
     export class Controller {
 
-    	constructor ($scope: Scope, $http: any, $location: any) {
+    	constructor ($scope: Scope, $http: any, $location: any, ConfigService: any) {
           //Get the carpool list
-          $http.get('http://localhost:3000/api/carpools').success(function(data, status, headers, config) {
+          $http.get(ConfigService.host + ConfigService.port + '/api/carpools').success(function(data, status, headers, config) {
              $scope.carpoolList = data;
             }).error(function(data, status, headers, config) {
               //500 server error
