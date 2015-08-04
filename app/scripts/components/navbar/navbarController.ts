@@ -10,6 +10,7 @@ module Navbar {
     loadCarpoolsView: Function;
     loadCarpoolsCreate: Function;
     loadCarpoolsEdit: Function;
+    loadAdmin: Function;
     $watch: any;
 
     isAuth: Boolean;
@@ -81,6 +82,9 @@ module Navbar {
        }
        $scope.loadCarpoolsCreate = () => {
          $location.url('/dashboard/carpools/create')
+       }
+       $scope.loadAdmin = () => {
+         $location.url('/dashboard/admin')
        }
        
       // Removes the cookie and re-routes to the home page

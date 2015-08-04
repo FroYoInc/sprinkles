@@ -64,6 +64,17 @@ angular.module('app', ['app.controllers','ngRoute','ngStorage','ui.bootstrap', '
             }]
           }
       });
+      $routeProvider.when('/dashboard/admin',
+      {
+        templateUrl: '/views/adminView.html',
+        controller: 'Admin.Controller',
+        resolve: {
+          access: ["Access", (Access) => {
+            var a =  Access.isAuthenticated();
+            return a;
+            }]
+          }
+      });
     $routeProvider.otherwise(
     {
       redirectTo:     '/home',
