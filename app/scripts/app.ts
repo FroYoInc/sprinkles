@@ -1,4 +1,4 @@
-/// <reference path='..\typings\angular\angular-route.d.ts'/>
+/// <reference path='../../typings/angularjs/angular-route.d.ts'/>
 
 /// <reference path='components/home/homeController.ts' />
 /// <reference path='components/navbar/navbarController.ts' />
@@ -57,6 +57,17 @@ angular.module('app', ['app.controllers','ngRoute','ngStorage','ui.bootstrap', '
       {
         templateUrl: '/views/editCarpoolView.html',
         controller: 'Dashboard_Carpools_Edit.Controller',
+        resolve: {
+          access: ["Access", (Access) => {
+            var a =  Access.isAuthenticated();
+            return a;
+            }]
+          }
+      });
+      $routeProvider.when('/admin',
+      {
+        templateUrl: '/views/adminView.html',
+        controller: 'Admin.Controller',
         resolve: {
           access: ["Access", (Access) => {
             var a =  Access.isAuthenticated();
