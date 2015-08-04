@@ -1,0 +1,43 @@
+<div ng-controller="Dashboard_Carpools_Edit.Controller" class="container">
+  <div class="jumbotron">
+
+    <form name="editform" class="form-signup" novalidate>
+    <h2 class="form-signup-heading">Edit Your Carpool</h2>
+    <!--Name-->
+    <div class="control-group" ng-class="{true: 'error'}[submitted && editform.carpoolName.$invalid]">
+      <label>Name of Carpool</label>
+      <input type="text" ng-model="carpoolName" name= "carpoolName" required>
+      <span class="help-inline" ng-show="submitted && editform.carpoolName.$error.required">Required Field</span>
+    </div>
+    <!--Description of Carpool-->
+    <div class="control-group" ng-class="{true: 'error'}[submitted && editform.carpoolDescription.$invalid]">
+      <label>Description of Carpool</label>
+      <input type="text" ng-model="carpoolDescription" class="form-control" name="carpoolDescription" required>
+      <span class="help-inline" ng-show="submitted && editform.carpoolDescription.$error.required">Required Field</span>
+    </div>
+    <!--Campus Location -->
+    <div class="control-group" ng-class="{true: 'error'}[submitted && editform.campus.$invalid]">
+      <label>Campus (location of Office)</label>
+      <select ng-model="carpoolCampusName" name="carpoolCampusName" required>
+          <option> {{carpoolCampusName}}</option>
+          <option ng-repeat="campus in campusList" value="{{campus.name}}">{{campus.name}}</option>
+      </select>
+      <span class="help-inline" ng-show="submitted && editform.campus.$error.required">Required Field</span>
+    </div>
+    <!--Pickup Location -->
+    <div class="control-group" ng-class="{true: 'error'}[submitted && editform.pickupLocation.$invalid]">
+      <label>Pick up location</label>
+          <input type="text" ng-model="address" class="form-control" name="address" required>
+      <span class="help-inline" ng-show="submitted && editform.address.$error.required">Required Field</span>
+      <input type="text" ng-model="lat" class="form-control" name="lat" required>
+      <span class="help-inline" ng-show="submitted && editform.lat.$error.required">Required Field</span>
+      <input type="text" ng-model="longitude" class="form-control" name="longitude" required>
+      <span class="help-inline" ng-show="submitted && editform.longitude.$error.required">Required Field</span>
+    </div>
+
+
+    <div ng-show="carpoolExists" class="help-inline2"> Error: Cannot create carpool. This carpool already Exists.</div><br>
+    <button type="submit" class="btn btn-primary btn-lg btn-inline" ng-click="submitted=true; editCarpool(editform.$invalid)">Edit Carpool</button>
+  </div>    
+  </div>
+</div>

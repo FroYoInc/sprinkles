@@ -30,8 +30,9 @@ module Home {
                         // successful login
                         $('#success').css('visibility','visible').fadeIn();
                         // Auth.setUser(user); //Update the state of the user in the app
-                        $cookies.isAuth = true;
-                        $cookies.putObject('isAuth', true);
+                        var newUser = new UserModel.UserCookie(data.email,
+                                    data.firstName, data.lastName, data.userID, data.userName);
+                        $cookies.putObject('user', newUser);
                         $location.path('/dashboard');
                 }).
                     error(function (data, status) {
@@ -74,7 +75,7 @@ module Home {
 
             $scope.visible = function(result:string) {
              document.getElementById(result).style.display = 'none';
-           }
+           };
 
            $scope.isAnonymous = function(){
             return this.user.isAuth;

@@ -6,7 +6,7 @@ module Request {
 
   export interface Scope {
     sendRequest: Function;
-    carpoolID: any;
+    carpoolID: string;
 
   }
   export class Controller {

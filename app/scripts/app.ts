@@ -4,6 +4,7 @@
 /// <reference path='components/navbar/navbarController.ts' />
 /// <reference path='components/signup/signupController.ts' />
 /// <reference path='components/dashboard/dashboardController.ts' />
+/// <reference path='components/carpools/editCarpoolController.ts' />
 /// <reference path='components/carpools/createCarpoolController.ts'/>
 /// <reference path='components/carpools/viewCarpoolsController.ts'/>
 /// <reference path='components/Request/responseController.ts'/>
@@ -24,6 +25,12 @@ angular.module('app', ['app.controllers','ngRoute','ngStorage','ui.bootstrap', '
     $routeProvider.when('/ApproveDeny', {
       templateUrl:    '/views/ApproveDenyView.html',
       controller:     'Response.Controller',
+      resolve: {
+        access: ["Access", (Access) => {
+          var a =  Access.isAuthenticated();
+          return a;
+        }]
+      }
     });
     $routeProvider.when('/dashboard',
     {
@@ -58,6 +65,17 @@ angular.module('app', ['app.controllers','ngRoute','ngStorage','ui.bootstrap', '
               }]
             }
       });
+      $routeProvider.when('/dashboard/carpools/edit',
+      {
+          templateUrl: '/views/editCarpoolView.html',
+          controller: 'Dashboard_Carpools_Edit.Controller',
+          resolve: {
+              access: ["Access", (Access) => {
+                 var a =  Access.isAuthenticated();
+                 return a;
+              }]
+            }
+      });
     $routeProvider.otherwise(
     {
       redirectTo:     '/home',
@@ -77,8 +95,8 @@ angular.module('app', ['app.controllers','ngRoute','ngStorage','ui.bootstrap', '
 
     isAuthenticated: () => {
       var p = $q.defer();
-      var cookie = $cookies.getObject('isAuth');
-      if (cookie == true){
+      var cookie = $cookies.getObject('user');
+      if (cookie.isAuth == true){
           p.resolve(Access.OK);
       } else {
         p.reject(Access.UNAUTHORIZED);
@@ -89,14 +107,21 @@ angular.module('app', ['app.controllers','ngRoute','ngStorage','ui.bootstrap', '
   return Access;
 }])
 // when Access rejects a promise, the $routeChangeError event will be fired:
-.run(["$rootScope", "Access", "$location",
-function($rootScope, Access, $location) {
+.run(["$rootScope", "Access", "$location", '$cookies',
+function($rootScope, Access, $location, $cookies) {
+  var cookie = $cookies.getObject('user');
+  if (typeof(cookie) != "undefined") {
+    if (cookie.isAuth == true) {
+      $location.path("/dashboard");
+    }
+  }
 
   $rootScope.$on("$routeChangeError", function(event, current, previous, rejection) {
     if (rejection == Access.UNAUTHORIZED) {
       $location.path("/home");
     }
   });
+
 
 }]);
 module app {
