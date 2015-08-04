@@ -18,7 +18,7 @@ module Response {
   }
   export class Controller {
 
-    constructor($scope:Scope, $location, $http: any, ConfigService: any) {
+    constructor($scope:Scope, $route: any, $http: any, ConfigService: any) {
 
         //grab all requests from carpool that user is in.
         $http.get(ConfigService.host + ConfigService.port + '/api/carpools/requests').success(function(data, status, headers, config) {
@@ -53,6 +53,7 @@ module Response {
 
           $http.post(ConfigService.host + ConfigService.port + '/api/carpools/addUser',postData).success(function(data, status, headers, config){
             if(status == 200){
+              $route.reload();
               window.scrollTo(0,0);
               $('#successRequest').css('visibility','visible').fadeIn();
             }
@@ -100,6 +101,7 @@ module Response {
           };
 
           $http.post(ConfigService.host + ConfigService.port + '/api/carpools/denyUser',postData).success(function(data, status, headers, config){
+            $route.reload();
             window.scrollTo(0,0);
             $('#successDeny').css('visibility','visible').fadeIn();
           }).error(function(data, status, headers, config){
