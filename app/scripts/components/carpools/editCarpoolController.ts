@@ -92,7 +92,7 @@ module Dashboard_Carpools_Edit {
                  $('#notFound').css('visibility','visible').fadeIn();
              }
            });
-        }
+        };
         // Get the campus name by the campus ID
         $scope.getCampusName = function(campus) {
           for (var i = 0; i < $scope.campusList.length; i++){
@@ -101,7 +101,7 @@ module Dashboard_Carpools_Edit {
               }
           }
           return "undefined"
-        }
+        };
         // Get the campus ID by the campus name
         $scope.getCampus = function(campusName) {
           for (var i = 0; i < $scope.campusList.length; i++){
@@ -117,3 +117,4 @@ module Dashboard_Carpools_Edit {
     }
 }
 app.controllers.controller('Dashboard_Carpools_Edit.Controller', Dashboard_Carpools_Edit.Controller);
+

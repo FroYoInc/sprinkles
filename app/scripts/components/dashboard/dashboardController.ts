@@ -10,6 +10,7 @@ module Dashboard {
         loadCarpoolId: Function;
         createCarpool: Function;
         editCarpool: Function;
+        loadRequestView: Function;
         carpoolStatus: Boolean;
         carpoolStatusString: string;
     }
@@ -22,6 +23,7 @@ module Dashboard {
             if (typeof(newCarpool) == "undefined"){
                 $scope.carpoolStatus = false;
             }
+
             $http.get(ConfigService.host + ConfigService.port + '/api/user/carpools').success(function(data, status, headers, config) {
                 // The user is not in a carpool -> Show create carpool
                 if (data == ""  && typeof(newCarpool) == "undefined") {
@@ -39,17 +41,19 @@ module Dashboard {
 
             });
 
-
             $scope.displayCarpools = () => {
               $location.path('dashboard/carpools/view');
-            }
+            };
 
             $scope.createCarpool = () => {
               $location.path('dashboard/carpools/create');
-            }
+            };
             $scope.editCarpool = () => {
               $location.path('dashboard/carpools/edit');
-            }
+            };
+            $scope.loadRequestView = () => {
+              $location.url('/ApproveDeny');
+            };
 
     	}
     }

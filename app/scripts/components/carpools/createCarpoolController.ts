@@ -19,6 +19,7 @@ module Dashboard_Carpools_Create {
     export class Controller {
 
     	constructor ($scope: Scope, $http: any, $location: any, $cookies: any, ConfigService: any) {
+
         //Populate campus list
         $http.get(ConfigService.host + ConfigService.port + '/api/campuses').success(function(data, status, headers, config) {
           $scope.campusList = data;

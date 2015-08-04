@@ -14,8 +14,10 @@
 <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 <![endif]-->
 <!--------- Alerts ------ -->
+
 <div class="container-fluid">
 <div ng-controller="Home.Controller">
+
 <!-- Sign in Alerts -->
     <!-- 200:successful login -->
     <div class="alert alert-success alert-dismissible fade in hidden-alerts" role="alert"
@@ -24,6 +26,24 @@
     <span aria-hidden="true">&times;</span></button>
       <strong>Welcome!</strong>
     </div>
+    <div class="alert alert-success alert-dismissible fade in hidden-alerts" role="alert"
+         id="successRequest">
+      <button type="button" class="close" ng-click="visible('successRequest')" aria-label="Close">
+        <span aria-hidden="true">&times;</span></button>
+      <strong>Request Approved!</strong>
+    </div>
+    <div class="alert alert-success alert-dismissible fade in hidden-alerts" role="alert"
+         id="successDeny">
+      <button type="button" class="close" ng-click="visible('successDeny')" aria-label="Close">
+        <span aria-hidden="true">&times;</span></button>
+      <strong>You successfully denied the user!</strong>
+    </div>
+    <div class="alert alert-success alert-dismissible fade in hidden-alerts" role="alert"
+         id="requestSent">
+      <button type="button" class="close" ng-click="visible('requestSent')" aria-label="Close">
+        <span aria-hidden="true">&times;</span></button>
+      <strong>Your request has been sent!</strong>
+    </div>
     <!-- 400:Bad Request. Invalid or missing parameters. -->
     <div class="alert alert-warning alert-dismissible fade in hidden-alerts" role="alert"
            id="badRequest">
@@ -31,12 +51,24 @@
     <span aria-hidden="true">&times;</span></button>
       <strong>Sorry!</strong> Invalid or missing parameters.
     </div>
+    <div class="alert alert-warning alert-dismissible fade in hidden-alerts" role="alert"
+         id="noCarpoolid">
+      <button type="button" class="close" ng-click="visible('noCarpoolid')" aria-label="Close">
+        <span aria-hidden="true">&times;</span></button>
+      <strong>Sorry!</strong> No Carpool ID Provided.
+    </div>
     <!-- 401:The user account has not been activated. -->
     <div class="alert alert-warning alert-dismissible fade in hidden-alerts" role="alert"
             id="notAuthorized">
     <button type="button" class="close" ng-click="visible('notAuthorized')" aria-label="Close">
     <span aria-hidden="true">&times;</span></button>
       <strong>Sorry!</strong> Wrong Username or Password.
+    </div>
+    <div class="alert alert-warning alert-dismissible fade in hidden-alerts" role="alert"
+         id="notLogged">
+      <button type="button" class="close" ng-click="visible('notLogged')" aria-label="Close">
+        <span aria-hidden="true">&times;</span></button>
+      <strong>Sorry!</strong> Unauthorized attempt, user must be logged in.
     </div>
     <!-- 403:The user account has not been activated. -->
     <div class="alert alert-warning alert-dismissible fade in hidden-alerts" role="alert"
@@ -46,6 +78,34 @@
     <span aria-hidden="true">&times;</span></button>
       <strong>Sorry!</strong> Account in not yet activated.
     </div>
+    <div class="alert alert-warning alert-dismissible fade in hidden-alerts" role="alert"
+         id="needApprove">
+      <button type="button" class="close" ng-click="visible('needApprove')"
+              aria-label="Close">
+        <span aria-hidden="true">&times;</span></button>
+      <strong>Sorry!</strong> Forbidden. The user must be a member of a carpool to add members.
+    </div>
+    <div class="alert alert-warning alert-dismissible fade in hidden-alerts" role="alert"
+         id="needApproveD">
+      <button type="button" class="close" ng-click="visible('needApproveD')"
+              aria-label="Close">
+        <span aria-hidden="true">&times;</span></button>
+      <strong>Sorry!</strong> Forbidden. The user must be a member of a carpool to deny members.
+    </div>
+    <div class="alert alert-warning alert-dismissible fade in hidden-alerts" role="alert"
+         id="noRoom">
+      <button type="button" class="close" ng-click="visible('noRoom')"
+              aria-label="Close">
+        <span aria-hidden="true">&times;</span></button>
+      <strong>Sorry!</strong> You cannot create a new carpool if you are already in one.
+    </div>
+    <div class="alert alert-warning alert-dismissible fade in hidden-alerts" role="alert"
+         id="alreadyJoined">
+      <button type="button" class="close" ng-click="visible('alreadyJoined')"
+              aria-label="Close">
+        <span aria-hidden="true">&times;</span></button>
+      <strong>Sorry!</strong> You are already in this carpool.
+    </div>
     <!-- 404:Not found -->
     <div class="alert alert-warning alert-dismissible fade in hidden-alerts" role="alert"
            id="notFound">
@@ -53,6 +113,32 @@
     <span aria-hidden="true">&times;</span></button>
       <strong>Oops!</strong> Something was not found.
     </div>
+    <div class="alert alert-warning alert-dismissible fade in hidden-alerts" role="alert"
+         id="userNotFound">
+      <button type="button" class="close" ng-click="visible('userNotFound')" aria-label="Close">
+        <span aria-hidden="true">&times;</span></button>
+      <strong>Oops!</strong> User not found.
+    </div>
+    <div class="alert alert-warning alert-dismissible fade in hidden-alerts" role="alert"
+         id="missResource">
+      <button type="button" class="close" ng-click="visible('missResource')" aria-label="Close">
+        <span aria-hidden="true">&times;</span></button>
+      <strong>Oops!</strong> Missing Resource. Unable to locate either the request, the user, or the carpool.
+    </div>
+    <!-- 409: error -->
+    <div class="alert alert-warning alert-dismissible fade in hidden-alerts" role="alert"
+         id="requested">
+      <button type="button" class="close" ng-click="visible('requested')" aria-label="Close">
+        <span aria-hidden="true">&times;</span></button>
+      <strong>Oops!</strong> User already has a request to join this carpool
+    </div>
+    <div class="alert alert-warning alert-dismissible fade in hidden-alerts" role="alert"
+         id="alreadyMember">
+      <button type="button" class="close" ng-click="visible('alreadyMember')" aria-label="Close">
+        <span aria-hidden="true">&times;</span></button>
+      <strong>Oops!</strong> Conflict error. User is already a member of the carpool.
+    </div>
+
     <!-- 423:The user account is locked. -->
     <div class="alert alert-danger alert-dismissible fade in hidden-alerts" role="alert"
            id="accountIsLocked">
@@ -165,6 +251,9 @@
 <script src="dist/app/scripts/components/dashboard/dashboardController.js"></script>
 <script src="dist/app/scripts/components/carpools/createCarpoolController.js"></script>
 <script src="dist/app/scripts/components/carpools/viewCarpoolsController.js"></script>
+<script src="dist/app/scripts/components/Request/carpoolIDModel.js"></script>
+<script src="dist/app/scripts/components/Request/RequestController.js"></script>
+<script src="dist/app/scripts/components/Request/responseController.js"></script>
 
 <!-- endbower -->
 </body>
