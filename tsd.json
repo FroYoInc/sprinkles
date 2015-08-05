@@ -13,6 +13,9 @@
     },
     "jquery/jquery.d.ts": {
       "commit": "ed6baae5e39c06077f9094bd80d1cfe1a997f50e"
+    },
+    "angularjs/angular-route.d.ts": {
+      "commit": "070e3a5e095d2a2f043f999bd9fb36fe9d5f68ab"
     }
   }
 }
