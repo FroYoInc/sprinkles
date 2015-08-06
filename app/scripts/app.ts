@@ -129,7 +129,9 @@ function($rootScope, Access, $location, $cookies) {
 .factory('ConfigService', function() {
   return {
     host: "http://localhost:",
-    port: "3000"
+    port: "3000",
+    mapsApi : 'https://maps.googleapis.com/maps/api/geocode/json?address=',
+    key : "AIzaSyAjbcANI_Dx4yrB05vl0nBRUniazxWTIV4"
   };
 });
 
