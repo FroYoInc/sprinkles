@@ -1,1 +1,27 @@
-This is the admin view
+<div ng-controller="Admin.Controller" class="container">
+  <div class="jumbotron">
+
+    <form name="campusForm" class="form-signup" novalidate>
+    <h2 class="form-signup-heading">Create A Campus</h2>
+    
+    <!--Name-->
+    <div class="control-group" ng-class="{true: 'error'}[submitted && campusForm.campusName.$invalid]">
+      <label>Campus Name</label>
+      <input type="text" ng-model="campusName" name= "campusName" required>
+      <span class="help-inline" ng-show="submitted && campusForm.campusName.$error.required">Required Field</span>
+    </div>
+
+    <!--Campus Address-->
+    <div class="control-group" ng-class="{true: 'error'}[submitted && campusForm.carpoolDescription.$invalid]">
+      <label>Campus Address</label>
+      <input type="text" ng-model="campusAddress" name="campusAddress" required>
+      <span class="help-inline" ng-show="submitted && campusForm.campusAddress.$error.required">Required Field</span>
+    </div>
+
+
+    <!-- <div ng-show="campusExists" class="help-inline2"> Error: Cannot create campus. This campus already Exists.</div><br> -->
+    <button type="submit" class="btn btn-primary btn-lg btn-inline" ng-click="submitted=true; createCampus(campusForm.$invalid)">
+    Create Campus</button>
+  </div>    
+  </div>
+</div>

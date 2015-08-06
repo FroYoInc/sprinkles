@@ -14,6 +14,7 @@ module Navbar {
     $watch: any;
 
     isAuth: Boolean;
+    isAdmin: Boolean;
     isInCarpool: Boolean;
   }
 
@@ -47,6 +48,9 @@ module Navbar {
           var cookie = $cookies.getObject('user');
           if (typeof(cookie) != "undefined"){
             $scope.isAuth = cookie.isAuth;
+          }
+          if (typeof(cookie) != "undefined"){
+            $scope.isAdmin = cookie.isAdmin;
           }
           var carpoolCookie = $cookies.getObject('carpool');
           if (typeof(carpoolCookie) != "undefined"){

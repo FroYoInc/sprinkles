@@ -7,7 +7,6 @@
   <title>Team FroYo - Corporate Carpool</title>
   <!-- bower:css -->
   <link rel="stylesheet" href="bower_components/fontawesome/css/font-awesome.css" />
-  <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
   <!-- endbower -->
   <link rel="stylesheet" href="styles/main.css">
 </head>
@@ -131,7 +130,7 @@
             <li ng-class="navClass('dashboard/carpools/view')"><a href="" ng-click="loadCarpoolsView()">View Carpools</a></li>
             <li ng-class="navClass('dashboard/carpools/create')"><a href="" ng-show="!isInCarpool"ng-click="loadCarpoolsCreate()">Create Carpool</a></li>
             <li ng-class="navClass('dashboard/carpools/edit')"><a href="" ng-show="isInCarpool"ng-click="loadCarpoolsEdit()">Edit Carpool</a></li>
-            <li ng-class="navClass('dashboard/admin')"><a href="" ng-click="loadAdmin()">Admin</a></li>
+            <li ng-class="navClass('dashboard/admin')"><a href="" ng-show="isAdmin" ng-click="loadAdmin()">Admin</a></li>
           </ul>
           <ul class="nav navbar-nav pull-right">
             <li><a class="pull-right" href="" ng-click="logout()">Logout</a></li>
@@ -167,7 +166,9 @@
 <script src="dist/app/scripts/components/dashboard/dashboardController.js"></script>
 <script src="dist/app/scripts/components/carpools/createCarpoolController.js"></script>
 <script src="dist/app/scripts/components/carpools/viewCarpoolsController.js"></script>
-<script src="dist/app/scripts/components/adminController.js"></script>
+<script src="dist/app/scripts/components/admin/adminController.js"></script>
+<script src="dist/app/scripts/components/geocoding/geocoding.js"></script>
+
 
 
 <!-- endbower -->
