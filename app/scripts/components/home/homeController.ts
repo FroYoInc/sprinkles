@@ -75,7 +75,7 @@ module Home {
 
             $scope.visible = function(result:string) {
              document.getElementById(result).style.display = 'none';
-           }
+           };
 
            $scope.isAnonymous = function(){
             return this.user.isAuth;

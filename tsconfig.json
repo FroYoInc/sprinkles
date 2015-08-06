@@ -19,6 +19,9 @@
     ],
     "files": [
         "./app/scripts/app.ts",
+        "./app/scripts/components/Request/RequestController.ts",
+        "./app/scripts/components/Request/carpoolIDModel.ts",
+        "./app/scripts/components/Request/responseController.ts",
         "./app/scripts/components/admin/adminController.ts",
         "./app/scripts/components/carpools/carpool.create.ctrl.ts",
         "./app/scripts/components/carpools/carpoolService.ts",

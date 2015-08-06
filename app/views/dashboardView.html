@@ -10,8 +10,8 @@
 
   <!-- User Profile Widget -->
   <div class="row-1">
-    <div class="col-sm-6 col-md-4">
-      <div class="thumbnail">
+    <div class="col-sm-6 col-md-3">
+      <div class="thumbnail 1">
         <img src="../images/glyphicons-user.png">
         <div class="caption">
           <center> <h3>User Profile</h3>
@@ -26,8 +26,8 @@
 
   <!-- Carpool Widget -->
   <div class="row-2">
-    <div class="col-sm-6 col-md-4">
-      <div class="thumbnail">
+    <div class="col-sm-6 col-md-3">
+      <div class="thumbnail 2">
         <img src="../images/glyphicons-car.png">
         <div class="caption">
           <center> <h3>Carpool</h3>
@@ -40,13 +40,13 @@
 
   <!-- New Carpool Widget -->
   <div class="row-3" ng-show="!carpoolStatus">
-    <div class="col-sm-6 col-md-4">
-      <div class="thumbnail">
+    <div class="col-sm-6 col-md-3">
+      <div class="thumbnail 3">
         <img src="../images/glyphicons-cars.png">
         <div class="caption">
-          <center> <h3>Create New Carpool</h3>
+          <center> <h3>Create Carpool</h3>
             <p>Create Carpool Here</p>
-            <button type="submit" class="btn btn-primary btn-lg btn-block" ng-click="createCarpool()">Create Carpool</button>
+            <button type="submit" class="btn btn-primary btn-lg btn-block" ng-click="createCarpool()">Create New Carpool</button>
         </div><center>
       </div>
     </div>
@@ -54,14 +54,29 @@
 
 <!-- Edit Carpool Widget -->
   <div class="row-3" ng-show="carpoolStatus">
-    <div class="col-sm-6 col-md-4">
-      <div class="thumbnail">
+    <div class="col-sm-6 col-md-3">
+      <div class="thumbnail 4">
         <img src="../images/glyphicons-settings.png">
         <div class="caption">
           <center> <h3>Edit Carpool</h3>
             <p>Edit your carpool</p>
               <button type="submit" class="btn btn-primary btn-lg btn-block" ng-click="editCarpool()">Edit Carpool</button>
         </div><center>
+      </div>
+    </div>
+  </div>
+
+  <!-- View pending requests widget -->
+  <div class="row-3">
+    <div class="col-sm-6 col-md-3">
+      <div class="thumbnail 5">
+        <img src="../images/glyphicons-notes.png">
+        <div class="caption">
+          <center> <h3>Carpool Requests</h3>
+            <p>View Requests Here</p>
+              <button type="submit" class="btn btn-primary btn-lg btn-block" ng-click="loadRequestView()">View Requests</button>
+            <center>
+        </div>
       </div>
     </div>
   </div>

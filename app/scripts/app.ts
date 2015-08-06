@@ -7,6 +7,8 @@
 /// <reference path='components/carpools/editCarpoolController.ts' />
 /// <reference path='components/carpools/createCarpoolController.ts'/>
 /// <reference path='components/carpools/viewCarpoolsController.ts'/>
+/// <reference path='components/Request/responseController.ts'/>
+
 
 angular.module('app', ['app.controllers','ngRoute','ngStorage','ui.bootstrap', 'ngResource', 'ngCookies']).
   config(function ($routeProvider, $locationProvider, $httpProvider, $cookiesProvider) {
@@ -19,6 +21,16 @@ angular.module('app', ['app.controllers','ngRoute','ngStorage','ui.bootstrap', '
     {
       templateUrl:    '/views/signupView.html',
       controller:     'Signup.Controller'
+    });
+    $routeProvider.when('/ApproveDeny', {
+      templateUrl:    '/views/ApproveDenyView.html',
+      controller:     'Response.Controller',
+      resolve: {
+        access: ["Access", (Access) => {
+          var a =  Access.isAuthenticated();
+          return a;
+        }]
+      }
     });
     $routeProvider.when('/dashboard',
     {
@@ -55,6 +67,7 @@ angular.module('app', ['app.controllers','ngRoute','ngStorage','ui.bootstrap', '
       });
       $routeProvider.when('/dashboard/carpools/edit',
       {
+
         templateUrl: '/views/editCarpoolView.html',
         controller: 'Dashboard_Carpools_Edit.Controller',
         resolve: {
@@ -121,9 +134,8 @@ function($rootScope, Access, $location, $cookies) {
     }
   });
 
-
-
 }])
+
 // Gloabl variables
 .factory('ConfigService', function() {
   return {
@@ -134,6 +146,7 @@ function($rootScope, Access, $location, $cookies) {
 
   };
 });
+
 module app {
     export var controllers = angular.module('app.controllers',[]);
 }
