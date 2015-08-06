@@ -9,6 +9,8 @@ module Admin {
       checkAdmin: Function;
       createCampus: Function;
       $new:Function;
+      campusForm: any;
+      submitted: boolean;
     };
 
     export interface GeoCode{
@@ -45,6 +47,7 @@ module Admin {
 
 
           $scope.createCampus = (isInvalidForm) => {
+            $scope.submitted = true;
             if(isInvalidForm){
               return;
             }
@@ -69,6 +72,9 @@ module Admin {
               $http.post(ConfigService.host + ConfigService.port + '/api/campuses', campus)
                 .success( (data) => {
                   $('#campusCreated').css('visibility','visible').fadeIn();
+                  $scope.campusName = "";
+                  $scope.campusAddress = "";
+                  $scope.submitted = false;
                 })
                 .error( (data, status) => {
                   switch(status){
