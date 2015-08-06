@@ -175,6 +175,39 @@
       Carpool has been succesfully updated
     </div>
 
+
+    <!-- Campus added successfully -->
+    <div class="alert alert-success alert-dismissible fade in hidden-alerts" role="alert"
+           id="campusCreated">
+    <button type="button" class="close" ng-click="visible('campusCreated')" aria-label="Close">
+    <span aria-hidden="true">&times;</span></button>
+      Campus has been created successfully.
+    </div>
+
+    <!--  Geolocation error -->
+    <div class="alert alert-danger alert-dismissible fade in hidden-alerts" role="alert"
+           id="GeoLocationError">
+    <button type="button" class="close" ng-click="visible('GeoLocationError')" aria-label="Close">
+    <span aria-hidden="true">&times;</span></button>
+      Unable to GeoLocate the address provided.  Please make sure it is a valid address.
+    </div>
+
+    <!-- Campus conflict -->
+    <div class="alert alert-danger alert-dismissible fade in hidden-alerts" role="alert"
+           id="campusConflict">
+    <button type="button" class="close" ng-click="visible('campusConflict')" aria-label="Close">
+    <span aria-hidden="true">&times;</span></button>
+      A campus with that name already exists.
+    </div>
+
+    <!-- Not an admin -->
+    <div class="alert alert-danger alert-dismissible fade in hidden-alerts" role="alert"
+           id="notAdmin">
+    <button type="button" class="close" ng-click="visible('notAdmin')" aria-label="Close">
+    <span aria-hidden="true">&times;</span></button>
+      You must be an admin to create a campus.
+    </div>
+
   </div>
 <div ng-controller="Navbar.Controller">
 

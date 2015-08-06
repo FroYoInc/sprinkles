@@ -4,15 +4,29 @@
 module Admin {
 
     export interface Scope {
+      campusName: string;
+      campusAddress:string;
       checkAdmin: Function;
       createCampus: Function;
       $new:Function;
     };
 
+    export interface GeoCode{
+        long: number;
+        lat: number;  
+    };
+
+    export interface Campus {
+      name: string;
+      address :{
+        address: string;
+        geoCode : GeoCode;
+      }
+    }
+
     export class Controller {
 
         constructor ($scope: Scope, $location, $http: any, $cookies: any, $controller:any, ConfigService: any) {
-
           $scope.checkAdmin = () => {
             $http.get(ConfigService.host + ConfigService.port + '/api/users/checkadmin/')
               .success( (data) => {
@@ -30,43 +44,52 @@ module Admin {
           };
 
 
-          $scope.createCampus = (campus) => {
-            var testCampus = {
-              name: "Some random campus",
-              address: {
-                address: "875 N cedar ct Canby, OR",
-                geoCode: {
-                  long: 0,
-                  lat: 0
-                }
-              }
-            };
+          $scope.createCampus = (isInvalidForm) => {
+            if(isInvalidForm){
+              return;
+            }
+
             var geoCode = $scope.$new();
             $controller('GeoCoding.Controller',{$scope : geoCode });
-            geoCode.geocodeAddress(testCampus.address.address, (geo) => {
-              console.log(geo);
+            geoCode.geocodeAddress($scope.campusAddress, (geo) => {
+              
+              if(geo === null){
+                $('#GeoLocationError').css('visibility','visible').fadeIn();
+                return;
+              }
 
-            })
-
-
-            $http.post(ConfigService.host + ConfigService.port + '/api/campuses', testCampus)
-              .success( (data) => {
-                $('#success').css('visibility','visible').fadeIn();
-              })
-              .error( (data, status) => {
-                console.log(status);
-                switch(status){
-                  case 400: 
-                    // This should not be happening if the form is validated properly
-                    break;
-                  case 409:
-                    // Show a warning that the campus already exists
-                    break;
-                  case 500:
-                    // Show internal server error messge.
-                    break;
+              var campus:Campus = {
+                name:$scope.campusName,
+                address:{
+                  address: $scope.campusAddress,
+                  geoCode: geo
                 }
-              })
+              };
+
+              $http.post(ConfigService.host + ConfigService.port + '/api/campuses', campus)
+                .success( (data) => {
+                  $('#campusCreated').css('visibility','visible').fadeIn();
+                })
+                .error( (data, status) => {
+                  switch(status){
+                    case 400:
+                      $('#badRequest').css('visibility','visible').fadeIn();
+                      break;
+                    case 403:
+                      $('#notAdmin').css('visibility','visible').fadeIn();
+                    case 409:
+                      $('#campusConflict').css('visibility','visible').fadeIn();
+                      break;
+                    case 500:
+                      $('#internalError').css('visibility','visible').fadeIn();
+                      break;
+                  }
+                });
+
+            });
+
+
+
           };
 
         }
