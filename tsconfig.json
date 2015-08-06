@@ -27,7 +27,7 @@
         "./app/scripts/components/carpools/editCarpoolController.ts",
         "./app/scripts/components/carpools/viewCarpoolsController.ts",
         "./app/scripts/components/dashboard/dashboardController.ts",
-        "./app/scripts/components/geocoding/geocoding.ts",
+        "./app/scripts/components/geocoding/geocodingController.ts",
         "./app/scripts/components/home/homeController.ts",
         "./app/scripts/components/home/usermodel.ts",
         "./app/scripts/components/navbar/navbarController.ts",
