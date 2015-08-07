@@ -24,7 +24,9 @@ module UserModel {
         	this.userID = userID;
         	this.userName = userName;
         	this.isAuth = true;
-            this.isAdmin = true;
+        }
+        updateAdmin(status){
+            this.isAdmin = status;
         }
 
     }

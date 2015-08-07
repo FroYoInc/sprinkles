@@ -86,7 +86,8 @@ gulp.task('serve', ['build'], function() {
       'routes': config.routes,
       'middleware': [proxy]
       },
-    'port': config.port
+    'port': config.port,
+    'reloadOnRestart': true
   });
 
   gulp.watch([
@@ -104,7 +105,7 @@ gulp.task('serve', ['build'], function() {
 
 gulp.task('_build', ['styles', 'images', 'fonts', 'scripts', 'html']);
 gulp.task('build', function() {
-  failOnErrors = true;
+  failOnErrors = false;
   gulp.start('_build');
 });
 
