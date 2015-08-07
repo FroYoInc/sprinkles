@@ -31,15 +31,13 @@ module Admin {
         constructor ($scope: Scope, $location, $http: any, $cookies: any, $controller:any,ConfigService: any) {
           
           $scope.checkAdmin = ( user, cb: () => void ) => {
-              $http.get(ConfigService.host + ConfigService.port + '/api/users/checkadmin/')
+              $http.get(ConfigService.host + ConfigService.port + '/api/users/checkadmin')
                 .success( (data) => {
                   user.updateAdmin(true);
                   cb();
                 })
                 .error( (data, status) => {
-                  // TODO 
-                  // Change this to false when route is merged into develop
-                  user.updateAdmin(true);
+                  user.updateAdmin(false);
                   cb();
                 });
 
