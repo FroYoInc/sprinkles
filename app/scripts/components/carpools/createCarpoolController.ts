@@ -1,4 +1,5 @@
 /// <reference path="../../app.ts"/>
+/// <reference path="carpoolmodel.ts"/>
 
 // interface used to display a list of carpools, edit user profile and create a carpool
 module Dashboard_Carpools_Create {
@@ -7,7 +8,6 @@ module Dashboard_Carpools_Create {
         name: string;
         campus: string;
         description: string;
-        owner: string;
         campusList: any;
         address: string;
         lat: number;
@@ -15,10 +15,12 @@ module Dashboard_Carpools_Create {
         userNotFound: Boolean;
         carpoolExists: Boolean;
         createCarpool: Function;
+
+        $new: Function;
     }
     export class Controller {
 
-    	constructor ($scope: Scope, $http: any, $location: any, $cookies: any, ConfigService: any) {
+    	constructor ($scope: Scope, $http: any, $location: any, $cookies: any, ConfigService: any, $controller:any) {
 
         //Populate campus list
         $http.get(ConfigService.host + ConfigService.port + '/api/campuses').success(function(data, status, headers, config) {
@@ -26,20 +28,23 @@ module Dashboard_Carpools_Create {
           });
 
         $scope.createCarpool = (isInvalidForm) => {
-          var postData = {
-            name: $scope.name,
-            description: $scope.description,
-            campus: $scope.campus,
-            pickupLocation: {
-              address: $scope.address,
-              geoCode: {
-                lat: $scope.lat,
-                long: $scope.long
-              }
-            },
-            owner: $scope.owner
-          }
-
+          var postData = new CarpoolModel.Carpool();
+          postData.name = $scope.name;
+          postData.description = $scope.description;
+          postData.campus = $scope.campus;
+          postData.pickupLocation.address = $scope.address;
+            // Update my cookie
+          var geoCode = $scope.$new();
+          $controller('GeoCoding.Controller',{$scope : geoCode });
+          geoCode.geocodeAddress(postData.pickupLocation.address, (geo) => {
+            var updatedCookie = new CarpoolModel.CarpoolCookie(postData.name, postData.description, null,
+                              null, postData.campus, postData.pickupLocation.address,
+                              geo.lat, geo.long);
+            $cookies.putObject('carpool', updatedCookie);
+          });
+          var ownerCookie = $cookies.getObject('user');
+          postData.owner = ownerCookie.userName;
+            
           //Hide previous errors:
           $scope.userNotFound = false;
           $scope.carpoolExists = false;
