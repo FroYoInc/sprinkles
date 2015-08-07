@@ -33,11 +33,12 @@
           <center> <h3>Carpool</h3>
             <p>View Carpools Here</p>
             <!--Campus Location -->
-            <select class="selectpicker" ng-model="campus" name="campus" title="Select a Campus" style="display: none;" required>
-                    <option ng-repeat="campus in campusList" value="{{campus.name}}">{{campus.name}}</option>
-              </select>
               <div class="control-group" ng-class="{true: 'error'}[submitted && createform.campus.$invalid]">
-              <span class="help-inline" ng-show="submitted && createform.campus.$error.required">Required Field</span>
+                <label>Select A Campus</label>
+                <select ng-model="campus" name="campus" title="Select a Campus" required>
+                    <option ng-repeat="campus in campusList" value="{{campus.name}}">{{campus.name}}</option>
+                </select>
+                <span class="help-inline" ng-show="submitted && createform.campus.$error.required">Required Field</span>
               </div>
               <button type="submit" class="btn btn-primary btn-lg btn-block" ng-click="displayCarpools()">View Carpools</button>
         </div><center>
