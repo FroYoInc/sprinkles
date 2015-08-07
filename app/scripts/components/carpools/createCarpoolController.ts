@@ -25,7 +25,7 @@ module Dashboard_Carpools_Create {
         //Populate campus list
         $http.get(ConfigService.host + ConfigService.port + '/api/campuses').success(function(data, status, headers, config) {
           $scope.campusList = data;
-          });
+        });
 
         $scope.createCarpool = (isInvalidForm) => {
           var postData = new CarpoolModel.Carpool();

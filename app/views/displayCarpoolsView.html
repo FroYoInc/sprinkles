@@ -4,6 +4,14 @@
     <small> Click an entry to view details of a carpool. Click the entry again to hide the details. </small>
   </h1>
 </div>
+<form class="form-inline">
+  <div class="form-group">
+    <label>Search by address</label>
+      <br>
+        <input type="text" ng-model="address" name="address" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Search</button>
+</form>
   <accordion close-others="oneAtATime">
     <accordion-group  ng-repeat="carpool in carpoolList" is-open="status.open">
       <accordion-heading>
