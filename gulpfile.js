@@ -4,6 +4,7 @@ var del     = require('del');
 var ac      = require('autoprefixer-core');
 var wiredep = require('wiredep').stream;
 var config  = require('./config.js')
+var cover = require('gulp-coverage');
 var proxyMiddleware = require('http-proxy-middleware');
 
 
@@ -17,6 +18,13 @@ var failOnErrors = false;
 var handleError = function(err) {
   $.util.log(err.message);
   if (failOnErrors) {
+    process.exit(1);
+  }
+}
+
+var handleError = function(err) {
+  if (failOnErrors) {
+    $.util.log(err.message);
     process.exit(1);
   }
 }
@@ -107,6 +115,24 @@ gulp.task('build', function() {
   failOnErrors = true;
   gulp.start('_build');
 });
+
+gulp.task('unit-tests', ['transpile-ts2js'], function() {
+  return gulp.src(config.testFiles)
+    .pipe($.jasmine())
+    .on('error', handleError);
+});
+
+gulp.task('coverage',['transpile-ts2js'], function() {
+  return gulp.src(['dist/**/*.js']) //['dist/app/**/*.js']
+      .pipe($.istanbul())
+      .pipe($.istanbul.hookRequire())
+      .on('finish', function () {
+        gulp.src(['dist/**/*.js']) //['dist/test/**/*.js']
+          .pipe($.jasmine({reporter: 'spec'}))
+          .pipe($.jasmine({configFile: 'karma.conf.js', action: 'run'}))
+          .pipe($.istanbul.writeReports('reports/'));
+      });
+})
 
 gulp.task('default', function() {
    gulp.watch(config.tsFilesGlob, ['transpile-ts2js']);

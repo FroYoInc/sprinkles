@@ -22,6 +22,8 @@
     "browser-sync": "^2.7.4",
     "del": "^1.2.0",
     "gulp": "^3.8.11",
+    "gulp-coverage": "^0.3.36",
+    "gulp-istanbul": "^0.10.0",
     "gulp-jasmine": "^2.0.1",
     "gulp-load-plugins": "^0.10.0",
     "gulp-postcss": "^5.1.8",
@@ -31,6 +33,7 @@
     "gulp-typescript": "^2.7.5",
     "gulp-util": "^3.0.4",
     "http-proxy-middleware": "^0.1.0",
+    "jasmine": "^2.3.2",
     "ngstorage": "^0.3.6",
     "wiredep": "^2.2.2"
   }
