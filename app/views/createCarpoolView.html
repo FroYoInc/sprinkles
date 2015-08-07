@@ -25,23 +25,11 @@
       <span class="help-inline" ng-show="submitted && createform.campus.$error.required">Required Field</span>
     </div>
 
-    <!--Owner of Capool-->
-    <div class="control-group" ng-class="{true: 'error'}[submitted && createform.owner.$invalid]">
-      <label>Owner of Carpool(Username of owner)</label>
-      <input type="text" name="owner" class="form-control" id="owner" ng-model="owner" required>
-      <span class="help-inline" ng-show="submitted && createform.owner.$error.required">Required Field</span>
-      <span class="help-inline2" ng-show="submitted && userNotFound"> Owner not found.</span>
-    </div>
-
-    <!--PickupLocation of Capool-->
-    <div class="control-group" ng-class="{true: 'error'}[submitted && createform.owner.$invalid]">
-      <label>Address</label>
-      <input type="text" name="address" class="form-control" id="address" ng-model="address" required>
-      <label>Latitude</lable>
-      <input type="text" name="lat" class="form-control" id="lat" ng-model="lat" required>
-      <label>Longitude</lable>
-      <input type="text" name="long" class="form-control" id="long" ng-model="long" required>
-      <span class="help-inline" ng-show="submitted && createform.owner.$error.required">Required Field</span>
+    <!--Pickup Location -->
+    <div class="control-group" ng-class="{true: 'error'}[submitted && createform.pickupLocation.$invalid]">
+      <label>Pick up location</label>
+          <input type="text" ng-model="address" class="form-control" name="address" placeholder="Address" required>
+      <span class="help-inline" ng-show="submitted && createform.address.$error.required">Required Field</span>
     </div>
 
     <div ng-show="carpoolExists" class="help-inline2"> Error: Cannot create carpool. This carpool already Exists.</div><br>
