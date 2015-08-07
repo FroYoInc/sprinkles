@@ -193,7 +193,7 @@
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="container" ng-show="!isAuth">
+      <div class="container" ng-show="!isAuth" ng-cloak>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
             <li ng-class="navClass('home')"><a href="" ng-click="loadHome()">Home</a></li>
@@ -202,14 +202,14 @@
               <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li><a href="">Contact</a></li>
-                <li><a href="https://github.com/FroYoInc/sprinkles/blob/master/LICENSE">License</a></li>
-                <li><a href="https://github.com/FroYoInc">Source</a></li>
+                <li><a href="https://github.com/FroYoInc/sprinkles/blob/master/LICENSE" target="_blank">License</a></li>
+                <li><a href="https://github.com/FroYoInc" target="_blank">Source</a></li>
               </ul>
             </li>
           </ul>
         </div>
       </div>
-      <div class="container" ng-show="isAuth">
+      <div class="container" ng-show="isAuth" ng-cloak>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
             <li ng-class="navClass('dashboard')"><a href="" ng-click="loadDashboard()">Home</a></li>
