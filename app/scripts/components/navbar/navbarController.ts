@@ -18,7 +18,7 @@ module Navbar {
 
   export class Controller {
 
-    constructor ($scope: Scope, $location: any, $cookies: any) {
+    constructor ($scope: Scope, $location: any, $cookies: any, $http:any, ConfigService:any) {
       var cookie = $cookies.getObject('user');
       if (typeof(cookie) != "undefined"){
         $scope.isAuth = cookie.isAuth;
@@ -94,7 +94,13 @@ module Navbar {
           if (typeof(cookie) != undefined){
             $cookies.remove('carpool');
           }
-          $location.url('/home');
+          $http.get(ConfigService.host + ConfigService.port + "/api/users/logout")
+            .success( (data) => {
+              $location.url('/home');
+            })
+            .error( (status, data) => {
+              $location.url('/home');
+            })
        }
     }
   }
