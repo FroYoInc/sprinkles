@@ -15,7 +15,7 @@
       <strong>Contact:</strong> {{carpool.owner.email}} <br>
       <strong>Current Participants:</strong> {{carpool.participants.length}} <br>
       <strong>Campus Locatition:</strong> {{carpool.campus.name}} <br>
-      <strong>Campus Address:</strong> {{carpool.campus.address.address}} <br>
+      <strong>Pickup Location:</strong> {{carpool.pickupLocation.address}} <br>
       <div ng-controller="Request.Controller">
       <button type="submit" class="btn btn-primary btn-lg" ng-click="sendRequest(carpool.href.substr(10))">Request Access to Carpool</button>
 
