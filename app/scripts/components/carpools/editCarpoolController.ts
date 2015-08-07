@@ -61,27 +61,29 @@ module Dashboard_Carpools_Edit {
         // remove this cookie because I will make a new one
         $cookies.remove('carpool');
 
-        // Update my cookie
-        var geoCode = $scope.$new();
-        $controller('GeoCoding.Controller',{$scope : geoCode });
-        geoCode.geocodeAddress(editedCarpool.pickupLocation.address, (geo) => {
-          var updatedCookie = new CarpoolModel.CarpoolCookie(editedCarpool.name, editedCarpool.description, editedCarpool.carpoolID,
-                            editedCarpool.campusName, editedCarpool.campus, editedCarpool.pickupLocation.address,
-                            geo.lat, geo.long);
-          $cookies.putObject('carpool', updatedCookie);
-        });
-        
-
-
         //If the form is invalid, don't make the request
         if(isInvalidForm) {
           return;
         }
-         $http.put(ConfigService.host + ConfigService.port + '/api/carpools/' + editedCarpool.carpoolID,
+
+        // Update my cookie
+        var geoCode = $scope.$new();
+        $controller('GeoCoding.Controller',{$scope : geoCode });
+
+        geoCode.geocodeAddress(editedCarpool.pickupLocation.address, (geo) => {
+          if (geo == null) {
+            $('#internalError').css('visibility','visible').fadeIn();
+            return; // test to see if the address is vaild.
+          }
+          var updatedCookie = new CarpoolModel.CarpoolCookie(editedCarpool.name, editedCarpool.description, editedCarpool.carpoolID,
+                            editedCarpool.campusName, editedCarpool.campus, editedCarpool.pickupLocation.address,
+                            geo.lat, geo.long);
+          $cookies.putObject('carpool', updatedCookie);
+          $http.put(ConfigService.host + ConfigService.port + '/api/carpools/' + editedCarpool.carpoolID,
                     editedCarpool).success(function(data, status, headers, config) {
             $location.path('/dashboard');
             window.scrollTo(0,0);
-            $('#carpoolUpdated').css('visibility','visible').fadeIn();
+            $('#GeoLocationError').css('visibility','visible').fadeIn();
            }).error(function(data, status, headers, config) {
              //500 server error
              if(status == 500){
@@ -93,6 +95,7 @@ module Dashboard_Carpools_Edit {
                  $('#notFound').css('visibility','visible').fadeIn();
              }
            });
+          });
         };
         // Get the campus name by the campus ID
         $scope.getCampusName = function(campus) {

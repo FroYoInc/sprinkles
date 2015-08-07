@@ -33,18 +33,7 @@ module Dashboard_Carpools_Create {
           postData.description = $scope.description;
           postData.campus = $scope.campus;
           postData.pickupLocation.address = $scope.address;
-            // Update my cookie
-          var geoCode = $scope.$new();
-          $controller('GeoCoding.Controller',{$scope : geoCode });
-          geoCode.geocodeAddress(postData.pickupLocation.address, (geo) => {
-            var updatedCookie = new CarpoolModel.CarpoolCookie(postData.name, postData.description, null,
-                              null, postData.campus, postData.pickupLocation.address,
-                              geo.lat, geo.long);
-            $cookies.putObject('carpool', updatedCookie);
-          });
-          var ownerCookie = $cookies.getObject('user');
-          postData.owner = ownerCookie.userName;
-            
+
           //Hide previous errors:
           $scope.userNotFound = false;
           $scope.carpoolExists = false;
@@ -53,27 +42,43 @@ module Dashboard_Carpools_Create {
           if(isInvalidForm) {
             return;
           }
+            // Update my cookie
+          var geoCode = $scope.$new();
+          $controller('GeoCoding.Controller',{$scope : geoCode });
+          geoCode.geocodeAddress(postData.pickupLocation.address, (geo) => {
+            if (geo == null) {
+              $('#internalError').css('visibility','visible').fadeIn();
+              return; // test to see if the address is vaild.
+            }
+            var updatedCookie = new CarpoolModel.CarpoolCookie(postData.name, postData.description, null,
+                              null, postData.campus, postData.pickupLocation.address,
+                              geo.lat, geo.long);
+            $cookies.putObject('carpool', updatedCookie);
 
-          //Attempt to post data
-          $http.post(ConfigService.host + ConfigService.port + '/api/carpools', postData).success(function(data, status, headers, config) {
-              $location.path('/dashboard');
-              window.scrollTo(0,0);
-              $('#carpoolCreated').css('visibility','visible').fadeIn();
-            }).error(function(data, status, headers, config) {
-              //406: Owner not found
-              if(status == 406 && ((data.message).localeCompare("CarpoolOwnerNotFoundException: carpool owner user not found") == 0)){
-                  $scope.userNotFound = true;
-              }
-              //409: Carpool already Exists
-              if(status == 409){
-                $scope.carpoolExists = true;
-              }
-              //500: Server error
-              if(status == 500){
+            var ownerCookie = $cookies.getObject('user');
+            postData.owner = ownerCookie.userName;
+            //Attempt to post data
+            $http.post(ConfigService.host + ConfigService.port + '/api/carpools', postData).success(function(data, status, headers, config) {
+                $location.path('/dashboard');
                 window.scrollTo(0,0);
-                  $('#internalError').css('visibility','visible').fadeIn();
-              }
-            });
+                $('#carpoolCreated').css('visibility','visible').fadeIn();
+              }).error(function(data, status, headers, config) {
+                //406: Owner not found
+                if(status == 406 && ((data.message).localeCompare("CarpoolOwnerNotFoundException: carpool owner user not found") == 0)){
+                    $scope.userNotFound = true;
+                }
+                //409: Carpool already Exists
+                if(status == 409){
+                  $scope.carpoolExists = true;
+                }
+                //500: Server error
+                if(status == 500){
+                  window.scrollTo(0,0);
+                    $('#internalError').css('visibility','visible').fadeIn();
+                }
+              });
+          });
+
         }
     	}
     }

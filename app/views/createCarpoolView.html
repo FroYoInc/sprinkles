@@ -26,10 +26,10 @@
     </div>
 
     <!--Pickup Location -->
-    <div class="control-group" ng-class="{true: 'error'}[submitted && editform.pickupLocation.$invalid]">
+    <div class="control-group" ng-class="{true: 'error'}[submitted && createform.pickupLocation.$invalid]">
       <label>Pick up location</label>
           <input type="text" ng-model="address" class="form-control" name="address" placeholder="Address" required>
-      <span class="help-inline" ng-show="submitted && editform.address.$error.required">Required Field</span>
+      <span class="help-inline" ng-show="submitted && createform.address.$error.required">Required Field</span>
     </div>
 
     <div ng-show="carpoolExists" class="help-inline2"> Error: Cannot create carpool. This carpool already Exists.</div><br>
