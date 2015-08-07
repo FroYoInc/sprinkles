@@ -16,6 +16,7 @@ module CarpoolModel {
     carpoolID: string;
     campusName: string;
     campus: string;
+    owner: string;
     pickupLocation = new PickupLocation();
 	 
   }
