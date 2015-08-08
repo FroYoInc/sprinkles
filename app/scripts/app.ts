@@ -77,6 +77,17 @@ angular.module('app', ['app.controllers','ngRoute','ngStorage','ui.bootstrap', '
             }]
           }
       });
+      $routeProvider.when('/dashboard/admin',
+      {
+        templateUrl: '/views/adminView.html',
+        controller: 'Admin.Controller',
+        resolve: {
+          access: ["Access", (Access) => {
+            var a =  Access.isAuthenticated();
+            return a;
+            }]
+          }
+      });
     $routeProvider.otherwise(
     {
       redirectTo:     '/home',
@@ -131,7 +142,8 @@ function($rootScope, Access, $location, $cookies) {
     host: "http://localhost:",
     port: "3000",
     mapsApi : 'https://maps.googleapis.com/maps/api/geocode/json?address=',
-    key : "AIzaSyAjbcANI_Dx4yrB05vl0nBRUniazxWTIV4"
+    key : "AIzaSyBSF13-LI-xt-UwQ4LOQ_OhM3V6mssNuNo"
+
   };
 });
 

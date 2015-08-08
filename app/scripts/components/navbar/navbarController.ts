@@ -10,9 +10,11 @@ module Navbar {
     loadCarpoolsView: Function;
     loadCarpoolsCreate: Function;
     loadCarpoolsEdit: Function;
+    loadAdmin: Function;
     $watch: any;
 
     isAuth: Boolean;
+    isAdmin: Boolean;
     isInCarpool: Boolean;
   }
 
@@ -46,6 +48,9 @@ module Navbar {
           var cookie = $cookies.getObject('user');
           if (typeof(cookie) != "undefined"){
             $scope.isAuth = cookie.isAuth;
+          }
+          if (typeof(cookie) != "undefined"){
+            $scope.isAdmin = cookie.isAdmin;
           }
           var carpoolCookie = $cookies.getObject('carpool');
           if (typeof(carpoolCookie) != "undefined"){
@@ -81,6 +86,9 @@ module Navbar {
        }
        $scope.loadCarpoolsCreate = () => {
          $location.url('/dashboard/carpools/create')
+       }
+       $scope.loadAdmin = () => {
+         $location.url('/dashboard/admin')
        }
        
       // Removes the cookie and re-routes to the home page
