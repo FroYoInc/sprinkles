@@ -80,6 +80,7 @@ module Home {
            $scope.isAnonymous = function(){
             return this.user.isAuth;
            }
+
         }
 
     }

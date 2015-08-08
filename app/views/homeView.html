@@ -9,7 +9,7 @@
   </div>
   </div>
 <div class="container">
-  <form class="form-horizontal-signin col-sm-4" ng-submit="signIn()">
+  <form class="form-horizontal-signin col-sm-4" ng-submit="signIn()" ng-hide="forgotPasswordStatus" ng-cloak>
         <!--Sign in - existing user-->
     <p><i> Sign in:  </i></p>
     <div class="form-group">
@@ -31,10 +31,11 @@
         <br>
         <button type="submit" ng-click="signIn()" class="btn btn-primary">Sign In</button>
         <br><br>
-        <a href="">Forgot Password?</a>
+        <a href="/#/password/reset">Forgot Password?</a>
       </div>
     </div>
   </form>
+
   <div ng-controller="Signup.Controller">
   <form class="form-horizontal-signup col-sm-4">
           <!-- Sign up - New User -->

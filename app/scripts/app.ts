@@ -77,11 +77,30 @@ angular.module('app', ['app.controllers','ngRoute','ngStorage','ui.bootstrap', '
             }]
           }
       });
-    $routeProvider.otherwise(
-    {
-      redirectTo:     '/home',
-      controller:     'Home.Controller',
-    });
+
+      $routeProvider.when('/dashboard/settings',{
+
+        templateUrl: '/views/settingsView.html',
+        controller: 'PasswordManager.Controller',
+        resolve: {
+          access: ["Access", (Access) => {
+            var a =  Access.isAuthenticated();
+            return a;
+            }]
+          }
+      });
+
+      $routeProvider.when('/password/reset', {
+
+        templateUrl: '/views/resetPasswordView.html',
+        controller: 'PasswordManager.Controller'
+      });
+
+      $routeProvider.otherwise(
+      {
+        redirectTo:     '/home',
+        controller:     'Home.Controller',
+      });
 })
 
 // User is a standard AngularJS resource with a profile method (needs angular-resource):

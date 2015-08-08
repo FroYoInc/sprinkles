@@ -10,6 +10,7 @@ module Navbar {
     loadCarpoolsView: Function;
     loadCarpoolsCreate: Function;
     loadCarpoolsEdit: Function;
+    accountSettings: Function;
     $watch: any;
 
     isAuth: Boolean;
@@ -18,7 +19,7 @@ module Navbar {
 
   export class Controller {
 
-    constructor ($scope: Scope, $location: any, $cookies: any) {
+    constructor ($scope: Scope, $location: any, $cookies: any, $http:any, ConfigService:any) {
       var cookie = $cookies.getObject('user');
       if (typeof(cookie) != "undefined"){
         $scope.isAuth = cookie.isAuth;
@@ -83,6 +84,9 @@ module Navbar {
          $location.url('/dashboard/carpools/create')
        }
        
+       $scope.accountSettings = () => {
+         $location.url('/dashboard/settings')
+       }
       // Removes the cookie and re-routes to the home page
       $scope.logout = () => {
          $scope.isAuth = false;
@@ -94,7 +98,13 @@ module Navbar {
           if (typeof(cookie) != undefined){
             $cookies.remove('carpool');
           }
-          $location.url('/home');
+          $http.get(ConfigService.host + ConfigService.port + "/api/users/logout")
+            .success( (data) => {
+              $location.url('/home');
+            })
+            .error( (status, data) => {
+              $location.url('/home');
+            })
        }
     }
   }

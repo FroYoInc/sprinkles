@@ -60,6 +60,7 @@ module Dashboard {
               $location.url('/ApproveDeny');
             };
 
+
     	}
     }
 }
