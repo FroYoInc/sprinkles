@@ -175,6 +175,61 @@
       Carpool has been succesfully updated
     </div>
 
+
+    <!-- Reset Password Alerts -->
+
+    <div class="alert alert-success alert-dismissible fade in hidden-alerts" role="alert"
+           id="resetSuccess">
+    <button type="button" class="close" ng-click="visible('resetSuccess')" aria-label="Close">
+    <span aria-hidden="true">&times;</span></button>
+      <strong>Success!</strong> Please check your email for a temporary password.
+    </div>
+
+    <div class="alert alert-warning alert-dismissible fade in hidden-alerts" role="alert"
+           id="invalidEmail">
+    <button type="button" class="close" ng-click="visible('invalidEmail')" aria-label="Close">
+    <span aria-hidden="true">&times;</span></button>
+      Unable to locate an account with the email provided.
+    </div>
+
+    <div class="alert alert-warning alert-dismissible fade in hidden-alerts" role="alert"
+           id="resetLockout">
+    <button type="button" class="close" ng-click="visible('resetLockout')" aria-label="Close">
+    <span aria-hidden="true">&times;</span></button>
+      The account you attempted to reset has already been reset recently.  If you do not get an email soon, try again later.
+    </div>
+
+    <!-- Change Password Alerts -->
+
+    <div class="alert alert-success alert-dismissible fade in hidden-alerts" role="alert"
+           id="changeSuccess">
+    <button type="button" class="close" ng-click="visible('changeSuccess')" aria-label="Close">
+    <span aria-hidden="true">&times;</span></button>
+      <strong>Success!</strong> Your password has been updated.
+    </div>
+
+    <div class="alert alert-danger alert-dismissible fade in hidden-alerts" role="alert"
+           id="wrongPassword">
+    <button type="button" class="close" ng-click="visible('wrongPassword')" aria-label="Close">
+    <span aria-hidden="true">&times;</span></button>
+      The password you provided is not correct, please try again.
+    </div>
+
+    <div class="alert alert-danger alert-dismissible fade in hidden-alerts" role="alert"
+           id="unableToChange">
+    <button type="button" class="close" ng-click="visible('unableToChange')" aria-label="Close">
+    <span aria-hidden="true">&times;</span></button>
+      We were unable to change your password, please try again.
+    </div>
+
+    <div class="alert alert-danger alert-dismissible fade in hidden-alerts" role="alert"
+           id="passwordConflict">
+    <button type="button" class="close" ng-click="visible('passwordConflict')" aria-label="Close">
+    <span aria-hidden="true">&times;</span></button>
+      Your new password and the confirmation password do not match.
+    </div>
+
+
   </div>
 <div ng-controller="Navbar.Controller">
 
@@ -218,6 +273,7 @@
             <li ng-class="navClass('dashboard/carpools/edit')"><a href="" ng-show="isInCarpool"ng-click="loadCarpoolsEdit()">Edit Carpool</a></li>
           </ul>
           <ul class="nav navbar-nav pull-right">
+            <li><a class="pull-right" href="" ng-click="accountSettings()">Settings</a></li>
             <li><a class="pull-right" href="" ng-click="logout()">Logout</a></li>
           </ul>
         </div>
@@ -255,6 +311,8 @@
 <script src="dist/app/scripts/components/Request/RequestController.js"></script>
 <script src="dist/app/scripts/components/Request/responseController.js"></script>
 <script src="dist/app/scripts/components/geocoding/geocodingController.js"></script>
+<script src="dist/app/scripts/components/password/passwordController.js"></script>
+
 
 
 <!-- endbower -->

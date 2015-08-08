@@ -33,6 +33,7 @@
         "./app/scripts/components/home/homeController.ts",
         "./app/scripts/components/home/usermodel.ts",
         "./app/scripts/components/navbar/navbarController.ts",
+        "./app/scripts/components/password/passwordController.ts",
         "./app/scripts/components/signup/signupController.ts",
         "./typings/angularjs/angular-route.d.ts",
         "./typings/angularjs/angular.d.ts",

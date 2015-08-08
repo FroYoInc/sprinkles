@@ -10,6 +10,7 @@ module Navbar {
     loadCarpoolsView: Function;
     loadCarpoolsCreate: Function;
     loadCarpoolsEdit: Function;
+    accountSettings: Function;
     $watch: any;
 
     isAuth: Boolean;
@@ -83,6 +84,9 @@ module Navbar {
          $location.url('/dashboard/carpools/create')
        }
        
+       $scope.accountSettings = () => {
+         $location.url('/dashboard/password/change')
+       }
       // Removes the cookie and re-routes to the home page
       $scope.logout = () => {
          $scope.isAuth = false;
