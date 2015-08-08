@@ -39,7 +39,10 @@ gulp.task('transpile-ts2js', function () {
     .pipe(gulp.dest(config.tsOutDir));
 });
 
-gulp.task('scripts', ['transpile-ts2js']);
+gulp.task('scripts', ['transpile-ts2js'], function() {
+	gulp.src(['./dist/app/scripts/**/*.*'])
+		.pipe(gulp.dest('dist/dist/app/scripts'));
+});
 
 gulp.task('styles', function() {
   return gulp.src(config.sassFiles)
@@ -52,9 +55,16 @@ gulp.task('styles', function() {
 });
 
 gulp.task('html', ['styles'], function() {
+	gulp.src(['./app/index.html'])
+		.pipe(gulp.dest('dist/'));
+	
+	gulp.src(['./app/views/**/*.*'], { base: './app/views/' })
+		.pipe(gulp.dest('dist/views'));
 });
 
 gulp.task('images', function() {
+	return gulp.src(config.imageFiles)
+		.pipe(gulp.dest(config.imageFilesOut));
 });
 
 gulp.task('fonts', function() {
@@ -102,10 +112,15 @@ gulp.task('serve', ['build'], function() {
   gulp.watch(config.bowerFile, ['wiredep']);
 });
 
-gulp.task('_build', ['styles', 'images', 'fonts', 'scripts', 'html']);
+gulp.task('_build', ['styles', 'images', 'fonts', 'scripts', 'html', 'move-bower']);
 gulp.task('build', function() {
   failOnErrors = true;
   gulp.start('_build');
+});
+
+gulp.task('move-bower', function() {
+	gulp.src(['./bower_components/**/*.*'], { base: './' })
+		.pipe(gulp.dest('dist'));
 });
 
 gulp.task('default', function() {
