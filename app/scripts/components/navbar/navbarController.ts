@@ -85,7 +85,7 @@ module Navbar {
        }
        
        $scope.accountSettings = () => {
-         $location.url('/dashboard/password/change')
+         $location.url('/dashboard/settings')
        }
       // Removes the cookie and re-routes to the home page
       $scope.logout = () => {

@@ -78,9 +78,9 @@ angular.module('app', ['app.controllers','ngRoute','ngStorage','ui.bootstrap', '
           }
       });
 
-      $routeProvider.when('/dashboard/password/change',{
+      $routeProvider.when('/dashboard/settings',{
 
-        templateUrl: '/views/changePasswordView.html',
+        templateUrl: '/views/settingsView.html',
         controller: 'PasswordManager.Controller',
         resolve: {
           access: ["Access", (Access) => {
