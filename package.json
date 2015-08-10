@@ -23,8 +23,7 @@
     "del": "^1.2.0",
     "gulp": "^3.8.11",
     "gulp-coverage": "^0.3.36",
-    "gulp-istanbul": "^0.10.0",
-    "gulp-jasmine": "^2.0.1",
+    "gulp-karma": "0.0.4",
     "gulp-load-plugins": "^0.10.0",
     "gulp-postcss": "^5.1.8",
     "gulp-sass": "^2.0.1",
@@ -34,7 +33,14 @@
     "gulp-util": "^3.0.4",
     "http-proxy-middleware": "^0.1.0",
     "jasmine": "^2.3.2",
+    "jasmine-core": "^2.3.4",
+    "karma-browserify": "^4.3.0",
+    "karma-chrome-launcher": "^0.2.0",
+    "karma-coverage": "^0.5.0",
+    "karma-jasmine": "^0.3.6",
+    "ng-html2js": "^2.0.0",
     "ngstorage": "^0.3.6",
+    "phantomjs": "^1.9.17",
     "wiredep": "^2.2.2"
   }
 }

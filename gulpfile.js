@@ -6,7 +6,19 @@ var wiredep = require('wiredep').stream;
 var config  = require('./config.js')
 var cover = require('gulp-coverage');
 var proxyMiddleware = require('http-proxy-middleware');
+var karma = require('gulp-karma');
+var testFiles =  [
+        './bower_components/angular/angular.js',
+        './bower_components/angular-route/angular-route.js',
+        './bower_components/angular-mocks/angular-mocks.js',
+        './bower_components/ngstorage/ngStorage.js',
+        './bower_components/angular-bootstrap/ui-bootstrap.js',
+        './bower_components/angular-resource/angular-resource.js',
+        './bower_components/angular-cookies/angular-cookies.js',
 
+        './dist/**/*.js',
+        './test/**/*.js'
+    ];
 
 var ts = $.typescript;
 
@@ -116,26 +128,22 @@ gulp.task('build', function() {
   gulp.start('_build');
 });
 
-gulp.task('unit-tests', ['transpile-ts2js'], function() {
-  return gulp.src(config.testFiles)
-    .pipe($.jasmine())
-    .on('error', handleError);
-});
-
-gulp.task('coverage',['transpile-ts2js'], function() {
-  return gulp.src(['dist/**/*.js']) //['dist/app/**/*.js']
-      .pipe($.istanbul())
-      .pipe($.istanbul.hookRequire())
-      .on('finish', function () {
-        gulp.src(['dist/**/*.js']) //['dist/test/**/*.js']
-          .pipe($.jasmine({reporter: 'spec'}))
-          .pipe($.jasmine({configFile: 'karma.conf.js', action: 'run'}))
-          .pipe($.istanbul.writeReports('reports/'));
-      });
-})
 
 gulp.task('default', function() {
    gulp.watch(config.tsFilesGlob, ['transpile-ts2js']);
    gulp.watch(config.htmlDir, browserSync.reload);
    gulp.watch(config.cssDir, browserSync.reload);
+});
+
+
+gulp.task('unit-tests', ['transpile-ts2js'], function(coverage) {
+  gulp.src(testFiles)
+      .pipe(karma({
+      configFile: 'karma.conf.js',
+      action: 'run'
+  }))
+  .on('error', function(err) {
+  // Make sure failed tests cause gulp to exit non-zero
+      throw err;
+  });
 });

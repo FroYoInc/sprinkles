@@ -8,7 +8,7 @@
 /// <reference path='components/carpools/createCarpoolController.ts'/>
 /// <reference path='components/carpools/viewCarpoolsController.ts'/>
 /// <reference path='components/Request/responseController.ts'/>
-///<reference path="../../typings/angularjs/angular-mocks.d.ts" />
+/// <reference path="../../typings/angularjs/angular-mocks.d.ts" />
 
 
 

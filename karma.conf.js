@@ -1,43 +1,29 @@
-'use strict';
-
 module.exports = function(config) {
+   config.set({
+     frameworks: ['jasmine'],
 
-  var configuration = {
-    autoWatch : false,
+     plugins: [
+     'karma-phantomjs-launcher',
+     'karma-jasmine',
+     'karma-coverage'
+     ],
 
-    frameworks: ['jasmine'],
+     // start these browsers
+     browsers: ['PhantomJS'],
 
-    ngHtml2JsPreprocessor: {
-      stripPrefix: 'src/',
-      moduleName: 'gulpAngular'
-    },
+     reporters: ['progress', 'coverage'],
 
-    browsers : ['PhantomJS'],
+     preprocessors: {
+     'dist/app/scripts/*.js': ['coverage']
+     },
 
-    plugins : [
-      'karma-phantomjs-launcher',
-      'karma-jasmine',
-      'karma-ng-html2js-preprocessor'
-    ],
+     coverageReporter: {
+     type: 'html',
+     dir: 'coverage'
+     },
 
-    preprocessors: {
-      'src/**/*.html': ['ng-html2js']
-    }
-  };
+     logLevel: config.LOG_INFO,
 
-  // This block is needed to execute Chrome on Travis
-  // If you ever plan to use Chrome and Travis, you can keep it
-  // If not, you can safely remove it
-  // https://github.com/karma-runner/karma/issues/1144#issuecomment-53633076
-  if(configuration.browsers[0] === 'Chrome' && process.env.TRAVIS) {
-    configuration.customLaunchers = {
-      'chrome-travis-ci': {
-        base: 'Chrome',
-        flags: ['--no-sandbox']
-      }
-    };
-    configuration.browsers = ['chrome-travis-ci'];
-  }
-
-  config.set(configuration);
+     singleRun: true
+   });
 };

@@ -20,13 +20,14 @@ module CarpoolCreate {
         checkPasswords: Function;
         signup: Function;
         loadSignup: Function;
+        aler: Function;
     }
     export class Controller {
 
         constructor ($scope: Scope, $location, $http: any, $localStorage, ConfigService: any) {
 
             $scope.events = this;
-
+            $scope.aler = () => {console.log("hi")}
             //Adds the information into a temp local storage.
             //This gets cleared after the user signs up.
             $scope.userEmail = $localStorage.email;
@@ -98,4 +99,3 @@ module CarpoolCreate {
 }
 
 app.controllers.controller('Carpool.Create.Controller', CarpoolCreate.Controller);
-
