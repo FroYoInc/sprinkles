@@ -47,8 +47,7 @@ module Dashboard {
             });
 
             $scope.displayCarpools = (campus) => {
-              $localStorage.campus = campus;  
-              console.log(campus);
+              $localStorage.campus = campus;
               $location.path('dashboard/carpools/view');
             };
 
