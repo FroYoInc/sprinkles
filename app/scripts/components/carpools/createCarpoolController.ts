@@ -46,14 +46,12 @@ module Dashboard_Carpools_Create {
           var geoCode = $scope.$new();
           $controller('GeoCoding.Controller',{$scope : geoCode });
           geoCode.geocodeAddress(postData.pickupLocation.address, (geo) => {
-            if (geo == null) {
+            if (geo === null) {
               $('#internalError').css('visibility','visible').fadeIn();
               return; // test to see if the address is vaild.
             }
-            var updatedCookie = new CarpoolModel.CarpoolCookie(postData.name, postData.description, null,
-                              null, postData.campus, postData.pickupLocation.address,
-                              geo.lat, geo.long);
-            $cookies.putObject('carpool', updatedCookie);
+            postData.pickupLocation.geoCode = geo;
+
 
             var ownerCookie = $cookies.getObject('user');
             postData.owner = ownerCookie.userName;
@@ -62,6 +60,10 @@ module Dashboard_Carpools_Create {
                 $location.path('/dashboard');
                 window.scrollTo(0,0);
                 $('#carpoolCreated').css('visibility','visible').fadeIn();
+                var updatedCookie = new CarpoolModel.CarpoolCookie(postData.name, postData.description, null,
+                                  null, postData.campus, postData.pickupLocation.address,
+                                  geo.lat, geo.long);
+                $cookies.putObject('carpool', updatedCookie);
               }).error(function(data, status, headers, config) {
                 //406: Owner not found
                 if(status == 406 && ((data.message).localeCompare("CarpoolOwnerNotFoundException: carpool owner user not found") == 0)){

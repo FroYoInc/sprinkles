@@ -71,19 +71,20 @@ module Dashboard_Carpools_Edit {
         $controller('GeoCoding.Controller',{$scope : geoCode });
 
         geoCode.geocodeAddress(editedCarpool.pickupLocation.address, (geo) => {
-          if (geo == null) {
-            $('#internalError').css('visibility','visible').fadeIn();
+          if (geo === null) {
+            $('#GeoLocationError').css('visibility','visible').fadeIn();
             return; // test to see if the address is vaild.
           }
-          var updatedCookie = new CarpoolModel.CarpoolCookie(editedCarpool.name, editedCarpool.description, editedCarpool.carpoolID,
-                            editedCarpool.campusName, editedCarpool.campus, editedCarpool.pickupLocation.address,
-                            geo.lat, geo.long);
-          $cookies.putObject('carpool', updatedCookie);
+          editedCarpool.pickupLocation.geoCode = geo;
+
+
           $http.put(ConfigService.host + ConfigService.port + '/api/carpools/' + editedCarpool.carpoolID,
                     editedCarpool).success(function(data, status, headers, config) {
+            var updatedCookie = new CarpoolModel.CarpoolCookie(editedCarpool.name, editedCarpool.description, editedCarpool.carpoolID,
+                              editedCarpool.campusName, editedCarpool.campus, editedCarpool.pickupLocation.address,
+                              geo.lat, geo.long);
+            $cookies.putObject('carpool', updatedCookie);
             $location.path('/dashboard');
-            window.scrollTo(0,0);
-            $('#GeoLocationError').css('visibility','visible').fadeIn();
            }).error(function(data, status, headers, config) {
              //500 server error
              if(status == 500){
