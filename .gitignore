@@ -33,3 +33,4 @@ rethinkdb_data/
 #Coverage results
 .coverrun
 reports/
+coverage/

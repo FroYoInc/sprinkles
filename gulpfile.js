@@ -16,7 +16,7 @@ var testFiles =  [
         './bower_components/angular-resource/angular-resource.js',
         './bower_components/angular-cookies/angular-cookies.js',
 
-        './dist/**/*.js',
+        './dist/**/**/*.js',
         './test/**/*.js'
     ];
 
