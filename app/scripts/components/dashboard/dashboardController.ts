@@ -18,11 +18,7 @@ module Dashboard {
     export class Controller {
 
     	constructor ($scope: Scope, $http: any, $location: any,  $cookies: any, ConfigService: any, $localStorage) {
-
-            //Populate campus list
-            $http.get(ConfigService.host + ConfigService.port + '/api/campuses').success(function(data, status, headers, config) {
-              $scope.campusList = data;
-            });
+            
             // Get carpool cookie if it has already been created
             var newCarpool = $cookies.getObject('carpool');
             if (typeof(newCarpool) == "undefined"){
@@ -46,8 +42,7 @@ module Dashboard {
 
             });
 
-            $scope.displayCarpools = (campus) => {
-              $localStorage.campus = campus;
+            $scope.displayCarpools = () => {
               $location.path('dashboard/carpools/view');
             };
 
