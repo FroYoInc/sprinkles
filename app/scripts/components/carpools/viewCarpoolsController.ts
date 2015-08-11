@@ -17,9 +17,12 @@ module Dashboard_Carpools_View {
             return;
           }
           console.log("View list campus is ", campus);
-          $scope.display = () => {
+
+          var data = {
+            campusName: campus
+          };
           //Get the carpool list
-          $http.get(ConfigService.host + ConfigService.port + '/api/carpools', campus).success(function(data, status, headers, config) {
+          $http.get(ConfigService.host + ConfigService.port + '/api/carpools', data).success(function(data, status, headers, config) {
              $scope.carpoolList = data;
             }).error(function(data, status, headers, config) {
               //500 server error
@@ -32,9 +35,9 @@ module Dashboard_Carpools_View {
                   $('#notFound').css('visibility','visible').fadeIn();
               }
             });
-          };
+
           $scope.search = (radius) => {
-            $http.get(ConfigService.host + ConfigService.port + '/api/carpools', campus, radius).success(function(data, status, headers, config) {
+            $http.get(ConfigService.host + ConfigService.port + '/api/carpools/' + campus, radius).success(function(data, status, headers, config) {
              $scope.carpoolList = data;
             }).error(function(data, status, headers, config) {
               //500 server error
