@@ -113,6 +113,10 @@ angular.module('app', ['app.controllers','ngRoute','ngStorage','ui.bootstrap', '
           }
       });
 
+      $routeProvider.when('/invalidActivation', {
+        templateUrl: '/views/invalidActivation.html',
+      });
+
       $routeProvider.otherwise(
       {
         redirectTo:     '/home',
