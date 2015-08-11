@@ -17,7 +17,7 @@ module Dashboard {
     }
     export class Controller {
 
-    	constructor ($scope: Scope, $http: any, $location: any,  $cookies: any, ConfigService: any) {
+    	constructor ($scope: Scope, $http: any, $location: any,  $cookies: any, ConfigService: any, $localStorage) {
 
             //Populate campus list
             $http.get(ConfigService.host + ConfigService.port + '/api/campuses').success(function(data, status, headers, config) {
@@ -46,7 +46,9 @@ module Dashboard {
 
             });
 
-            $scope.displayCarpools = () => {
+            $scope.displayCarpools = (campus) => {
+              $localStorage.campus = campus;  
+              console.log(campus);
               $location.path('dashboard/carpools/view');
             };
 

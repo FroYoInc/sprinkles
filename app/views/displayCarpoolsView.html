@@ -6,11 +6,11 @@
 </div>
 <form class="form-inline">
   <div class="form-group">
-    <label>Search by address</label>
+    <label>Search by radius</label>
       <br>
-        <input type="text" ng-model="address" name="address" required>
+        <input type="text" ng-model="radius" name="radius" required>
       </div>
-      <button type="submit" class="btn btn-primary">Search</button>
+      <button type="submit" ng-onclick="search(radius)" class="btn btn-primary">Search</button>
 </form>
   <accordion close-others="oneAtATime">
     <accordion-group  ng-repeat="carpool in carpoolList" is-open="status.open">

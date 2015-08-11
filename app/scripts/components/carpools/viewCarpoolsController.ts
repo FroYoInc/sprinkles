@@ -5,12 +5,21 @@ module Dashboard_Carpools_View {
 
     export interface Scope {
         carpoolList: any;
+        display: Function;
+        radius: number;
+        search: Function;
     }
     export class Controller {
 
-    	constructor ($scope: Scope, $http: any, $location: any, ConfigService: any) {
+    	constructor ($scope: Scope, $http: any, $location: any, ConfigService: any, $localStorage) {
+          var campus = $localStorage.campus;
+          if (typeof(campus) == "undefined"){
+            return;
+          }
+          console.log("View list campus is ", campus);
+          $scope.display = () => {
           //Get the carpool list
-          $http.get(ConfigService.host + ConfigService.port + '/api/carpools').success(function(data, status, headers, config) {
+          $http.get(ConfigService.host + ConfigService.port + '/api/carpools', campus).success(function(data, status, headers, config) {
              $scope.carpoolList = data;
             }).error(function(data, status, headers, config) {
               //500 server error
@@ -23,6 +32,22 @@ module Dashboard_Carpools_View {
                   $('#notFound').css('visibility','visible').fadeIn();
               }
             });
+          };
+          $scope.search = (radius) => {
+            $http.get(ConfigService.host + ConfigService.port + '/api/carpools', campus, radius).success(function(data, status, headers, config) {
+             $scope.carpoolList = data;
+            }).error(function(data, status, headers, config) {
+              //500 server error
+              if(status == 500){
+                window.scrollTo(0,0);
+                  $('#internalError').css('visibility','visible').fadeIn();
+              }
+              if(status == 404) {
+                window.scrollTo(0,0);
+                  $('#notFound').css('visibility','visible').fadeIn();
+              }
+            });
+          };
     	}
     }
 }
