@@ -30,7 +30,12 @@
           <input type="text" ng-model="address" class="form-control" name="address" required>
       <span class="help-inline" ng-show="submitted && editform.address.$error.required">Required Field</span>
     </div>
-
+    <!-- participants -->
+    <div class="list-group">
+      <label>Participants</label>
+      <li ng-repeat="participants in participantsArray" class="list-group-item">username:{{participants.userName}} first name:{{participants.firstName}} last name:{{participants.lastName}}</li>
+      
+    </div>
 
     <div ng-show="carpoolExists" class="help-inline2"> Error: Cannot create carpool. This carpool already Exists.</div><br>
     <button type="submit" class="btn btn-primary btn-lg btn-inline" ng-click="submitted=true; editCarpool(editform.$invalid)">Edit Carpool</button>
