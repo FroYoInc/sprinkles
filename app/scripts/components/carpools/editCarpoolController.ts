@@ -11,6 +11,7 @@ module Dashboard_Carpools_Edit {
         carpoolCampusName: string;
         address: string;
         editCarpool: Function;
+        participantsArray: any;
         getCampusName: Function;
         getCampus: Function;
         carpool: any;
@@ -39,6 +40,7 @@ module Dashboard_Carpools_Edit {
 
         //Do a get incase this was changed somewhere other than the cookie
         $http.get(ConfigService.host + ConfigService.port + '/api/carpools/' + newCarpool.carpool.carpoolID).success(function(data, status, headers, config) {
+              $scope.participantsArray = data.participants;
               $scope.carpoolName = data.name;
               $scope.carpoolDescription = data.description;
               $scope.carpoolCampusName = $scope.getCampusName(data.campus.href);
