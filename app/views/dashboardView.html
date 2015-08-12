@@ -8,25 +8,9 @@
     </h1>
   </div>
 
-  <!-- User Profile Widget -->
-  <div class="row-1">
-    <div class="col-sm-6 col-md-3">
-      <div class="thumbnail 1">
-        <img src="../images/glyphicons-user.png">
-        <div class="caption">
-          <center> <h3>User Profile</h3>
-          <p>View or Edit Your User Profile</p>
-          <div ng-controller='Dashboard_Carpools_View.Controller'>
-          <button type="submit" class="btn btn-primary btn-lg btn-block" ng-click="displayCarpools()">Edit Profile</button>
-        </div>
-        </div><center>
-      </div>
-    </div>
-  </div>
-
   <!-- View Carpool Widget -->
   <div class="row-2">
-    <div class="col-sm-6 col-md-3">
+    <div class="col-sm-6 col-md-4">
       <div class="thumbnail 2">
         <img src="../images/glyphicons-car.png">
         <div class="caption">
@@ -40,7 +24,7 @@
 
   <!-- New Carpool Widget -->
   <div class="row-3" ng-show="!carpoolStatus">
-    <div class="col-sm-6 col-md-3">
+    <div class="col-sm-6 col-md-4">
       <div class="thumbnail 3">
         <img src="../images/glyphicons-cars.png">
         <div class="caption">
@@ -54,7 +38,7 @@
 
 <!-- Edit Carpool Widget -->
   <div class="row-3" ng-show="carpoolStatus">
-    <div class="col-sm-6 col-md-3">
+    <div class="col-sm-6 col-md-4">
       <div class="thumbnail 4">
         <img src="../images/glyphicons-settings.png">
         <div class="caption">
@@ -68,7 +52,7 @@
 
   <!-- View pending requests widget -->
   <div class="row-3">
-    <div class="col-sm-6 col-md-3">
+    <div class="col-sm-6 col-md-4">
       <div class="thumbnail 5">
         <img src="../images/glyphicons-notes.png">
         <div class="caption">
