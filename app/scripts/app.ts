@@ -77,11 +77,51 @@ angular.module('app', ['app.controllers','ngRoute','ngStorage','ui.bootstrap', '
             }]
           }
       });
-    $routeProvider.otherwise(
-    {
-      redirectTo:     '/home',
-      controller:     'Home.Controller',
-    });
+
+      $routeProvider.when('/dashboard/admin',
+      {
+        templateUrl: '/views/adminView.html',
+        controller: 'Admin.Controller',
+        resolve: {
+          access: ["Access", (Access) => {
+            var a =  Access.isAuthenticated();
+            return a;
+            }]
+          }
+      });
+      $routeProvider.when('/dashboard/settings',{
+
+        templateUrl: '/views/settingsView.html',
+        controller: 'PasswordManager.Controller',
+        resolve: {
+          access: ["Access", (Access) => {
+            var a =  Access.isAuthenticated();
+            return a;
+            }]
+          }
+      });
+
+      $routeProvider.when('/password/reset', {
+
+        templateUrl: '/views/resetPasswordView.html',
+        controller: 'PasswordManager.Controller',
+        resolve: {
+          access: ["Access", (Access) => {
+            var a =  Access.isAuthenticated();
+            return a;
+            }]
+          }
+      });
+
+      $routeProvider.when('/invalidActivation', {
+        templateUrl: '/views/invalidActivation.html',
+      });
+
+      $routeProvider.otherwise(
+      {
+        redirectTo:     '/home',
+        controller:     'Home.Controller',
+      });
 })
 
 // User is a standard AngularJS resource with a profile method (needs angular-resource):
@@ -129,7 +169,9 @@ function($rootScope, Access, $location, $cookies) {
 .factory('ConfigService', function() {
   return {
     host: "http://localhost:",
-    port: "3000"
+    port: "3000",
+    mapsApi : 'https://maps.googleapis.com/maps/api/geocode/json?address=',
+    key : "AIzaSyBSF13-LI-xt-UwQ4LOQ_OhM3V6mssNuNo"
   };
 });
 

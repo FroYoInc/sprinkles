@@ -13,11 +13,12 @@ module Dashboard {
         loadRequestView: Function;
         carpoolStatus: Boolean;
         carpoolStatusString: string;
+        campusList: any;
     }
     export class Controller {
 
-    	constructor ($scope: Scope, $http: any, $location: any,  $cookies: any, ConfigService: any) {
-
+    	constructor ($scope: Scope, $http: any, $location: any,  $cookies: any, ConfigService: any, $localStorage) {
+            
             // Get carpool cookie if it has already been created
             var newCarpool = $cookies.getObject('carpool');
             if (typeof(newCarpool) == "undefined"){
@@ -54,6 +55,7 @@ module Dashboard {
             $scope.loadRequestView = () => {
               $location.url('/ApproveDeny');
             };
+
 
     	}
     }

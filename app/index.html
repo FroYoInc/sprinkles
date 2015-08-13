@@ -1,6 +1,7 @@
 <!doctype html>
 <html ng-app="app" lang="">
 <head>
+  <link rel="icon" type="img/png" href="/images/CPIcon.png">
   <meta charset="utf-8">
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -175,6 +176,91 @@
       Carpool has been succesfully updated
     </div>
 
+    <!-- Reset Password Alerts -->
+
+    <div class="alert alert-success alert-dismissible fade in hidden-alerts" role="alert"
+           id="resetSuccess">
+    <button type="button" class="close" ng-click="visible('resetSuccess')" aria-label="Close">
+    <span aria-hidden="true">&times;</span></button>
+      <strong>Success!</strong> Please check your email for a temporary password.
+    </div>
+
+    <div class="alert alert-warning alert-dismissible fade in hidden-alerts" role="alert"
+           id="invalidEmail">
+    <button type="button" class="close" ng-click="visible('invalidEmail')" aria-label="Close">
+    <span aria-hidden="true">&times;</span></button>
+      Unable to locate an account with the email provided.
+    </div>
+
+    <div class="alert alert-warning alert-dismissible fade in hidden-alerts" role="alert"
+           id="resetLockout">
+    <button type="button" class="close" ng-click="visible('resetLockout')" aria-label="Close">
+    <span aria-hidden="true">&times;</span></button>
+      The account you attempted to reset has already been reset recently.  If you do not get an email soon, try again later.
+    </div>
+
+    <!-- Change Password Alerts -->
+
+    <div class="alert alert-success alert-dismissible fade in hidden-alerts" role="alert"
+           id="changeSuccess">
+    <button type="button" class="close" ng-click="visible('changeSuccess')" aria-label="Close">
+    <span aria-hidden="true">&times;</span></button>
+      <strong>Success!</strong> Your password has been updated.
+    </div>
+
+    <div class="alert alert-danger alert-dismissible fade in hidden-alerts" role="alert"
+           id="wrongPassword">
+    <button type="button" class="close" ng-click="visible('wrongPassword')" aria-label="Close">
+    <span aria-hidden="true">&times;</span></button>
+      The password you provided is not correct, please try again.
+    </div>
+
+    <div class="alert alert-danger alert-dismissible fade in hidden-alerts" role="alert"
+           id="unableToChange">
+    <button type="button" class="close" ng-click="visible('unableToChange')" aria-label="Close">
+    <span aria-hidden="true">&times;</span></button>
+      We were unable to change your password, please try again.
+    </div>
+
+    <div class="alert alert-danger alert-dismissible fade in hidden-alerts" role="alert"
+           id="passwordConflict">
+    <button type="button" class="close" ng-click="visible('passwordConflict')" aria-label="Close">
+    <span aria-hidden="true">&times;</span></button>
+      Your new password and the confirmation password do not match.
+    </div>
+
+    <!-- Campus added successfully -->
+    <div class="alert alert-success alert-dismissible fade in hidden-alerts" role="alert"
+           id="campusCreated">
+    <button type="button" class="close" ng-click="visible('campusCreated')" aria-label="Close">
+    <span aria-hidden="true">&times;</span></button>
+      Campus has been created successfully.
+    </div>
+
+    <!--  Geolocation error -->
+    <div class="alert alert-danger alert-dismissible fade in hidden-alerts" role="alert"
+           id="GeoLocationError">
+    <button type="button" class="close" ng-click="visible('GeoLocationError')" aria-label="Close">
+    <span aria-hidden="true">&times;</span></button>
+      Unable to GeoLocate the address provided.  Please make sure it is a valid address.
+    </div>
+
+    <!-- Campus conflict -->
+    <div class="alert alert-danger alert-dismissible fade in hidden-alerts" role="alert"
+           id="campusConflict">
+    <button type="button" class="close" ng-click="visible('campusConflict')" aria-label="Close">
+    <span aria-hidden="true">&times;</span></button>
+      A campus with that name already exists.
+    </div>
+
+    <!-- Not an admin -->
+    <div class="alert alert-danger alert-dismissible fade in hidden-alerts" role="alert"
+           id="notAdmin">
+    <button type="button" class="close" ng-click="visible('notAdmin')" aria-label="Close">
+    <span aria-hidden="true">&times;</span></button>
+      You must be an admin to create a campus.
+    </div>
+    
   </div>
 <div ng-controller="Navbar.Controller">
 
@@ -193,7 +279,7 @@
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="container" ng-show="!isAuth">
+      <div class="container" ng-show="!isAuth" ng-cloak>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
             <li ng-class="navClass('home')"><a href="" ng-click="loadHome()">Home</a></li>
@@ -202,22 +288,24 @@
               <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li><a href="">Contact</a></li>
-                <li><a href="http://stream1.gifsoup.com/view3/4856087/3d-boy-didn-t-read-o.gif">License</a></li>
-                <li><a href="https://github.com/FroYoInc">Source</a></li>
+                <li><a href="https://github.com/FroYoInc/sprinkles/blob/master/LICENSE" target="_blank">License</a></li>
+                <li><a href="https://github.com/FroYoInc" target="_blank">Source</a></li>
               </ul>
             </li>
           </ul>
         </div>
       </div>
-      <div class="container" ng-show="isAuth">
+      <div class="container" ng-show="isAuth" ng-cloak>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
             <li ng-class="navClass('dashboard')"><a href="" ng-click="loadDashboard()">Home</a></li>
             <li ng-class="navClass('dashboard/carpools/view')"><a href="" ng-click="loadCarpoolsView()">View Carpools</a></li>
             <li ng-class="navClass('dashboard/carpools/create')"><a href="" ng-show="!isInCarpool"ng-click="loadCarpoolsCreate()">Create Carpool</a></li>
             <li ng-class="navClass('dashboard/carpools/edit')"><a href="" ng-show="isInCarpool"ng-click="loadCarpoolsEdit()">Edit Carpool</a></li>
+            <li ng-class="navClass('dashboard/admin')"><a href="" ng-show="isAdmin" ng-click="loadAdmin()">Admin</a></li>
           </ul>
           <ul class="nav navbar-nav pull-right">
+            <li ng-class="navClass('dashboard/password/change')"><a class="pull-right" href="" ng-click="accountSettings()">Account Settings</a></li>
             <li><a class="pull-right" href="" ng-click="logout()">Logout</a></li>
           </ul>
         </div>
@@ -251,9 +339,13 @@
 <script src="dist/app/scripts/components/dashboard/dashboardController.js"></script>
 <script src="dist/app/scripts/components/carpools/createCarpoolController.js"></script>
 <script src="dist/app/scripts/components/carpools/viewCarpoolsController.js"></script>
+<script src="dist/app/scripts/components/admin/adminController.js"></script>
+<script src="dist/app/scripts/components/geocoding/geocodingController.js"></script>
 <script src="dist/app/scripts/components/Request/carpoolIDModel.js"></script>
 <script src="dist/app/scripts/components/Request/RequestController.js"></script>
 <script src="dist/app/scripts/components/Request/responseController.js"></script>
+<script src="dist/app/scripts/components/geocoding/geocodingController.js"></script>
+<script src="dist/app/scripts/components/password/passwordController.js"></script>
 
 <!-- endbower -->
 </body>
