@@ -10,11 +10,14 @@ module Dashboard_Carpools_View {
         search: Function;
         $new: Function;
         initialize: Function;
+        updateMap: Function;
+        map: any;
+        markers: Array<google.maps.Marker>;
     }
     export class Controller {
 
     	constructor ($scope: Scope, $http: any, $location: any, ConfigService: any, $controller:any) {
-
+          $scope.markers = [];
           //Populate campus list
           $http.get(ConfigService.host + ConfigService.port + '/api/campuses').success(function(data, status, headers, config) {
             $scope.campusList = data;
@@ -49,6 +52,7 @@ module Dashboard_Carpools_View {
             .success(function(data, status, headers, config) {
               console.log(data);
              $scope.carpoolList = data;
+             $scope.updateMap(data);
             })
             .error(function(data, status, headers, config) {
               //500 server error
@@ -73,14 +77,46 @@ module Dashboard_Carpools_View {
               mapTypeId: google.maps.MapTypeId.ROADMAP
             };
 
-            var map = new google.maps.Map(document.getElementById(mapid),mapOptions);
+            $scope.map = new google.maps.Map(document.getElementById(mapid),mapOptions);
 
             var marker=new google.maps.Marker({
-              position:myloc
+              position: new google.maps.LatLng(45.5112894,-122.6835567)
             });
-            marker.setMap(map);
-
+            $scope.markers.push(marker);
+            marker.setMap($scope.map);
           };
+
+          $scope.updateMap = (carpools:any) => {
+            
+            // Clears all of the previous markers from the map
+            $scope.markers.map( (marker) => {
+              marker.setMap(null);
+            });
+
+            // Create all of the new markers and bind events to them
+            // Then place them on the map
+            carpools.map( (carpool) =>{
+              
+              var geo = carpool.pickupLocation.geoCode;
+              
+              var marker = new google.maps.Marker({
+                position: new google.maps.LatLng(geo.lat,geo.long)
+              });
+
+              var iw = new google.maps.InfoWindow({
+                              content: "Carpool: " + carpool.name
+              });
+
+              google.maps.event.addListener(marker, 'click', function () {
+                  iw.open($scope.map, marker);
+              });
+
+              $scope.markers.push(marker);
+              marker.setMap($scope.map);
+            });
+
+
+          }
     	}
     }
 }
