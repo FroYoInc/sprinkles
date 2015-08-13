@@ -1,5 +1,5 @@
 /// <reference path="../../app.ts"/>
-
+/// <reference path="../../../../typings/googlemaps/google.maps.d.ts"/>
 // interface used to display a list of carpools, edit user profile and create a carpool
 module Dashboard_Carpools_View {
 
@@ -9,11 +9,12 @@ module Dashboard_Carpools_View {
         display: Function;
         search: Function;
         $new: Function;
+        initialize: Function;
     }
     export class Controller {
 
     	constructor ($scope: Scope, $http: any, $location: any, ConfigService: any, $controller:any) {
-          
+
           //Populate campus list
           $http.get(ConfigService.host + ConfigService.port + '/api/campuses').success(function(data, status, headers, config) {
             $scope.campusList = data;
@@ -61,6 +62,25 @@ module Dashboard_Carpools_View {
               }
             });
           }
+
+          $scope.initialize = (mapid: string) => {
+
+            var myloc = new google.maps.LatLng(45.5112894,-122.6835567);
+
+            var mapOptions = {
+              center: myloc,
+              zoom: 11,
+              mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+
+            var map = new google.maps.Map(document.getElementById(mapid),mapOptions);
+
+            var marker=new google.maps.Marker({
+              position:myloc
+            });
+            marker.setMap(map);
+
+          };
     	}
     }
 }
