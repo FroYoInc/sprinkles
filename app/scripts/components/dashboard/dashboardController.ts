@@ -18,12 +18,21 @@ module Dashboard {
     export class Controller {
 
     	constructor ($scope: Scope, $http: any, $location: any,  $cookies: any, ConfigService: any, $localStorage) {
-            
+
             // Get carpool cookie if it has already been created
             var newCarpool = $cookies.getObject('carpool');
+            var requestDisplay = false;
             if (typeof(newCarpool) == "undefined"){
                 $scope.carpoolStatus = false;
+                requestDisplay = false;
+                console.log(requestDisplay);
+            } else {
+                requestDisplay = true;
+                console.log(requestDisplay); 
             }
+
+
+
 
             $http.get(ConfigService.host + ConfigService.port + '/api/user/carpools').success(function(data, status, headers, config) {
                 // The user is not in a carpool -> Show create carpool

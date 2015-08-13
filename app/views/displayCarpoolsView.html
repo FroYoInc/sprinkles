@@ -48,7 +48,9 @@
       <strong>Campus Locatition:</strong> {{carpool.campus.name}} <br>
       <strong>Pickup Location:</strong> {{carpool.pickupLocation.address}} <br>
       <div ng-controller="Request.Controller">
-      <button type="submit" class="btn btn-primary btn-lg" ng-click="sendRequest(carpool.href.substr(10))">Request Access to Carpool</button>
+       <div class="reqDisp" ng-show="!carpoolStatus">
+        <button type="submit" class="btn btn-primary btn-lg" ng-click="sendRequest(carpool.href.substr(10))">Request Access to Carpool</button>
+      </div>
 
     </accordion-group>
   </accordion>
