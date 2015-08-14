@@ -31,6 +31,7 @@
             <option ng-repeat="campus in campusList" value="{{campus.name}}">{{campus.name}}</option>
         </select>
       </div>
+  </div>
         <br>
         <br>
 
@@ -38,9 +39,9 @@
 </form>
 
   <!-- button to show map of carpool -->
-  <button ng-click="initialize('googleMap')">show map</button>
-  <center><div id="googleMap"></div></center>
-
+  <div ng-init="initialize('googleMap')">
+    <center><div id="googleMap"></div></center> <br><br>
+  </div>
 
   <accordion close-others="oneAtATime">
     <accordion-group  ng-repeat="carpool in carpoolList" is-open="status.open">
