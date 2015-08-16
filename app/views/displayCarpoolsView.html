@@ -41,7 +41,7 @@
            <i class="pull-left glyphicon" ng-class="{'icon-minus-sign': status.open, 'icon-plus-sign': !status.open}"></i>
           <h4> &nbsp;{{carpool.name}}</h4>
        </accordion-heading>
-      <strong>Description:</strong> {{carpool.description}} <br>
+      <strong>Description:</strong> <pre>{{carpool.description}}</pre>
       <strong>Owner:</strong> {{carpool.owner.lastName}}, {{carpool.owner.firstName}} <br>
       <strong>Contact:</strong> {{carpool.owner.email}} <br>
       <strong>Current Participants:</strong> {{carpool.participants.length}} <br>

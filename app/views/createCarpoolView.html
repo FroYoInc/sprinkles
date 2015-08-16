@@ -13,7 +13,7 @@
     <!--Description of Carpool-->
     <div class="control-group" ng-class="{true: 'error'}[submitted && createform.description.$invalid]">
       <label>Description of Carpool</label>
-      <input type="text" ng-model="description" class="form-control" name="description" required>
+      <textarea ng-model="description" class="form-control" name="description" required></textarea>
       <span class="help-inline" ng-show="submitted && createform.description.$error.required">Required Field</span>
     </div>
     <!--Campus Location -->
