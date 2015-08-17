@@ -74,7 +74,6 @@ module Dashboard_Carpools_Edit {
 
         geoCode.geocodeAddress(editedCarpool.pickupLocation.address, (geo) => {
           if (geo === null) {
-            $('#GeoLocationError').css('visibility','visible').fadeIn();
             return; // test to see if the address is vaild.
           }
           editedCarpool.pickupLocation.geoCode = geo;

@@ -62,7 +62,6 @@ module Admin {
               
               // Check that the geocoding function was able to locate the address
               if(geo === null){
-                $('#GeoLocationError').css('visibility','visible').fadeIn();
                 return;
               }
 

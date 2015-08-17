@@ -47,7 +47,6 @@ module Dashboard_Carpools_Create {
           $controller('GeoCoding.Controller',{$scope : geoCode });
           geoCode.geocodeAddress(postData.pickupLocation.address, (geo) => {
             if (geo === null) {
-              $('#internalError').css('visibility','visible').fadeIn();
               return; // test to see if the address is vaild.
             }
             postData.pickupLocation.geoCode = geo;
