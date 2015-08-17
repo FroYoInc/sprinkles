@@ -113,7 +113,14 @@ angular.module('app', ['app.controllers','ngRoute','ngStorage','ui.bootstrap', '
           }
       });
 
+      $routeProvider.when('/validActivation', {
+        controller: 'Activation.Controller',
+        templateUrl: '/views/validActivation.html',
+
+      });
+
       $routeProvider.when('/invalidActivation', {
+        controller: 'Activation.Controller',
         templateUrl: '/views/invalidActivation.html',
       });
 

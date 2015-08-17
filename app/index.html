@@ -45,6 +45,22 @@
         <span aria-hidden="true">&times;</span></button>
       <strong>Your request has been sent!</strong>
     </div>
+
+    <div class="alert alert-success alert-dismissible fade in hidden-alerts" role="alert"
+         id="accountActicated">
+      <button type="button" class="close" ng-click="visible('accountActicated')" aria-label="Close">
+        <span aria-hidden="true">&times;</span></button>
+      <strong>Success!</strong> Your account has bee activated.
+    </div>
+
+    <div class="alert alert-danger alert-dismissible fade in hidden-alerts" role="alert"
+         id="activationFailure">
+      <button type="button" class="close" ng-click="visible('activationFailure')" aria-label="Close">
+        <span aria-hidden="true">&times;</span></button>
+      <strong>Oops!</strong> We were unable to activate your account at this time.
+    </div>
+
+
     <!-- 400:Bad Request. Invalid or missing parameters. -->
     <div class="alert alert-warning alert-dismissible fade in hidden-alerts" role="alert"
            id="badRequest">
@@ -71,6 +87,7 @@
         <span aria-hidden="true">&times;</span></button>
       <strong>Sorry!</strong> Unauthorized attempt, user must be logged in.
     </div>
+
     <!-- 403:The user account has not been activated. -->
     <div class="alert alert-warning alert-dismissible fade in hidden-alerts" role="alert"
            id="accountNotActivated">
@@ -346,6 +363,8 @@
 <script src="dist/app/scripts/components/Request/responseController.js"></script>
 <script src="dist/app/scripts/components/geocoding/geocodingController.js"></script>
 <script src="dist/app/scripts/components/password/passwordController.js"></script>
+<script src="dist/app/scripts/components/activation/activationController.js"></script>
+
 
 <!-- endbower -->
 </body>
