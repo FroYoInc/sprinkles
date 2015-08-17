@@ -24,27 +24,25 @@ module PasswordManager {
               }
               $http.put(ConfigService.host + ConfigService.port + '/api/users/password/reset', data)
                 .success((data) => {
-                  window.scrollTo(0,0);
-                  $('#resetSuccess').css('visibility','visible').fadeIn();
+                  showAlert('#resetSuccess');
                   $location.path("/home");
                 })
                 .error((data, status) => {
-                  window.scrollTo(0,0);
                   switch(status){
                     case 400:
-                      $('#badRequest').css('visibility','visible').fadeIn();
+                      showAlert('#badRequest');
                       break;
                     case 403:
-                      $('#invalidEmail').css('visibility','visible').fadeIn();
+                      showAlert('#invalidEmail');
                       break;
                     case 404:
-                      $('#invalidEmail').css('visibility','visible').fadeIn();
+                      showAlert('#invalidEmail');
                       break;
                     case 423:
-                      $('#resetLockout').css('visibility','visible').fadeIn();
+                      showAlert('#resetLockout');
                       break;
                     case 500:
-                      $('#internalServer').css('visibility','visible').fadeIn();
+                      showAlert('#internalServer');
                       break;
                   }
                 })
@@ -67,27 +65,25 @@ module PasswordManager {
               }
               $http.put(ConfigService.host + ConfigService.port + '/api/users/password', data)
                 .success((data) => {
-                  window.scrollTo(0,0);
-                  $('#changeSuccess').css('visibility','visible').fadeIn();
+                  showAlert('#changeSuccess');
                   $location.path("/home");
                 })
                 .error((data, status) => {
-                  window.scrollTo(0,0);
                   switch(status){
                     case 400:
-                      $('#badRequest').css('visibility','visible').fadeIn();
+                      showAlert('#badRequest');
                       break;
                     case 401:
-                      $('#wrongPassword').css('visibility','visible').fadeIn();
+                      showAlert('#wrongPassword');
                       break;
                     case 406:
-                      $('#unableToChange').css('visibility','visible').fadeIn();
+                      showAlert('#unableToChange');
                       break;
                     case 409:
-                      $('#passwordConflict').css('visibility','visible').fadeIn();
+                      showAlert('#passwordConflict');
                       break;
                     case 500:
-                      $('#internalServer').css('visibility','visible').fadeIn();
+                      showAlert('#internalServer');
                       break;
                   }
                 })

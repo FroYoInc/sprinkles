@@ -28,18 +28,15 @@ module Response {
         }).error(function(data, status, headers, config){
           if(status == 401){
             //Unauthorized attempt, user must be logged in
-            window.scrollTo(0,0);
-            $('#notLogged').css('visibility','visible').fadeIn();
+            showAlert('#notLogged');
           }
           else if(status == 404){
             //'user not found
-            window.scrollTo(0,0);
-            $('#userNotFound').css('visibility','visible').fadeIn();
+            showAlert('#userNotFound');
           }
           else if(status == 500){
             //Internal Server error. Unable to make request
-            window.scrollTo(0,0);
-            $('#internalError').css('visibility','visible').fadeIn();
+            showAlert('#internalError');
           }
         });
 
@@ -54,38 +51,31 @@ module Response {
           $http.post(ConfigService.host + ConfigService.port + '/api/carpools/addUser',postData).success(function(data, status, headers, config){
             if(status == 200){
               $route.reload();
-              window.scrollTo(0,0);
-              $('#successRequest').css('visibility','visible').fadeIn();
+              showAlert('#successRequest');
             }
           }).error(function(data, status, headers, config){
             if(status == 400){
-              window.scrollTo(0,0);
-              $('#badRequest').css('visibility','visible').fadeIn();
+              showAlert('#badRequest');
             }
             else if(status == 401){
               //Unauthorized attempt, user must be logged in
-              window.scrollTo(0,0);
-              $('#notLogged').css('visibility','visible').fadeIn();
+              showAlert('#notLogged');
             }
             else if(status == 403){
               //Forbidden. The user must be a member of a carpool to add members.
-              window.scrollTo(0,0);
-              $('#needApprove').css('visibility','visible').fadeIn();
+              showAlert('#needApprove');
             }
             else if(status == 404){
               //Missing Resource. Unable to locate either the request, the user, or the carpool.
-              window.scrollTo(0,0);
-              $('#needResource').css('visibility','visible').fadeIn();
+              showAlert('#needResource');
             }
             else if(status == 409){
               //Conflict error. User is already a member of the carpool.
-              window.scrollTo(0,0);
-              $('#alreadyMember').css('visibility','visible').fadeIn();
+              showAlert('#alreadyMember');
             }
             else if(status == 500){
               //Internal Server error. Unable to make request
-              window.scrollTo(0,0);
-              $('#internalError').css('visibility','visible').fadeIn();
+              showAlert('#internalError');
             }
 
           });
@@ -102,32 +92,26 @@ module Response {
 
           $http.post(ConfigService.host + ConfigService.port + '/api/carpools/denyUser',postData).success(function(data, status, headers, config){
             $route.reload();
-            window.scrollTo(0,0);
-            $('#successDeny').css('visibility','visible').fadeIn();
+            showAlert('#successDeny');
           }).error(function(data, status, headers, config){
             if(status == 400){
-              window.scrollTo(0,0);
-              $('#badRequest').css('visibility','visible').fadeIn();
+              showAlert('#badRequest');
             }
             else if(status == 401){
               //Unauthorized attempt, user must be logged in
-              window.scrollTo(0,0);
-              $('#notLogged').css('visibility','visible').fadeIn();
+              showAlert('#notLogged');
             }
             else if(status == 403){
               //Forbidden. The user must be a member of a carpool to deny members.
-              window.scrollTo(0,0);
-              $('#needApprove').css('visibility','visible').fadeIn();
+              showAlert('#needApprove');
             }
             else if(status == 404){
               //Missing Resource. Unable to locate either the request, the user, or the carpool.
-              window.scrollTo(0,0);
-              $('#needResource').css('visibility','visible').fadeIn();
+              showAlert('#needResource');
             }
             else if(status == 500){
               //Internal Server error. Unable to make request
-              window.scrollTo(0,0);
-              $('#internalError').css('visibility','visible').fadeIn();
+              showAlert('#internalError');
             }
 
           });
