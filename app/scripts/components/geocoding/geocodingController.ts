@@ -24,13 +24,13 @@ module GeoCoding {
                       };
                     }
                     if(Geo === null){
-                      $('#GeoLocationError').css('visibility','visible').fadeIn();
+                      showAlert('#GeoLocationError');
                     }
                     cb(Geo);
 
                   })
                   .error((data, status) => {
-                    $('#GeoLocationError').css('visibility','visible').fadeIn();
+                    showAlert('#GeoLocationError');
                     cb(null);
                   })
             }
