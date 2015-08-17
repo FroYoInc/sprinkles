@@ -4,17 +4,49 @@
     <small> Click an entry to view details of a carpool. Click the entry again to hide the details. </small>
   </h1>
 </div>
+<form class="form-inline">
+  <div class="form-group">
+    <label>Address</label>
+    <br>
+    <input type="text" ng-model="address" name="address">
+    <br>
+    <br>
+    <label>Radius of given address</label>
+      <br>
+        <!-- <input type="text" ng-model="radius" name="radius" required> -->
+        <select ng-model="radius" name="radius">
+            <option>5</option>
+            <option>10</option>
+            <option>15</option>
+            <option>20</option>
+            <option>25</option>
+        </select>
+        <br>
+        <br>
+        <label>Campus</label>
+        <br>
+        <select ng-model="campus" name="campus" required>
+            <option> {{carpoolCampusName}}</option>
+            <option ng-repeat="campus in campusList" value="{{campus.name}}">{{campus.name}}</option>
+        </select>
+
+      </div>
+        <br>
+        <br>
+      <button type="submit" ng-click="search(campus,radius,address)" class="btn btn-primary">Search</button>
+</form>
   <accordion close-others="oneAtATime">
     <accordion-group  ng-repeat="carpool in carpoolList" is-open="status.open">
       <accordion-heading>
            <i class="pull-left glyphicon" ng-class="{'icon-minus-sign': status.open, 'icon-plus-sign': !status.open}"></i>
           <h4> &nbsp;{{carpool.name}}</h4>
        </accordion-heading>
-      <strong>Description:</strong> {{carpool.description}} <br>
+      <strong>Description:</strong> <pre>{{carpool.description}}</pre>
       <strong>Owner:</strong> {{carpool.owner.lastName}}, {{carpool.owner.firstName}} <br>
       <strong>Contact:</strong> {{carpool.owner.email}} <br>
       <strong>Current Participants:</strong> {{carpool.participants.length}} <br>
       <strong>Campus Locatition:</strong> {{carpool.campus.name}} <br>
+      <strong>Pickup Location:</strong> {{carpool.pickupLocation.address}} <br>
       <div ng-controller="Request.Controller">
       <button type="submit" class="btn btn-primary btn-lg" ng-click="sendRequest(carpool.href.substr(10))">Request Access to Carpool</button>
 

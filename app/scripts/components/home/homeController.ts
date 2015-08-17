@@ -11,11 +11,12 @@ module Home {
         signInCall: Function;
         visible: Function;
         isAnonymous: Function;
+        $new: Function;
     }
 
     export class Controller {
 
-        constructor ($scope: Scope, $http: any, $location: any, $cookies: any, ConfigService: any) {
+        constructor ($scope: Scope, $http: any, $location: any, $cookies: any, $controller:any, ConfigService: any) {
 
             // populate the data when sign in is clicked
             // Handels error alerts when not successful
@@ -25,6 +26,9 @@ module Home {
                 user.password   = $scope.newUserPassword;
                 user.isAuth     = true;
 
+                var admin = $scope.$new();
+                $controller('Admin.Controller',{$scope : admin });
+
                 $http.post(ConfigService.host + ConfigService.port + '/api/users/login', user).
                     success(function (data) {
                         // successful login
@@ -32,8 +36,12 @@ module Home {
                         // Auth.setUser(user); //Update the state of the user in the app
                         var newUser = new UserModel.UserCookie(data.email,
                                     data.firstName, data.lastName, data.userID, data.userName);
-                        $cookies.putObject('user', newUser);
-                        $location.path('/dashboard');
+
+                        // Check if the user is an admin and then set the cookie and redirect
+                        admin.checkAdmin(newUser, () => {
+                            $cookies.putObject('user', newUser);
+                            $location.path('/dashboard');
+                        });
                 }).
                     error(function (data, status) {
                         // Bad Request. Invalid or missing parameters.
@@ -80,6 +88,7 @@ module Home {
            $scope.isAnonymous = function(){
             return this.user.isAuth;
            }
+
         }
 
     }

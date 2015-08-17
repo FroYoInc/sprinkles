@@ -12,7 +12,7 @@
     <!--Description of Carpool-->
     <div class="control-group" ng-class="{true: 'error'}[submitted && editform.carpoolDescription.$invalid]">
       <label>Description of Carpool</label>
-      <input type="text" ng-model="carpoolDescription" class="form-control" name="carpoolDescription" required>
+      <textarea ng-model="carpoolDescription" class="form-control" name="carpoolDescription" required></textarea>
       <span class="help-inline" ng-show="submitted && editform.carpoolDescription.$error.required">Required Field</span>
     </div>
     <!--Campus Location -->
@@ -29,15 +29,31 @@
       <label>Pick up location</label>
           <input type="text" ng-model="address" class="form-control" name="address" required>
       <span class="help-inline" ng-show="submitted && editform.address.$error.required">Required Field</span>
-      <input type="text" ng-model="lat" class="form-control" name="lat" required>
-      <span class="help-inline" ng-show="submitted && editform.lat.$error.required">Required Field</span>
-      <input type="text" ng-model="longitude" class="form-control" name="longitude" required>
-      <span class="help-inline" ng-show="submitted && editform.longitude.$error.required">Required Field</span>
+    </div>
+    <!-- participants -->
+    <div class="table">
+      <table>
+      <caption>Participants</caption>
+      <thead>
+        <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Email</th>
+        </tr>
+      </thead>
+      <tbody  ng-repeat="participants in participantsArray">
+        <tr>
+          <td>{{participants.firstName}}</td>
+          <td>{{participants.lastName}}</td>
+          <td>{{participants.email}}</td>
+        </tr>
+      </tbody>
+      </table>
     </div>
 
 
     <div ng-show="carpoolExists" class="help-inline2"> Error: Cannot create carpool. This carpool already Exists.</div><br>
     <button type="submit" class="btn btn-primary btn-lg btn-inline" ng-click="submitted=true; editCarpool(editform.$invalid)">Edit Carpool</button>
-  </div>    
+  </div>
   </div>
 </div>

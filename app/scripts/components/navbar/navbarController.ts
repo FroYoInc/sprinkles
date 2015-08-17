@@ -10,15 +10,18 @@ module Navbar {
     loadCarpoolsView: Function;
     loadCarpoolsCreate: Function;
     loadCarpoolsEdit: Function;
+    accountSettings: Function;
+    loadAdmin: Function;
     $watch: any;
 
     isAuth: Boolean;
+    isAdmin: Boolean;
     isInCarpool: Boolean;
   }
 
   export class Controller {
 
-    constructor ($scope: Scope, $location: any, $cookies: any) {
+    constructor ($scope: Scope, $location: any, $cookies: any, $http:any, ConfigService:any) {
       var cookie = $cookies.getObject('user');
       if (typeof(cookie) != "undefined"){
         $scope.isAuth = cookie.isAuth;
@@ -46,6 +49,9 @@ module Navbar {
           var cookie = $cookies.getObject('user');
           if (typeof(cookie) != "undefined"){
             $scope.isAuth = cookie.isAuth;
+          }
+          if (typeof(cookie) != "undefined"){
+            $scope.isAdmin = cookie.isAdmin;
           }
           var carpoolCookie = $cookies.getObject('carpool');
           if (typeof(carpoolCookie) != "undefined"){
@@ -82,7 +88,13 @@ module Navbar {
        $scope.loadCarpoolsCreate = () => {
          $location.url('/dashboard/carpools/create')
        }
+       $scope.loadAdmin = () => {
+         $location.url('/dashboard/admin')
+       }
        
+       $scope.accountSettings = () => {
+         $location.url('/dashboard/settings')
+       }
       // Removes the cookie and re-routes to the home page
       $scope.logout = () => {
          $scope.isAuth = false;
@@ -94,7 +106,13 @@ module Navbar {
           if (typeof(cookie) != undefined){
             $cookies.remove('carpool');
           }
-          $location.url('/home');
+          $http.get(ConfigService.host + ConfigService.port + "/api/users/logout")
+            .success( (data) => {
+              $location.url('/home');
+            })
+            .error( (status, data) => {
+              $location.url('/home');
+            })
        }
     }
   }

@@ -14,6 +14,8 @@ module UserModel {
         userID: string;
         userName: string;
         isAuth: boolean;
+        isAdmin: boolean;
+
 
         constructor(email, firstName, lastName, userID, userName){
         	this.email = email;
@@ -23,5 +25,9 @@ module UserModel {
         	this.userName = userName;
         	this.isAuth = true;
         }
+        updateAdmin(status){
+            this.isAdmin = status;
+        }
+
     }
 }
