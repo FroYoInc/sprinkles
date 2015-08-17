@@ -17,16 +17,20 @@ module GeoCoding {
 
                     var Geo:GeoCode = null;
                     if(data.results[0] !== undefined){
-                        var geo = data.results[0].geometry.location;
-                        Geo = {
-                            long: geo.lng,
-                            lat: geo.lat
-                        };
+                      var geo = data.results[0].geometry.location;
+                      Geo = {
+                          long: geo.lng,
+                          lat: geo.lat
+                      };
+                    }
+                    if(Geo === null){
+                      $('#GeoLocationError').css('visibility','visible').fadeIn();
                     }
                     cb(Geo);
 
                   })
                   .error((data, status) => {
+                    $('#GeoLocationError').css('visibility','visible').fadeIn();
                     cb(null);
                   })
             }

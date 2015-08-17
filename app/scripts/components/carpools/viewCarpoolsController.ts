@@ -9,6 +9,9 @@ module Dashboard_Carpools_View {
         display: Function;
         search: Function;
         $new: Function;
+        resetForm: Function;
+        address: String;
+        radius: Number;
     }
     export class Controller {
 
@@ -19,8 +22,21 @@ module Dashboard_Carpools_View {
             $scope.campusList = data;
           });
 
+          $scope.resetForm = () => {
+            $scope.address = undefined;
+            $scope.radius = undefined;
+          };
+
           $scope.search = (campus, radius, address) => {
+            $scope.carpoolList = [];
             var getString = ConfigService.host + ConfigService.port + '/api/carpools?campusName=' + campus;
+
+             // Don't continue if one is set but the other is not
+             // Or if campus is not defined
+            if( (radius !== undefined) !== (address !== undefined) || campus === undefined) {
+              return;
+            }
+
             if(radius !== undefined && address !== undefined){
               var geoCode = $scope.$new();
               $controller('GeoCoding.Controller',{$scope : geoCode });
@@ -45,7 +61,6 @@ module Dashboard_Carpools_View {
           function makeRequest(getString){
             $http.get(getString)
             .success(function(data, status, headers, config) {
-              console.log(data);
              $scope.carpoolList = data;
             })
             .error(function(data, status, headers, config) {
