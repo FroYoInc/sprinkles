@@ -178,3 +178,12 @@ function($rootScope, Access, $location, $cookies) {
 module app {
     export var controllers = angular.module('app.controllers',[]);
 }
+
+function showAlert(alertId) {
+  var displayTimeinMS = 5000;
+  $(alertId).css('visibility','visible').fadeIn();
+  window.scrollTo(0,0);
+  setTimeout( () => {
+    $(alertId).fadeOut();
+  }, displayTimeinMS);
+};

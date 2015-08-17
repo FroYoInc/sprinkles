@@ -32,7 +32,7 @@ module Home {
                 $http.post(ConfigService.host + ConfigService.port + '/api/users/login', user).
                     success(function (data) {
                         // successful login
-                        $('#success').css('visibility','visible').fadeIn();
+                        showAlert("#success");
                         // Auth.setUser(user); //Update the state of the user in the app
                         var newUser = new UserModel.UserCookie(data.email,
                                     data.firstName, data.lastName, data.userID, data.userName);
@@ -46,34 +46,28 @@ module Home {
                     error(function (data, status) {
                         // Bad Request. Invalid or missing parameters.
                         if (status == 400){ //
-                          window.scrollTo(0,0);
-                            $('#badRequest').css('visibility','visible').fadeIn();
+                            showAlert('#badRequest');
                         }
                         // Unauthorized attempt. User and password combination not found.
                         else if (status == 401){
-                          window.scrollTo(0,0);
-                            $('#notAuthorized').css('visibility','visible').fadeIn();
+                            showAlert('#notAuthorized');
                             $scope.newUserPassword = ""; // reset pass field
                         }
                         // The user account has not been activated.
                         else if (status == 403){ //
-                          window.scrollTo(0,0);
-                            $('#accountNotActivated').css('visibility','visible').fadeIn();
+                            showAlert('#accountNotActivated');
                         }
                         // Not Found)
                         else if (status == 404){ //
-                          window.scrollTo(0,0);
-                            $('#notFound').css('visibility','visible').fadeIn();
+                            showAlert('#notFound');
                         }
                         // The user account is locked.
                         else if (status == 423){ //
-                          window.scrollTo(0,0);
-                            $('#accountIsLocked').css('visibility','visible').fadeIn();
+                            showAlert('#accountIsLocked');
                         }
                         // Internal Server error.
                         else if (status == 500){ //
-                          window.scrollTo(0,0);
-                            $('#internalError').css('visibility','visible').fadeIn();
+                            showAlert('#internalError');
                         }
 
 
@@ -82,7 +76,7 @@ module Home {
             };
 
             $scope.visible = function(result:string) {
-             document.getElementById(result).style.display = 'none';
+              $("#" + result).fadeOut();
            };
 
            $scope.isAnonymous = function(){
