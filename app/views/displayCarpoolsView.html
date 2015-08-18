@@ -5,7 +5,6 @@
   </h1>
 </div>
 <form class="form-inline">
-<form class="form-inline" name="viewCarpoolForm">
   <div class="form-group">
     <label>Address</label>
     <br>
@@ -30,7 +29,6 @@
             <option ng-repeat="campus in campusList" value="{{campus.name}}">{{campus.name}}</option>
         </select>
       </div>
-  </div>
         <br>
         <br>
       <button type="submit" ng-click="submitted=true;search(campus,radius,address);" class="btn btn-primary">Search</button>
@@ -61,6 +59,8 @@
     </accordion-group>
   </accordion>
 </div>
+
+  </div>
 
 
 
