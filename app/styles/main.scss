@@ -40,15 +40,52 @@ body {
   border-radius: 6px;
   background-color: #eee;
 }
-.navbar .nav{
-  padding:5px;
+/*.navbar .nav{
+  padding:15px 15px 15px;
+}
+*/
+.navbar-nav {
+  margin: 7.5px -15px; 
+}
+.navbar .nav>li>a{
+  float:none;
+  padding:15px 15px 15px;
+  color:#777777;
+  text-decoration:none;
+  text-shadow:0 1px 0 #ffffff;
+}
+.navbar-nav {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  line-height: 20px; 
+}
+@media (max-width: 767px) {
+  .navbar-nav .open .dropdown-menu {
+    position: static;
+    float: none;
+    width: auto;
+    margin-top: 0;
+    background-color: transparent;
+    border: 0;
+    box-shadow: none; }
+  .navbar-nav .open .dropdown-menu > li > a,
+  .navbar-nav .open .dropdown-menu .dropdown-header {
+    padding: 5px 15px 5px 25px; 
+  }
+  .navbar-nav .open .dropdown-menu > li > a {
+    line-height: 20px; 
+  }
+  .navbar-nav .open .dropdown-menu > li > a:hover,
+  .navbar-nav .open .dropdown-menu > li > a:focus {
+    background-image: none; 
+  } 
 }
 .navbar-brand {
   float: left;
   padding: 5px 10px;
   font-size: 18px;
   line-height: 20px;
-  height: 50px;
+  height: 40px;
 }
 .hidden-alerts{
   display: none;
