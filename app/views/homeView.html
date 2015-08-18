@@ -9,63 +9,65 @@
   </div>
   </div>
 <div class="container">
-  <form class="form-horizontal-signin col-sm-4" ng-submit="signIn()" ng-hide="forgotPasswordStatus" ng-cloak>
+  <form class="col-sm-12 col-md-6" ng-submit="signIn()" ng-hide="forgotPasswordStatus" ng-cloak>
         <!--Sign in - existing user-->
-    <p><i> Sign in:  </i></p>
-    <div class="form-group">
-      <label for="inputEmail3" class="col-sm-3 control-label">Email</label>
-      <div class="col-sm-10">
-        <input type="email" class="form-control" id="inputEmail3" placeholder="Email"
-               ng-model="newUserEmail">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Sign In</h3>
       </div>
-    </div>
-    <div class="form-group">
-      <label for="inputFName" class="col-sm-3 control-label">Password</label>
-      <div class="col-sm-10">
-        <input type="password" class="form-control" id="inputFName" placeholder="Password"
-              ng-model="newUserPassword">
-      </div>
-    </div>
-    <div class="form-group" ng-controller="Dashboard.Controller">
-      <div class="col-sm-offset-1.5 col-sm-10">
-        <br>
-        <button type="submit" ng-click="signIn()" class="btn btn-primary">Sign In</button>
-        <br><br>
-        <a href="/#/password/reset">Forgot Password?</a>
+      <div class="panel-body">
+        <div class="input-group">
+          <span id="inputEmail3-addon" class="input-group-addon"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span></span>
+          <input type="email" class="form-control" id="inputEmail3" placeholder="Email"
+                   ng-model="newUserEmail" aria-describedby="inputEmail3-addon">
+        </div>
+        <div class="input-group">
+          <span id="inputPassword-addon" class="input-group-addon"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span></span>
+          <input type="password" class="form-control" id="inputPassword" placeholder="Password"
+                  ng-model="newUserPassword">
+        </div>
+        <div class="form-group" ng-controller="Dashboard.Controller">
+          <div class="col-sm-12 col-md-6">
+              <a href="/#/password/reset">Forgot Password?</a>
+          </div>
+          <div class="col-sm-12 col-md-6">
+            <input type="submit" ng-click="signIn()" class="btn btn-primary btn-block" value="Sign In">
+          </div>
+        </div>
       </div>
     </div>
   </form>
 
   <div ng-controller="Signup.Controller">
-  <form class="form-horizontal-signup col-sm-4">
-          <!-- Sign up - New User -->
-      <p><i> Sign Up:  </i></p>
-    <div class="form-group">
-      <label for="inputEmail3" class="col-sm-3 control-label">Email</label>
-      <div class="col-sm-10">
-        <input type="text" ng-model="userEmail" class="form-control" id="inputEmail" placeholder="Email">
+    <form class="col-sm-12 col-md-6">
+      <!-- Sign up - New User -->
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Sign Up</h3>
+        </div>
+        <div class="panel-body">
+          <div class="input-group">
+            <span id="inputEmail-addon" class="input-group-addon"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span></span>
+            <input type="text" ng-model="userEmail" class="form-control" id="inputEmail" placeholder="Email" aria-describedby="inputEmail-addon">
+          </div>
+          <div class="input-group">
+            <span id="inputFName-addon" class="input-group-addon"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></span>
+            <input type="text" ng-model="firstName" class="form-control" id="inputFName" placeholder="First Name" aria-describedby="inputFName-addon">
+          </div>
+          <div class="input-group">
+            <span id="inputLName-addon" class="input-group-addon"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></span>
+            <input type="text" ng-model="lastName" class="form-control" id="inputLName" placeholder="Last Name" aria-describedby="inputLName-addon">
+          </div>
+          <div class="form-group">
+            <div class="col-sm-0 col-md-6">
+            </div>
+            <div class="col-sm-12 col-md-6">
+              <input type="submit" ng-click="loadSignup(userEmail, firstName, lastName)" class="btn btn-primary btn-block" value="Sign Up">
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="form-group">
-      <label for="inputFName" class="col-sm-3 control-label">Name</label>
-      <div class="col-sm-10">
-        <input type="text" ng-model="firstName" class="form-control" id="inputFName" placeholder="First Name">
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="inputLName" class="col-sm-3 control-label"></label>
-      <div class="col-sm-10">
-        <input type="text" ng-model="lastName" class="form-control" id="inputLName" placeholder="Last Name">
-        <br>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <div class="col-sm-offset-1.5 col-sm-10">
-
-        <button type="submit" ng-click="loadSignup(userEmail, firstName, lastName)" class="btn btn-primary">Sign up</button>
-    </div>
-  </form>
-</div>
+    </form>
+  </div>
 </div>
    </div>

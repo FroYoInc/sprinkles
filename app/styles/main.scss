@@ -74,6 +74,14 @@ body {
   display: none !important;
 }
 
+input[type="text"], input[type="email"], input[type="password"] {
+  padding: 15px !important;
+}
 
+.panel-body .input-group {
+  margin-bottom: 10px;
+}
 
-
+h1 {
+  line-height: 1em !important;
+}
