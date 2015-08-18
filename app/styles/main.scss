@@ -40,12 +40,16 @@ body {
   border-radius: 6px;
   background-color: #eee;
 }
-.navbar .nav{
-  padding:5px;
+.navbar .nav>li>a {
+    float: none;
+    padding: 15px 15px 15px !important;
+    color: #777777;
+    text-decoration: none;
+    text-shadow: 0 1px 0 #ffffff;
 }
 .navbar-brand {
   float: left;
-  padding: 5px 10px;
+  padding: 7px 10px;
   font-size: 18px;
   line-height: 20px;
   height: 50px;
