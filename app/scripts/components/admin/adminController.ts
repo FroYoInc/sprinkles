@@ -62,7 +62,6 @@ module Admin {
               
               // Check that the geocoding function was able to locate the address
               if(geo === null){
-                $('#GeoLocationError').css('visibility','visible').fadeIn();
                 return;
               }
 
@@ -82,7 +81,7 @@ module Admin {
             // Send the post to the create campus route and handle any error statuses
             $http.post(ConfigService.host + ConfigService.port + '/api/campuses', campus)
               .success( (data) => {
-                $('#campusCreated').css('visibility','visible').fadeIn();
+                showAlert('#campusCreated');
                 // Reset the form
                 $scope.campusName = "";
                 $scope.campusAddress = "";
@@ -91,15 +90,15 @@ module Admin {
               .error( (data, status) => {
                 switch(status){
                   case 400:
-                    $('#badRequest').css('visibility','visible').fadeIn();
+                    showAlert('#badRequest');
                     break;
                   case 403:
-                    $('#notAdmin').css('visibility','visible').fadeIn();
+                    showAlert('#notAdmin');
                   case 409:
-                    $('#campusConflict').css('visibility','visible').fadeIn();
+                    showAlert('#campusConflict');
                     break;
                   case 500:
-                    $('#internalError').css('visibility','visible').fadeIn();
+                    showAlert('#internalError');
                     break;
                 }
               });

@@ -113,7 +113,14 @@ angular.module('app', ['app.controllers','ngRoute','ngStorage','ui.bootstrap', '
           }
       });
 
+      $routeProvider.when('/validActivation', {
+        controller: 'Activation.Controller',
+        templateUrl: '/views/validActivation.html',
+
+      });
+
       $routeProvider.when('/invalidActivation', {
+        controller: 'Activation.Controller',
         templateUrl: '/views/invalidActivation.html',
       });
 
@@ -178,3 +185,12 @@ function($rootScope, Access, $location, $cookies) {
 module app {
     export var controllers = angular.module('app.controllers',[]);
 }
+
+function showAlert(alertId) {
+  var displayTimeinMS = 5000;
+  $(alertId).css('visibility','visible').fadeIn();
+  window.scrollTo(0,0);
+  setTimeout( () => {
+    $(alertId).fadeOut();
+  }, displayTimeinMS);
+};

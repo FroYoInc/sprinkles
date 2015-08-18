@@ -45,6 +45,22 @@
         <span aria-hidden="true">&times;</span></button>
       <strong>Your request has been sent!</strong>
     </div>
+
+    <div class="alert alert-success alert-dismissible fade in hidden-alerts" role="alert"
+         id="accountActicated">
+      <button type="button" class="close" ng-click="visible('accountActicated')" aria-label="Close">
+        <span aria-hidden="true">&times;</span></button>
+      <strong>Success!</strong> Your account has bee activated.
+    </div>
+
+    <div class="alert alert-danger alert-dismissible fade in hidden-alerts" role="alert"
+         id="activationFailure">
+      <button type="button" class="close" ng-click="visible('activationFailure')" aria-label="Close">
+        <span aria-hidden="true">&times;</span></button>
+      <strong>Oops!</strong> We were unable to activate your account at this time.
+    </div>
+
+
     <!-- 400:Bad Request. Invalid or missing parameters. -->
     <div class="alert alert-warning alert-dismissible fade in hidden-alerts" role="alert"
            id="badRequest">
@@ -71,6 +87,7 @@
         <span aria-hidden="true">&times;</span></button>
       <strong>Sorry!</strong> Unauthorized attempt, user must be logged in.
     </div>
+
     <!-- 403:The user account has not been activated. -->
     <div class="alert alert-warning alert-dismissible fade in hidden-alerts" role="alert"
            id="accountNotActivated">
@@ -269,18 +286,18 @@
   <div class="container-fluid">
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
           <span class="sr-only">Toggle navigation</span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href=""><img src="../images/CPIcon50.png"/></a>
+        <a class="navbar-brand" href=""><img src="../images/CPIcon40.png"/></a>
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="container" ng-show="!isAuth" ng-cloak>
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <div class="collapse navbar-collapse" id="navbar">
           <ul class="nav navbar-nav">
             <li ng-class="navClass('home')"><a href="" ng-click="loadHome()">Home</a></li>
             <li ng-class="navClass('signup')"><a href="" ng-click="loadSignup()">Sign Up</a></li>
@@ -296,7 +313,7 @@
         </div>
       </div>
       <div class="container" ng-show="isAuth" ng-cloak>
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <div class="collapse navbar-collapse" id="navbar">
           <ul class="nav navbar-nav">
             <li ng-class="navClass('dashboard')"><a href="" ng-click="loadDashboard()">Home</a></li>
             <li ng-class="navClass('dashboard/carpools/view')"><a href="" ng-click="loadCarpoolsView()">View Carpools</a></li>
@@ -350,6 +367,8 @@
 <script async defer
      src="https://maps.googleapis.com/maps/api/js?v=3&key=API_KEY&callback=initialize">
 </script>
+<script src="dist/app/scripts/components/activation/activationController.js"></script>
+
 
 
 <!-- endbower -->

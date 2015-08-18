@@ -1,21 +1,20 @@
-<div ng-controller="Dashboard.Controller">
+<div ng-controller="Dashboard_Carpools_View.Controller">
   <div class="page-header">
   <h1> Carpool Viewer - Found <strong> {{carpoolList.length  || 0 }} Carpools</strong> <br>
     <small> Click an entry to view details of a carpool. Click the entry again to hide the details. </small>
   </h1>
 </div>
-
 <form class="form-inline">
+<form class="form-inline" name="viewCarpoolForm">
   <div class="form-group">
     <label>Address</label>
     <br>
-    <input type="text" ng-model="address" name="address">
+    <input type="text" ng-model="address" name="address" ng-required=" submitted && radius">
     <br>
     <br>
     <label>Radius of given address (Miles)</label>
       <br>
-        <!-- <input type="text" ng-model="radius" name="radius" required> -->
-        <select ng-model="radius" name="radius">
+        <select ng-model="radius" name="radius" ng-required="submitted && address">
             <option>5</option>
             <option>10</option>
             <option>15</option>
@@ -24,7 +23,7 @@
         </select>
         <br>
         <br>
-        <label>Campus</label>
+        <label>Campus<label style="color:red;">*</label></label>
         <br>
         <select ng-model="campus" name="campus" required>
             <option> {{carpoolCampusName}}</option>
@@ -36,6 +35,9 @@
         <br>
 
       <button type="submit" ng-click="search(campus,radius,address)" class="btn btn-primary">Search</button>
+      <button type="submit" ng-click="submitted=true;search(campus,radius,address);" class="btn btn-primary">Search</button>
+      <button class="btn btn-primary" ng-click="submitted=false;resetForm()">Clear Address</button>
+
 </form>
 
   <!-- button to show map of carpool -->
@@ -49,7 +51,7 @@
            <i class="pull-left glyphicon" ng-class="{'icon-minus-sign': status.open, 'icon-plus-sign': !status.open}"></i>
           <h4> &nbsp;{{carpool.name}}</h4>
        </accordion-heading>
-      <strong>Description:</strong> {{carpool.description}} <br>
+      <strong>Description:</strong> <pre>{{carpool.description}}</pre>
       <strong>Owner:</strong> {{carpool.owner.lastName}}, {{carpool.owner.firstName}} <br>
       <strong>Contact:</strong> {{carpool.owner.email}} <br>
       <strong>Current Participants:</strong> {{carpool.participants.length}} <br>

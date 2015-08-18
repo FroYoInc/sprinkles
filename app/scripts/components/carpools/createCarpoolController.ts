@@ -47,7 +47,6 @@ module Dashboard_Carpools_Create {
           $controller('GeoCoding.Controller',{$scope : geoCode });
           geoCode.geocodeAddress(postData.pickupLocation.address, (geo) => {
             if (geo === null) {
-              $('#internalError').css('visibility','visible').fadeIn();
               return; // test to see if the address is vaild.
             }
             postData.pickupLocation.geoCode = geo;
@@ -58,8 +57,7 @@ module Dashboard_Carpools_Create {
             //Attempt to post data
             $http.post(ConfigService.host + ConfigService.port + '/api/carpools', postData).success(function(data, status, headers, config) {
                 $location.path('/dashboard');
-                window.scrollTo(0,0);
-                $('#carpoolCreated').css('visibility','visible').fadeIn();
+                showAlert('#carpoolCreated');
                 var updatedCookie = new CarpoolModel.CarpoolCookie(postData.name, postData.description, null,
                                   null, postData.campus, postData.pickupLocation.address,
                                   geo.lat, geo.long);
@@ -75,8 +73,7 @@ module Dashboard_Carpools_Create {
                 }
                 //500: Server error
                 if(status == 500){
-                  window.scrollTo(0,0);
-                    $('#internalError').css('visibility','visible').fadeIn();
+                    showAlert('#internalError');
                 }
               });
           });
