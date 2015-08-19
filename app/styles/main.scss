@@ -76,8 +76,9 @@ body {
 
 #googleMap{
   border-style: solid;
-  width:500px;
-  height:380px;
+  width:auto;
+  height:400px;
+  /*padding-bottom: 20px;*/
 }
 
 .infoWindow {
