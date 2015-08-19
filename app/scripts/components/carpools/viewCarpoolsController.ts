@@ -76,6 +76,7 @@ module Dashboard_Carpools_View {
             $http.get(getString)
             .success(function(data, status, headers, config) {
              $scope.carpoolList = data;
+             console.log(data);
              $scope.updateMap(data);
 
             })
