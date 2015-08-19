@@ -7,7 +7,7 @@ body {
   padding-bottom: 20px;
 }
 .help-inline2 {
-    color: #b94a48;
+    color: #b94a48 !important;
 }
 .footer{
   margin-top: 5%;
@@ -38,7 +38,6 @@ body {
   padding-right: 45px;
   padding-left: 45px;
   border-radius: 6px;
-  background-color: #eee;
 }
 .navbar .nav>li>a {
     float: none;
@@ -75,7 +74,7 @@ body {
 }
 
 input[type="text"], input[type="email"], input[type="password"] {
-  padding: 15px !important;
+  padding: 16px !important;
 }
 
 .panel-body .input-group {
@@ -84,4 +83,21 @@ input[type="text"], input[type="email"], input[type="password"] {
 
 h1 {
   line-height: 1em !important;
+}
+
+.no-padding {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.no-padding-left {
+  padding-left: 0 !important;
+}
+
+.no-padding-right {
+  padding-right: 0 !important;
+}
+
+.width100 {
+  width: 100% !important;
 }
