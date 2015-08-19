@@ -74,6 +74,38 @@ body {
   display: none !important;
 }
 
+#googleMap{
+  border-style: solid;
+  width:auto;
+  height:400px;
+  /*padding-bottom: 20px;*/
+}
 
+.infoWindow {
+  font-family: 'Lato', sans-serif;
+  text-align: left;
+  margin: 0 auto;
+  padding-left:0px;
+  max-width: 325px;
+  max-height: 190px;
 
+}
+
+.infoWindow>h3{
+  font-weight:700;
+  font-size: 16px;
+  text-decoration: underline;
+  text-align: center;
+
+}
+
+.infoWindow>p>strong{
+  text-decoration: underline;
+  font-size:13px;
+}
+
+.infoWindow>p{
+  font-weight:400;
+  font-size: 12px;
+}
 

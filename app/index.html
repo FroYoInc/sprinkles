@@ -8,6 +8,7 @@
   <title>Team FroYo - Corporate Carpool</title>
   <!-- bower:css -->
   <link rel="stylesheet" href="bower_components/fontawesome/css/font-awesome.css" />
+  <link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
   <!-- endbower -->
   <link rel="stylesheet" href="styles/main.css">
 </head>
@@ -277,7 +278,7 @@
     <span aria-hidden="true">&times;</span></button>
       You must be an admin to create a campus.
     </div>
-    
+
   </div>
 <div ng-controller="Navbar.Controller">
 
@@ -334,6 +335,7 @@
 <div ng-view>
 </div>
 </div>
+
 <!-- bower:js -->
 <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
 <script src="bower_components/jquery/dist/jquery.js"></script>
@@ -363,7 +365,11 @@
 <script src="dist/app/scripts/components/Request/responseController.js"></script>
 <script src="dist/app/scripts/components/geocoding/geocodingController.js"></script>
 <script src="dist/app/scripts/components/password/passwordController.js"></script>
+<script async defer
+     src="https://maps.googleapis.com/maps/api/js?v=3&key=API_KEY&callback=initialize">
+</script>
 <script src="dist/app/scripts/components/activation/activationController.js"></script>
+
 
 
 <!-- endbower -->

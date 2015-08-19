@@ -4,15 +4,13 @@
     <small> Click an entry to view details of a carpool. Click the entry again to hide the details. </small>
   </h1>
 </div>
-<form class="form-inline" name="viewCarpoolForm">
+<form class="form-inline">
   <div class="form-group">
     <label>Address</label>
-    <br>
     <input type="text" ng-model="address" name="address" ng-required=" submitted && radius">
-    <br>
-    <br>
-    <label>Radius of given address</label>
-      <br>
+    </div>
+    <div class="form-group">
+    <label>Radius (Miles)</label>
         <select ng-model="radius" name="radius" ng-required="submitted && address">
             <option>5</option>
             <option>10</option>
@@ -20,22 +18,25 @@
             <option>20</option>
             <option>25</option>
         </select>
-        <br>
-        <br>
+        </div>
+        <div class="form-group">
         <label>Campus<label style="color:red;">*</label></label>
-        <br>
         <select ng-model="campus" name="campus" required>
-            <option> {{carpoolCampusName}}</option>
             <option ng-repeat="campus in campusList" value="{{campus.name}}">{{campus.name}}</option>
         </select>
-
       </div>
-        <br>
-        <br>
       <button type="submit" ng-click="submitted=true;search(campus,radius,address);" class="btn btn-primary">Search</button>
       <button class="btn btn-primary" ng-click="submitted=false;resetForm()">Clear Address</button>
 
 </form>
+
+  <div class="row">
+  <!-- button to show map of carpool -->
+  <div class="col-sm-6 col-md-push-6" ng-init="initialize('googleMap')">
+    <right><div id="googleMap"></div></right> <br><br>
+  </div>
+
+  <div class="col-sm-6 col-md-pull-6">
   <accordion close-others="oneAtATime">
     <accordion-group  ng-repeat="carpool in carpoolList" is-open="status.open">
       <accordion-heading>
@@ -56,3 +57,9 @@
     </accordion-group>
   </accordion>
 </div>
+</div>
+
+  </div>
+
+
+
