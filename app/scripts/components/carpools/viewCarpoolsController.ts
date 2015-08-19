@@ -51,7 +51,9 @@ module Dashboard_Carpools_View {
                 getString += "&radius=" + radius;
                 getString += "&long=" + geo.long;
                 getString += "&lat=" + geo.lat;
+                var myloc = new google.maps.LatLng(geo.lat,geo.long);
                 makeRequest(getString);
+                $scope.map.setCenter(myloc);
               });
 
             }
@@ -67,6 +69,7 @@ module Dashboard_Carpools_View {
             .success(function(data, status, headers, config) {
              $scope.carpoolList = data;
              $scope.updateMap(data);
+
             })
             .error(function(data, status, headers, config) {
               //500 server error
@@ -86,7 +89,8 @@ module Dashboard_Carpools_View {
             var mapOptions = {
               center: myloc,
               zoom: 11,
-              mapTypeId: google.maps.MapTypeId.ROADMAP
+              mapTypeId: google.maps.MapTypeId.ROADMAP,
+              disableDefaultUI: true
             };
 
             $scope.map = new google.maps.Map(document.getElementById(mapid),mapOptions);
@@ -100,6 +104,11 @@ module Dashboard_Carpools_View {
 
           $scope.updateMap = (carpools:any) => {
             
+            if(carpools.length){
+              var geo = carpools[0].campus.address.geoCode;
+              var myloc = new google.maps.LatLng(geo.lat,geo.long);
+              $scope.map.setCenter(myloc);
+            }
             // Clears all of the previous markers from the map
             $scope.markers.map( (marker) => {
               marker.setMap(null);
@@ -115,8 +124,25 @@ module Dashboard_Carpools_View {
                 position: new google.maps.LatLng(geo.lat,geo.long)
               });
 
+              var contentString = '<div class="infoWindow">'
+              contentString += '<h3>' + carpool.name + "</h3>";
+              
+              var carpoolParticipants = "";
+              carpool.participants.map( (participant, index) => {
+                carpoolParticipants += participant.firstName + " " + participant.lastName;
+                if(index !== carpool.participants.length - 1){
+                  carpoolParticipants += ", "
+                }
+              });
+
+              contentString += "<p><strong>Participants:  </strong>" + carpoolParticipants + "</p>";
+              contentString += "<p><strong>Description:   </strong>" + carpool.description + "</p>";
+              contentString += "<br>"
+
+              contentString += "</div>"
+
               var iw = new google.maps.InfoWindow({
-                              content: "Carpool: " + carpool.name
+                  content: contentString
               });
 
               google.maps.event.addListener(marker, 'click', function () {
@@ -126,7 +152,6 @@ module Dashboard_Carpools_View {
               $scope.markers.push(marker);
               marker.setMap($scope.map);
             });
-
 
           }
     	}
