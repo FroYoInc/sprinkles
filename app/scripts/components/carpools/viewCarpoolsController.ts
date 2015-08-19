@@ -62,6 +62,7 @@ module Dashboard_Carpools_View {
                 var myloc = new google.maps.LatLng(geo.lat,geo.long);
                 makeRequest(getString);
                 $scope.map.setCenter(myloc);
+
               });
 
             }
@@ -96,7 +97,7 @@ module Dashboard_Carpools_View {
 
             var mapOptions = {
               center: myloc,
-              zoom: 11,
+              zoom: 9,
               mapTypeId: google.maps.MapTypeId.ROADMAP,
               disableDefaultUI: true
             };
@@ -130,18 +131,17 @@ module Dashboard_Carpools_View {
               var contentString = '<div class="infoWindow">'
               contentString += '<h3>' + carpool.name + "</h3>";
               
-              var carpoolParticipants = "";
+              var carpoolParticipants = "<ul>";
               carpool.participants.map( (participant, index) => {
-                carpoolParticipants += participant.firstName + " " + participant.lastName;
-                if(index !== carpool.participants.length - 1){
-                  carpoolParticipants += ", "
-                }
+                carpoolParticipants += "<li>" + participant.firstName + " " + participant.lastName + "</li>";
               });
+              carpoolParticipants += "</ul>";
 
               contentString += "<p><strong>Participants:  </strong>" + carpoolParticipants + "</p>";
-              contentString += "<p><strong>Description:   </strong>" + carpool.description + "</p>";
-              contentString += "<br>"
-
+              if(carpool.dist >= 0){
+                contentString += "<p><strong>Distance:    </strong>" + carpool.dist.toFixed(1) + " miles </p>";
+              }
+              contentString += "<p><strong>Description:   </strong>" + carpool.description + "</p><br>";
               contentString += "</div>"
 
               var iw = new google.maps.InfoWindow({
