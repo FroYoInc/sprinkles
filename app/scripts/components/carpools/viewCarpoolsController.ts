@@ -16,10 +16,18 @@ module Dashboard_Carpools_View {
         resetForm: Function;
         address: String;
         radius: Number;
+        carpoolStatus: Boolean;
     }
     export class Controller {
 
-    	constructor ($scope: Scope, $http: any, $location: any, ConfigService: any, $controller:any) {
+    	constructor ($scope: Scope, $http: any, $location: any, ConfigService: any, $controller:any, $cookies: any) {
+
+        var newCarpool = $cookies.getObject('carpool');
+          if (typeof(newCarpool) == "undefined"){
+              $scope.carpoolStatus = false;
+          } else {
+            $scope.carpoolStatus = true;
+          }
           $scope.markers = [];
           //Populate campus list
           $http.get(ConfigService.host + ConfigService.port + '/api/campuses').success(function(data, status, headers, config) {
