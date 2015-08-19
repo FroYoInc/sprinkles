@@ -95,11 +95,6 @@ module Dashboard_Carpools_View {
 
             $scope.map = new google.maps.Map(document.getElementById(mapid),mapOptions);
 
-            var marker=new google.maps.Marker({
-              position: new google.maps.LatLng(45.5112894,-122.6835567)
-            });
-            $scope.markers.push(marker);
-            marker.setMap($scope.map);
           };
 
           $scope.updateMap = (carpools:any) => {

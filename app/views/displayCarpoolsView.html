@@ -32,11 +32,11 @@
 
   <div class="row">
   <!-- button to show map of carpool -->
-  <div class="col-sm-6 col-md-6" ng-init="initialize('googleMap')">
+  <div class="col-sm-6 col-md-push-6" ng-init="initialize('googleMap')">
     <right><div id="googleMap"></div></right> <br><br>
   </div>
 
-  <div class="col-sm-6 col-md-6">
+  <div class="col-sm-6 col-md-pull-6">
   <accordion close-others="oneAtATime">
     <accordion-group  ng-repeat="carpool in carpoolList" is-open="status.open">
       <accordion-heading>
