@@ -18,7 +18,7 @@ module Dashboard {
     export class Controller {
 
     	constructor ($scope: Scope, $http: any, $location: any,  $cookies: any, ConfigService: any, $localStorage) {
-            
+
             // Get carpool cookie if it has already been created
             var newCarpool = $cookies.getObject('carpool');
             if (typeof(newCarpool) == "undefined"){
