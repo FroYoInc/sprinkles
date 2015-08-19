@@ -57,7 +57,7 @@ gulp.task('styles', function() {
 gulp.task('html', ['styles'], function() {
 	gulp.src(['./app/index.html'])
 		.pipe(gulp.dest('dist/'));
-	
+
 	gulp.src(['./app/views/**/*.*'], { base: './app/views/' })
 		.pipe(gulp.dest('dist/views'));
 });
@@ -68,6 +68,8 @@ gulp.task('images', function() {
 });
 
 gulp.task('fonts', function() {
+  return gulp.src('./bower_components/bootstrap-sass/assets/fonts/bootstrap/**/*.*')
+    .pipe(gulp.dest('dist/fonts/bootstrap/'))
 });
 
 gulp.task('wiredep-styles', function() {

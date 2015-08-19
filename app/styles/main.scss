@@ -7,7 +7,7 @@ body {
   padding-bottom: 20px;
 }
 .help-inline2 {
-    color: #b94a48;
+    color: #b94a48 !important;
 }
 .footer{
   margin-top: 5%;
@@ -38,7 +38,6 @@ body {
   padding-right: 45px;
   padding-left: 45px;
   border-radius: 6px;
-  background-color: #eee;
 }
 .navbar .nav>li>a {
     float: none;
@@ -80,6 +79,9 @@ body {
   height:400px;
   /*padding-bottom: 20px;*/
 }
+input[type="text"], input[type="email"], input[type="password"] {
+  padding: 16px !important;
+}
 
 .infoWindow {
   font-family: 'Lato', sans-serif;
@@ -88,6 +90,9 @@ body {
   padding-left:0px;
   max-width: 325px;
   max-height: 190px;
+.panel-body .input-group {
+  margin-bottom: 10px;
+}
 
 }
 
@@ -108,4 +113,23 @@ body {
   font-weight:400;
   font-size: 12px;
 }
+h1 {
+  line-height: 1em !important;
+}
 
+.no-padding {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.no-padding-left {
+  padding-left: 0 !important;
+}
+
+.no-padding-right {
+  padding-right: 0 !important;
+}
+
+.width100 {
+  width: 100% !important;
+}
