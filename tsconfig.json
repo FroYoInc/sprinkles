@@ -22,6 +22,7 @@
         "./app/scripts/components/Request/RequestController.ts",
         "./app/scripts/components/Request/carpoolIDModel.ts",
         "./app/scripts/components/Request/responseController.ts",
+        "./app/scripts/components/activation/activationController.ts",
         "./app/scripts/components/admin/adminController.ts",
         "./app/scripts/components/carpools/carpool.create.ctrl.ts",
         "./app/scripts/components/carpools/carpoolmodel.ts",
@@ -36,9 +37,9 @@
         "./app/scripts/components/password/passwordController.ts",
         "./app/scripts/components/signup/signupController.ts",
         "./typings/angularjs/angular-mocks.d.ts",
-        "./typings/angularjs/angular-route.d.ts",
         "./typings/angularjs/angular.d.ts",
         "./typings/bootstrap/bootstrap.d.ts",
+        "./typings/googlemaps/google.maps.d.ts",
         "./typings/jasmine/jasmine.d.ts",
         "./typings/jquery/jquery.d.ts",
         "./typings/tsd.d.ts"

@@ -62,7 +62,7 @@ module Signup {
               $http.post(ConfigService.host + ConfigService.port +'/api/users', postData).success(function(data, status, headers, config) {
                   //clear the localstorage
                   $localStorage.$reset();
-                  $('#accountmade').css('visibility','visible').fadeIn();
+                  showAlert('#accountmade');
                   //re-route and have popup show
                   $location.path('home');
 

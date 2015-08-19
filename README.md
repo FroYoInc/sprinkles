@@ -21,3 +21,8 @@ This is the UI component of our corporate carpool app.
 	```sh
 	$ gulp serve
 	```
+5. Add your google maps api-key to apps.ts and index.html
+  ```
+  key : "API_KEY"
+  src="https://maps.googleapis.com/maps/api/js?v=3&key=API_KEY&callback=initialize">
+	```
