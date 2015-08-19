@@ -7,12 +7,8 @@
 <form class="form-inline">
   <div class="form-group">
     <label>Address</label>
-    <br>
     <input type="text" ng-model="address" name="address" ng-required=" submitted && radius">
-    <br>
-    <br>
-    <label>Radius of given address (Miles)</label>
-      <br>
+    <label>Radius (Miles)</label>
         <select ng-model="radius" name="radius" ng-required="submitted && address">
             <option>5</option>
             <option>10</option>
@@ -20,17 +16,11 @@
             <option>20</option>
             <option>25</option>
         </select>
-        <br>
-        <br>
         <label>Campus<label style="color:red;">*</label></label>
-        <br>
         <select ng-model="campus" name="campus" required>
-            <option> {{carpoolCampusName}}</option>
             <option ng-repeat="campus in campusList" value="{{campus.name}}">{{campus.name}}</option>
         </select>
       </div>
-        <br>
-        <br>
       <button type="submit" ng-click="submitted=true;search(campus,radius,address);" class="btn btn-primary">Search</button>
       <button class="btn btn-primary" ng-click="submitted=false;resetForm()">Clear Address</button>
 
