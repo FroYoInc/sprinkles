@@ -49,7 +49,7 @@ module Dashboard_Carpools_Edit {
 
         //Default Values
         //Populates the Carpool list
-        $scope.editCarpool = function(isInvalidForm) {
+        $scope.editCarpool = (isInvalidForm) => {
 
         // create an edited carpool to upload to the db and to the cookie
         var editedCarpool = new CarpoolModel.Carpool();
@@ -101,22 +101,22 @@ module Dashboard_Carpools_Edit {
           });
         };
         // Get the campus name by the campus ID
-        $scope.getCampusName = function(campus) {
+        $scope.getCampusName = (campus) => {
           for (var i = 0; i < $scope.campusList.length; i++){
               if ($scope.campusList[i].href == campus){
                 return $scope.campusList[i].name;
               }
           }
-          return "undefined"
+          return "undefined";
         };
         // Get the campus ID by the campus name
-        $scope.getCampus = function(campusName) {
+        $scope.getCampus = (campusName) => {
           for (var i = 0; i < $scope.campusList.length; i++){
               if ($scope.campusList[i].name == campusName){
                 return $scope.campusList[i].href;
               }
           }
-          return "undefined"
+          return "undefined";
         }
 
     	}
@@ -124,4 +124,3 @@ module Dashboard_Carpools_Edit {
     }
 }
 app.controllers.controller('Dashboard_Carpools_Edit.Controller', Dashboard_Carpools_Edit.Controller);
-

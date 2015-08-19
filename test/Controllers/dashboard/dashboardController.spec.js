@@ -10,8 +10,4 @@
        $scope: scope
        });
      }));
-
-      it('should have text = "constructor"', function() {
-          expect(true).toBe(true);
-      });
  });
