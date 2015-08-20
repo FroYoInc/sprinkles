@@ -17,6 +17,7 @@ module Dashboard_Carpools_View {
         address: String;
         radius: Number;
         carpoolStatus: Boolean;
+        locationMarker: any;
     }
     export class Controller {
 
@@ -59,10 +60,20 @@ module Dashboard_Carpools_View {
                 getString += "&radius=" + radius;
                 getString += "&long=" + geo.long;
                 getString += "&lat=" + geo.lat;
-                var myloc = new google.maps.LatLng(geo.lat,geo.long);
+                $scope.locationMarker = new google.maps.LatLng(geo.lat,geo.long);
                 makeRequest(getString);
-                $scope.map.setCenter(myloc);
 
+                var image = {
+                  url: '../../../images/blue_dot_scaled.png'
+                };
+
+                var marker = new google.maps.Marker({
+                  position: $scope.locationMarker,
+                  icon: image
+                });
+                marker.setMap(null);
+                marker.setMap($scope.map);
+                $scope.map.setCenter($scope.locationMarker);
               });
 
             }
