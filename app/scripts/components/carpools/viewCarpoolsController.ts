@@ -60,19 +60,20 @@ module Dashboard_Carpools_View {
                 getString += "&radius=" + radius;
                 getString += "&long=" + geo.long;
                 getString += "&lat=" + geo.lat;
-                $scope.locationMarker = new google.maps.LatLng(geo.lat,geo.long);
+                var myloc = new google.maps.LatLng(geo.lat,geo.long);
                 makeRequest(getString);
 
                 var image = {
                   url: '../../../images/blue_dot_scaled.png'
                 };
-
-                var marker = new google.maps.Marker({
-                  position: $scope.locationMarker,
+                if($scope.locationMarker !== undefined){
+                  $scope.locationMarker.setMap(null);                  
+                }
+                $scope.locationMarker = new google.maps.Marker({
+                  position: myloc,
                   icon: image
                 });
-                marker.setMap(null);
-                marker.setMap($scope.map);
+                $scope.locationMarker.setMap($scope.map);
                 $scope.map.setCenter($scope.locationMarker);
               });
 
