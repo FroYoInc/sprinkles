@@ -31,6 +31,7 @@ This is the UI component of our corporate carpool app.
 ##Unit Tests:
 1. Run `npm install`
 2. Run `gulp unit-tests`
+3. View the code Coverage map in the `coverage` directory
 
 ##End-to-End Tests using protractor 
 1. Run `npm install`
