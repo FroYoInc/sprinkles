@@ -96,7 +96,7 @@ input[type="text"], input[type="email"], input[type="password"] {
   min-height: 100px;
   max-width: 325px;
   max-height: 200px;
-  
+
 }
 
 .infoWindow>h3{
@@ -135,4 +135,15 @@ h1 {
 
 .width100 {
   width: 100% !important;
+}
+
+.form-group label {
+  font-weight: bold;
+  vertical-align: middle !important;
+}
+
+.form-inline button {
+  vertical-align: top !important;
+  padding-top: 6px;
+  padding-bottom: 6px;
 }
