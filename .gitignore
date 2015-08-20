@@ -29,3 +29,8 @@ rethinkdb_data/
 
 # IDE specific
 .idea/
+
+#Coverage results
+.coverrun
+reports/
+coverage/

@@ -20,6 +20,7 @@ module CarpoolCreate {
         checkPasswords: Function;
         signup: Function;
         loadSignup: Function;
+        aler: Function;
     }
     export class Controller {
 
@@ -98,4 +99,3 @@ module CarpoolCreate {
 }
 
 app.controllers.controller('Carpool.Create.Controller', CarpoolCreate.Controller);
-

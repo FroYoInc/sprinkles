@@ -37,6 +37,7 @@
         "./app/scripts/components/navbar/navbarController.ts",
         "./app/scripts/components/password/passwordController.ts",
         "./app/scripts/components/signup/signupController.ts",
+        "./typings/angularjs/angular-mocks.d.ts",
         "./typings/angularjs/angular-route.d.ts",
         "./typings/angularjs/angular.d.ts",
         "./typings/bootstrap/bootstrap.d.ts",
