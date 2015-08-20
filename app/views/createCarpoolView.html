@@ -1,38 +1,57 @@
 <div ng-controller="Dashboard_Carpools_Create.Controller">
-  <div class="jumbotron">
-
+  <div class="container">
     <form name="createform" class="form-signup" novalidate>
-    <h2 class="form-signup-heading">Create a Carpool</h2>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title form-signup-heading">Create a Carpool</h3>
+        </div>
+        <div class="panel-body">
+          <!--Name of Carpool-->
+          <div class="control-group" ng-class="{true: 'error'}[submitted && createform.name.$invalid]">
+            <label>Carpool Name</label>
+            <div class="input-group">
+              <span class="input-group-addon"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span></span>
+      	      <input type="text" class="form-control" ng-model="name" name="name" required placeholder="Carpool Name">
+            </div>
+            <span class="help-inline2" ng-show="submitted && createform.name.$error.required">Required Field</span>
+          </div>
 
-    <!--Name of Carpool-->
-    <div class="control-group" ng-class="{true: 'error'}[submitted && createform.name.$invalid]">
-      <label>Name of Carpool</label>
-	    <input type="text" ng-model="name" name= "name" required>
-      <span class="help-inline" ng-show="submitted && createform.name.$error.required">Required Field</span>
-    </div>
-    <!--Description of Carpool-->
-    <div class="control-group" ng-class="{true: 'error'}[submitted && createform.description.$invalid]">
-      <label>Description of Carpool</label>
-      <textarea ng-model="description" class="form-control" name="description" required></textarea>
-      <span class="help-inline" ng-show="submitted && createform.description.$error.required">Required Field</span>
-    </div>
-    <!--Campus Location -->
-    <div class="control-group" ng-class="{true: 'error'}[submitted && createform.campus.$invalid]">
-      <label>Campus (location of Office)</label>
-      <select ng-model="campus" name="campus" required>
-          <option ng-repeat="campus in campusList" value="{{campus.name}}">{{campus.name}}</option>
-      </select>
-      <span class="help-inline" ng-show="submitted && createform.campus.$error.required">Required Field</span>
-    </div>
+          <div>
+            <div class="col-sm-12 col-md-8 no-padding">
+              <!--Pickup Location -->
+              <div class="control-group" ng-class="{true: 'error'}[submitted && createform.pickupLocation.$invalid]" style="padding-right: 3px;">
+                <label>Pick up location</label>
+                <div class="input-group">
+                  <span class="input-group-addon"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></span>
+                  <input type="text" ng-model="address" class="form-control" name="address" placeholder="Address" required>
+                </div>
+                <span class="help-inline2" ng-show="submitted && createform.address.$error.required">Required Field</span>
+              </div>
+            </div>
 
-    <!--Pickup Location -->
-    <div class="control-group" ng-class="{true: 'error'}[submitted && createform.pickupLocation.$invalid]">
-      <label>Pick up location</label>
-          <input type="text" ng-model="address" class="form-control" name="address" placeholder="Address" required>
-      <span class="help-inline" ng-show="submitted && createform.address.$error.required">Required Field</span>
-    </div>
+            <div class="col-sm-12 col-md-4 no-padding">
+              <!--Campus Location -->
+              <div class="control-group" ng-class="{true: 'error'}[submitted && createform.campus.$invalid]">
+                <label>Campus (location of Office)</label>
+                <select ng-model="campus" name="campus" required class="form-control width100">
+                    <option ng-repeat="campus in campusList" value="{{campus.name}}">{{campus.name}}</option>
+                </select>
+                <span class="help-inline2" ng-show="submitted && createform.campus.$error.required">Required Field</span>
+              </div>
+            </div>
+          </div>
 
-    <div ng-show="carpoolExists" class="help-inline2"> Error: Cannot create carpool. This carpool already Exists.</div><br>
-    <button type="submit" class="btn btn-primary btn-lg btn-inline" ng-click="submitted=true; createCarpool(createform.$invalid)">Create Carpool</button>
+          <!--Description of Carpool-->
+          <div class="control-group" ng-class="{true: 'error'}[submitted && createform.description.$invalid]">
+            <label>Carpool Description</label>
+            <textarea ng-model="description" rows="7" class="form-control" name="description" required></textarea>
+            <span class="help-inline2" ng-show="submitted && createform.description.$error.required">Required Field</span>
+          </div>
+
+          <div ng-show="carpoolExists" class="help-inline2"> Error: Cannot create carpool. This carpool already Exists.</div><br>
+          <button type="submit" class="btn btn-primary btn-lg btn-block" ng-click="submitted=true; createCarpool(createform.$invalid)">Create Carpool</button>
+        </div>
+      </div>
+    </form>
   </div>
 </div>

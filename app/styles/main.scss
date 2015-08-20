@@ -7,7 +7,7 @@ body {
   padding-bottom: 20px;
 }
 .help-inline2 {
-    color: #b94a48;
+    color: #b94a48 !important;
 }
 .footer{
   margin-top: 5%;
@@ -38,7 +38,6 @@ body {
   padding-right: 45px;
   padding-left: 45px;
   border-radius: 6px;
-  background-color: #eee;
 }
 .navbar .nav>li>a {
     float: none;
@@ -74,6 +73,66 @@ body {
   display: none !important;
 }
 
+#googleMap{
+  border-style: solid;
+  width:auto;
+  height:400px;
+  /*padding-bottom: 20px;*/
+}
+input[type="text"], input[type="email"], input[type="password"] {
+  padding: 16px !important;
+}
 
 
+.panel-body .input-group {
+  margin-bottom: 10px;
+}
 
+.infoWindow {
+  font-family: 'Lato', sans-serif;
+  text-align: left;
+  padding-left:0px;
+  min-width: 200px;
+  min-height: 100px;
+  max-width: 325px;
+  max-height: 200px;
+  
+}
+
+.infoWindow>h3{
+  font-weight:700;
+  font-size: 16px;
+  text-decoration: underline;
+  text-align: center;
+
+}
+
+.infoWindow>p>strong{
+  text-decoration: underline;
+  font-size:13px;
+}
+
+.infoWindow>p{
+  font-weight:400;
+  font-size: 12px;
+}
+h1 {
+  line-height: 1em !important;
+}
+
+.no-padding {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.no-padding-left {
+  padding-left: 0 !important;
+}
+
+.no-padding-right {
+  padding-right: 0 !important;
+}
+
+.width100 {
+  width: 100% !important;
+}

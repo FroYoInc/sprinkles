@@ -180,7 +180,7 @@ function($rootScope, Access, $location, $cookies) {
     host: "http://localhost:",
     port: "3000",
     mapsApi : 'https://maps.googleapis.com/maps/api/geocode/json?address=',
-    key : "AIzaSyBSF13-LI-xt-UwQ4LOQ_OhM3V6mssNuNo"
+    key : "API_KEY"
   };
 });
 

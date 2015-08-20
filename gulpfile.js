@@ -89,6 +89,8 @@ gulp.task('images', function() {
 });
 
 gulp.task('fonts', function() {
+  return gulp.src('./bower_components/bootstrap-sass/assets/fonts/bootstrap/**/*.*')
+    .pipe(gulp.dest('dist/fonts/bootstrap/'))
 });
 
 gulp.task('wiredep-styles', function() {
