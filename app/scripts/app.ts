@@ -104,13 +104,7 @@ angular.module('app', ['app.controllers','ngRoute','ngStorage','ui.bootstrap', '
       $routeProvider.when('/password/reset', {
 
         templateUrl: '/views/resetPasswordView.html',
-        controller: 'PasswordManager.Controller',
-        resolve: {
-          access: ["Access", (Access) => {
-            var a =  Access.isAuthenticated();
-            return a;
-            }]
-          }
+        controller: 'PasswordManager.Controller'
       });
 
       $routeProvider.when('/validActivation', {
