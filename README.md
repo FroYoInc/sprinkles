@@ -36,3 +36,4 @@ This is the UI component of our corporate carpool app.
 1. Run `npm install`
 2. Run `./node_modules/protractor/bin/webdriver-manager update` to update the webdriver
 3. Make sure that rethinkdb (`rethinkdb --http-port 9090`), wafflecone(`gulp` in wafflecone directory) and sprinkles(`gulp serve` in sprinkles directory) are all running
+4. Run `gulp e2e-tests`
