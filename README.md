@@ -26,3 +26,17 @@ This is the UI component of our corporate carpool app.
   key : "API_KEY"
   src="https://maps.googleapis.com/maps/api/js?v=3&key=API_KEY&callback=initialize">
 	```
+
+# How to test
+
+##Unit Tests:
+	1. Run `npm install`
+
+	2. Run `gulp unit-tests`
+
+##End-to-End Tests using protractor
+	1. Run 'npm install'
+
+	2. Run `./node_modules/protractor/bin/webdriver-manager update` to update the webdriver
+
+	3. Make sure that rethinkdb (`rethinkdb --http-port 9090`), wafflecone(`gulp` in wafflecone directory) and sprinkles(`gulp serve` in sprinkles directory) are all running
