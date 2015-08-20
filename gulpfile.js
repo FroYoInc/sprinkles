@@ -7,6 +7,8 @@ var config  = require('./config.js')
 var cover = require('gulp-coverage');
 var proxyMiddleware = require('http-proxy-middleware');
 var karma = require('gulp-karma');
+var protractor = require("gulp-protractor").protractor;
+
 var testFiles =  [
         './bower_components/angular/angular.js',
         './bower_components/angular-route/angular-route.js',
@@ -16,10 +18,9 @@ var testFiles =  [
         './bower_components/angular-resource/angular-resource.js',
         './bower_components/angular-cookies/angular-cookies.js',
 
-        './dist/**/**/*.js',
+        './dist/app/**/**/*.js',
         './test/**/*.js'
     ];
-
 var ts = $.typescript;
 
 var tsProject = ts.createProject(config.tsConfigFile);
@@ -162,3 +163,14 @@ gulp.task('unit-tests', ['transpile-ts2js'], function(coverage) {
       throw err;
   });
 });
+
+gulp.task('e2e-tests', function(){
+  $.protractor.webdriver_standalone;
+
+  gulp.src(["./e2e/Signup-e2e.spec.js"])
+      .pipe(protractor({
+          configFile:  'protractor.conf.js',
+          args: ['--baseUrl', 'http://127.0.0.1:8000']
+      }))
+      .on('error', function(e) { console.log(e); throw e })
+})
