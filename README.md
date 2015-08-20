@@ -28,11 +28,11 @@ This is the UI component of our corporate carpool app.
 	```
 
 # How to test
-Unit Tests:
+##Unit Tests:
 1. Run `npm install`
 2. Run `gulp unit-tests`
 
-End-to-End Tests using protractor
+##End-to-End Tests using protractor 
 1. Run `npm install`
 2. Run `./node_modules/protractor/bin/webdriver-manager update` to update the webdriver
 3. Make sure that rethinkdb (`rethinkdb --http-port 9090`), wafflecone(`gulp` in wafflecone directory) and sprinkles(`gulp serve` in sprinkles directory) are all running
