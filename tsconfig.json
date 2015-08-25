@@ -25,7 +25,6 @@
         "./app/scripts/components/activation/activationController.ts",
         "./app/scripts/components/admin/adminController.ts",
         "./app/scripts/components/carpools/carpool.create.ctrl.ts",
-        "./app/scripts/components/carpools/carpoolService.ts",
         "./app/scripts/components/carpools/carpoolmodel.ts",
         "./app/scripts/components/carpools/createCarpoolController.ts",
         "./app/scripts/components/carpools/editCarpoolController.ts",
